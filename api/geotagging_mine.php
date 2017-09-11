@@ -45,7 +45,6 @@
 			<th>Sitename</th>
 			<th>Tagging At</th>
 			<th>Photo</th>
-			<th>Download</th>
 		</tr>
 	<?php
 		$db->addtable("indottech_geotagging");
@@ -59,16 +58,15 @@
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["user_id" => $indottech_geotagging["user_id"],"sitename"=>$sitename,"tagging_at"=>$tagging_at]);
-			$download = "<a href='../geophoto/geotag_".$user_id."_site_".$sitename.".zip'>Download</a>";
+			$dl_url = "../geophoto/geotag_".$user_id."_site_".$sitename.".zip";
 			
-			echo "<tr onclick=\"window.location='?token=".$token."&user_id=".$user_id."&fromlist=1&sitename=".$sitename."&tagging_at=".$tagging_at."'\">";
+			echo "<tr onclick=\"window.location='?token=".$token."&user_id=".$user_id."&fromlist=1&sitename=".$sitename."&tagging_at=".$tagging_at."&dl_url=".$dl_url."'\">";
 				if($is_parent){
 					echo "<td>".$name."</td>";
 				}
 				echo "<td>".$indottech_geotagging["sitename"]."</td>";
 				echo "<td>".format_tanggal($indottech_geotagging["tagging_at"],"dMY")."</td>";
 				echo "<td>".$photo."</td>";
-				echo "<td>".$download."</td>";
 			echo "</tr>";
 		}
 	?>
