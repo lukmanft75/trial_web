@@ -21,7 +21,7 @@
 		$db->addfield("created_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
 		$db->insert();
 		$zip = new ZipArchive;
-		if(true === ($zip->open($zipfile, ZipArchive::CREATE | ZipArchive::OVERWRITE))){
+		if(true === ($zip->open($zipfile, ZipArchive::CREATE))){
 			$zip->addFile($filename, $basefilename);
 			$zip->close();
 		}
