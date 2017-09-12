@@ -4,7 +4,7 @@
 	$username = $db->fetch_single_data("users","email",["token" => $token]);
 	$user_id = $db->fetch_single_data("users","id",["token" => $token]);
 	if($_GET["requesting"] == "1"){
-		include_once "../func.sendingmail_v2.php";
+		include_once "func.sendingmail_v2.php";
 		$lat = $_GET["lat"];
 		$long = $_GET["long"];
 		$sitename = $_GET["sitename"];
