@@ -14,12 +14,13 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	require_once("phpmailer/class.phpmailer.php");
 	include_once("phpmailer/class.smtp.php");
 	$domain = explode("@",$address);
-	$_server = gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=available&domain=".$domain[1]) * 1;
+	/* $_server = gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=available&domain=".$domain[1]) * 1;
 	if($_server == 0){
 		$pause = (70 - date("i")) * 60;
 		sleep($pause);
 		$_server = gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=available&domain=".$domain[1]) * 1;
-	}
+	} */
+	$_server = 7;
 
 	$config[1]["secure"] = "";
 	$config[2]["secure"] = "ssl";
