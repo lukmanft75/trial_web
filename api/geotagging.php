@@ -27,9 +27,9 @@
 		$db->addfield("parent_user_id");
 		$db->where("user_id",$user_id);
 		$parent_user_ids = $db->fetch_data(true);
-		foreach($parent_user_ids as $parent_user_id){		
+		foreach($parent_user_ids as $indottech_group){		
 			$db->addtable("indottech_notifications");
-			$db->addfield("user_id");	$db->addvalue($parent_user_id);
+			$db->addfield("user_id");	$db->addvalue($indottech_group["parent_user_id"]);
 			$db->addfield("message");	$db->addvalue("GeoTagging Request From ".$name);
 			$db->addfield("status");	$db->addvalue("0");
 			$db->addfield("created_at");$db->addvalue(date("Y-m-d H:i:s"));
