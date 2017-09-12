@@ -91,6 +91,6 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 
 	$mail->AddAddress($address);
 
-	if(!$mail->Send()) { return "0"; } else { gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=write&smtp_id=".$_server); return "1"; }
+	if(!$mail->Send()) { return "0"; } else { /* gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=write&smtp_id=".$_server); */ return "1"; }
 }
 ?>

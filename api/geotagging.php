@@ -44,7 +44,7 @@
 			$address = $db->fetch_single_data("users","email",["id" => $indottech_group["parent_user_id"]]);
 			$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
 			$body = "<b>GeoTagging Request From ".$name."<b><br>";
-			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!"
+			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!";
 			sendingmail("GeoTagging Request From ".$name,$address,$body,$replyto);
 		}
 		echo "1";
