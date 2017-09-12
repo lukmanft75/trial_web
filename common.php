@@ -15,6 +15,8 @@
 	$__phpself 					= basename($_SERVER["PHP_SELF"]);
 	$__http_referer 			= basename($_SERVER["HTTP_REFERER"]);
 	$__now						= date("Y-m-d H:i:s");
+	$__group_app				= "11,12";
+	$__main_menu_id				= 6;
 	if($__isloggedin && $__company_id == "") $__is_seeker = true;
 	$__remoteaddr = $_SERVER["REMOTE_ADDR"];
 	
@@ -53,6 +55,8 @@
 	}
 	
 	function is_file_allowed($filename,$user_id,$group_id,$db){
+		if($filename == "index.php") return true;
+		if($filename == "change_password.php") return true;
 		$is_allowed = true;
 		$file_pattern = "";
 		if(strpos($filename,"_") > 0){

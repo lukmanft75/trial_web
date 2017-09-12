@@ -6,7 +6,7 @@
 				<table style="background-color: rgba(255, 255, 255, 0.0);height:60px;width:100%;" cellpadding="0" cellspacing="0">
 					<tr>
 						<td nowrap width="1">
-							<img src="images/corphr.png" style="height:52px;cursor:pointer;border:0px;" alt="<?=$__appstitle;?>" title="<?=$__appstitle;?>" onclick="window.location='index.php';">
+							<img src="images/logo indottech.jpg" style="position:relative;top:5px;height:15px;cursor:pointer;border:0px;" alt="<?=$__appstitle;?>" title="<?=$__appstitle;?>" onclick="window.location='index.php';">
 						</td>
 						<td style="width:30px;" align="left" nowrap>
 						<td align="left" valign="top" nowrap>
@@ -15,7 +15,7 @@
 								<ul>
 									<?php
 										if($__isloggedin){
-											$db->addtable("backoffice_menu"); $db->addfield("id,name,url"); $db->where("parent_id",6); $db->order("seqno");
+											$db->addtable("backoffice_menu"); $db->addfield("id,name,url"); $db->where("parent_id",$__main_menu_id); $db->order("seqno");
 											$arrmenu = $db->fetch_data(true);
 											foreach($arrmenu as $menu){
 												if($__menu_ids[$menu["id"]]){
@@ -35,6 +35,7 @@
 													echo "<li>&nbsp;</li>";
 												}
 											}
+											echo "<li class='bo_menu'><a href='change_password.php'>Change Password</a></li>";
 											echo "<li class='bo_menu'><a href='index.php?logout_action=1'>LOGOUT</a></li>";
 										}
 									?>
