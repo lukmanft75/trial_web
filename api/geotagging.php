@@ -43,9 +43,11 @@
 			//kirim email
 			$address = $db->fetch_single_data("users","email",["id" => $indottech_group["parent_user_id"]]);
 			$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
-			$body = "<b>GeoTagging Request From ".$name."<b><br>";
+			$body = "<b>GeoTagging Request From ".$name." Sitename: ".$sitename."</b><br>";
+			$body .= "<a href='http://103.253.113.201/indottech/indottech_geotagging_req_list.php' target='_BLANK'>";
 			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!";
-			sendingmail("GeoTagging Request From ".$name,$address,$body,$replyto);
+			$body .= "</a>";
+			sendingmail("GeoTagging Request From ".$name." Sitename: ".$sitename,$address,$body,$replyto);
 		}
 		echo "1";
 	}
