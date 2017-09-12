@@ -4,6 +4,7 @@
 	$username = $db->fetch_single_data("users","email",["token" => $token]);
 	$user_id = $db->fetch_single_data("users","id",["token" => $token]);
 	if($_GET["requesting"] == "1"){
+		include_once "../func.sendingmail_v2.php";
 		$lat = $_GET["lat"];
 		$long = $_GET["long"];
 		$sitename = $_GET["sitename"];
@@ -40,6 +41,11 @@
 			$db->addfield("updated_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
 			$db->insert();
 			//kirim email
+			$address = $db->fetch_single_data("users","email",["id" => $indottech_group["parent_user_id"]]);
+			$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
+			$body = "<b>GeoTagging Request From ".$name."<b><br>";
+			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!"
+			sendingmail("GeoTagging Request From ".$name,$address,$body,$replyto);
 		}
 		echo "1";
 	}
