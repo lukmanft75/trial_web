@@ -58,7 +58,7 @@
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["user_id" => $indottech_geotagging["user_id"],"sitename"=>$sitename,"tagging_at"=>$tagging_at]);
-			$dl_url = "../geophoto/geotag_".$user_id."_site_".$sitename.".zip";
+			$dl_url = "../geophoto/geotag_".$user_id."_site_".$sitename."_".$tagging_at.".zip";
 			
 			echo "<tr onclick=\"window.location='?token=".$token."&user_id=".$user_id."&fromlist=1&sitename=".$sitename."&tagging_at=".$tagging_at."&dl_url=".$dl_url."'\">";
 				if($is_parent){

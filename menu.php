@@ -15,7 +15,7 @@
 								<ul>
 									<?php
 										if($__isloggedin){
-											$db->addtable("backoffice_menu"); $db->addfield("id,name,url"); $db->where("parent_id",0); $db->order("seqno");
+											$db->addtable("backoffice_menu"); $db->addfield("id,name,url"); $db->where("parent_id",6); $db->order("seqno");
 											$arrmenu = $db->fetch_data(true);
 											foreach($arrmenu as $menu){
 												if($__menu_ids[$menu["id"]]){

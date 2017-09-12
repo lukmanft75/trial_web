@@ -7,7 +7,7 @@
 	$sitename = $_GET["sitename"];
 	$tagging_at = $_GET["tagging_at"];
 	$basefilename = "geotag_".$user_id."_site_".$sitename."_".date("ymd_his").".jpg";
-	$basezipfile = "geotag_".$user_id."_site_".$sitename.".zip";
+	$basezipfile = "geotag_".$user_id."_site_".$sitename."_".$tagging_at.".zip";
 	$filename = "../geophoto/".$basefilename;
 	$zipfile = "../geophoto/".$basezipfile;
 	if (!(file_put_contents($filename,$data) === FALSE)){
