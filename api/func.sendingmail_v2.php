@@ -20,7 +20,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 		sleep($pause);
 		$_server = gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=available&domain=".$domain[1]) * 1;
 	} */
-	$_server = 8;
+	$_server = 9;
 
 	$config[1]["secure"] = "";
 	$config[2]["secure"] = "ssl";
@@ -30,6 +30,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	$config[6]["secure"] = "ssl";
 	$config[7]["secure"] = "ssl";
 	$config[8]["secure"] = "";
+	$config[9]["secure"] = "ssl";
 
 	$config[1]["host"] = "localhost";
 	$config[2]["host"] = "iix78.rumahweb.com";
@@ -39,6 +40,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	$config[6]["host"] = "server1.jalurkerja.net";
 	$config[7]["host"] = "103.253.113.165";
 	$config[8]["host"] = "103.253.113.164";
+	$config[9]["host"] = "webmail.corphr.com";
 	
 	$config[1]["port"] = 25;
 	$config[2]["port"] = 465;
@@ -48,6 +50,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	$config[6]["port"] = 465;
 	$config[7]["port"] = 465;
 	$config[8]["port"] = 25;
+	$config[9]["port"] = 465;
 
 	$config[1]["username"] = "";
 	$config[2]["username"] = "cs@jalurkerja.com";
@@ -57,6 +60,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	$config[6]["username"] = "cs@jalurkerja.net";
 	$config[7]["username"] = "adminbroadcast@jalurkerja.com";
 	$config[8]["username"] = "adminweb@jalurkerja.com";
+	$config[9]["username"] = "sidik@corphr.com";
 
 	$config[1]["password"] = "";
 	$config[2]["password"] = "dhovekhairassR2h2s12*";
@@ -66,6 +70,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 	$config[6]["password"] = "dhovekhairassR2h2s12*";
 	$config[7]["password"] = "adminbroadcast11A";
 	$config[8]["password"] = "adminweb11A";
+	$config[9]["password"] = "123456";
 
 	$mail             = new PHPMailer();
 	$mail->IsSMTP(); 
