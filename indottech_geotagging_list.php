@@ -3,6 +3,8 @@
 	<?php
 		$is_parent = false;
 		if($db->fetch_single_data("indottech_group","id",["parent_user_id" => $__user_id]) > 0) $is_parent = true;
+		if($db->fetch_single_data("users","group_id",["id" => $__user_id]) == 13) $is_parent = true;
+		
 	?>
 	<div id="bo_expand" onclick="toogle_bo_filter();">[+] View Filter</div>
 	<div id="bo_filter">
