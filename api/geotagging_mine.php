@@ -20,6 +20,7 @@
 	$is_parent = false;
 	$XXXuser_id = $db->fetch_single_data("users","id",["token" => $token]);
 	if($db->fetch_single_data("indottech_group","id",["parent_user_id" => $XXXuser_id]) > 0) $is_parent = true;
+	if($db->fetch_single_data("users","group_id",["id" => $XXXuser_id]) == 13) $is_parent = true;
 	
 
 	if($current || $fromlist){
