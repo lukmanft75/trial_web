@@ -19,9 +19,9 @@
 		
 	$is_parent = false;
 	$XXXuser_id = $db->fetch_single_data("users","id",["token" => $token]);
+	$XXXgroup_id = $db->fetch_single_data("users","group_id",["id" => $XXXuser_id]);
 	if($db->fetch_single_data("indottech_group","id",["parent_user_id" => $XXXuser_id]) > 0) $is_parent = true;
-	if($db->fetch_single_data("users","group_id",["id" => $XXXuser_id]) == 13) $is_parent = true;
-	
+	if($XXXgroup_id == 13) $is_parent = true;
 
 	if($current || $fromlist){
 ?>
@@ -49,7 +49,11 @@
 		</tr>
 	<?php
 		$db->addtable("indottech_geotagging");
-		$db->awhere("sitename <>'' AND user_id = '".$user_id."' OR user_id IN (SELECT user_id FROM indottech_group WHERE parent_user_id = '".$user_id."') GROUP BY user_id,sitename,tagging_at ");
+		if($XXXgroup_id !=13){
+			$db->awhere("sitename <>'' AND user_id = '".$user_id."' OR user_id IN (SELECT user_id FROM indottech_group WHERE parent_user_id = '".$user_id."') GROUP BY user_id,sitename,tagging_at ");
+		} else {
+			$db->awhere("1=1 GROUP BY user_id,sitename,tagging_at ");
+		}
 		$db->order("id DESC");
 		$db->limit("100");
 		$indottech_geotaggings = $db->fetch_data(true);
