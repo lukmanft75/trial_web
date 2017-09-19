@@ -36,9 +36,15 @@ $current = $_GET["current"];
 		$db->where("tagging_at",$tagging_at);
 		$db->where("site_id",$site_id);
 		$indottech_geotaggings = $db->fetch_data(true);
+		echo "<ul>";
 		foreach($indottech_geotaggings as $indottech_geotagging){
+			echo "<li>";
+			echo "<img src='../icons/cam.png' width='20' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'> ".$indottech_geotagging["filename"];
+			echo "</li>";
+			
 			echo "<img src='../geophoto/".$indottech_geotagging["filename"]."' width='80' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'>";
 		}
+		echo "</ul>";
 	?>
 <?php } else { ?>
 	<table id="data_content">
