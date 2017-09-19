@@ -2,8 +2,7 @@
 	<div class="bo_title">Geotagging List</div>
 	<?php
 		$is_parent = false;
-		if($db->fetch_single_data("indottech_group","id",["parent_user_id" => $__user_id]) > 0) $is_parent = true;
-		if($__group_id == 13 || $__group_id < 4) $is_parent = true;
+		if($__group_id == 13 || $__group_id < 4 || $__group_id == 11) $is_parent = true;
 		
 	?>
 	<div id="bo_expand" onclick="toogle_bo_filter();">[+] View Filter</div>
