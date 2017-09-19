@@ -1,8 +1,6 @@
 <?php
 	include_once "../common.php";
-	$token = $_GET["token"];
-	$username = $db->fetch_single_data("users","email",["token" => $token]);
-	$user_id = $db->fetch_single_data("users","id",["token" => $token]);
+	include_once "user_info.php";
 	$indottech_notification_id = $db->fetch_single_data("indottech_notifications","id",["user_id" => $user_id,"status"=>"0"]);
 	if($indottech_notification_id > 0){
 		$message = $db->fetch_single_data("indottech_notifications","message",["id" => $indottech_notification_id]);

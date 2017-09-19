@@ -13,7 +13,7 @@
 				<?=$t->start();?>
 				<?php
 					if($is_parent){
-						$users = $db->fetch_select_data("users","id","concat(email,' -- ',name)",["forbidden_chr_dashboards" => $__main_menu_id],[],"",true);
+						$users = $db->fetch_select_data("users","id","concat(email,' -- ',name)",["forbidden_chr_dashboards" => $__main_menu_id],["email"],"",true);
 						$sel_user_id = $f->select("sel_user_id",$users,@$_GET["sel_user_id"],"style='height:20px;'");
 					}
 					$txt_sitename = $f->input("txt_sitename",@$_GET["txt_sitename"]);

@@ -1,11 +1,11 @@
 <?php
 	include_once "../common.php";
-	$token = $_GET["token"];
+	include_once "user_info.php";
 	if($token != ""){
 		$user_id = $db->fetch_single_data("users","id",["token" => $token]);
 		if($user_id > 0){
 			$username = $db->fetch_single_data("users","email",["token" => $token]);
-			if($db->fetch_single_data("indottech_group","parent_user_id",["user_id" => $user_id]) > 0) echo $username."||1";
+			if($group_id == 12) echo $username."||1";
 			else echo $username."||2";
 		} else {
 			echo "0";

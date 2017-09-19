@@ -18,6 +18,7 @@
 		<table id="data_content">
 			<tr>
 				<th>Name</th>
+				<th>Site ID</th>
 				<th>Sitename</th>
 				<th>Location</th>
 				<th>Status</th>
@@ -30,17 +31,18 @@
 				$long = $indottech_geotagging_req["longitude"];
 				if($indottech_geotagging_req["status"] == 0){
 					$trstyle = "style='background-color:red;'";
-					$status = "<input type='button' value='Approve' onclick='window.location=\"?mode=approving&token=".$token."&id=".$id."\"'>";
+					$status = "<input type='button' value='View' onclick='window.location=\"?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."\"'>";
 				}
 				if($indottech_geotagging_req["status"] == 1){
-					$status = "Approved";
+					$status = "<a href='?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."'>Approved</a>";
 				}
 				if($indottech_geotagging_req["status"] == 2){
-					$status = "<b>Approved</b>";
+					$status = "<b><a href='?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."'>Approved</a></b>";
 				}
 		?>
 			<tr <?=$trstyle;?>>
 				<td nowrap valign="top"><?=$db->fetch_single_data("users","name",["id" => $indottech_geotagging_req["user_id"]]);?></td>
+				<td nowrap valign="top"><?=$indottech_geotagging_req["site_id"];?></td>
 				<td nowrap valign="top"><?=$indottech_geotagging_req["sitename"];?></td>
 				<td valign="top"><a href="?mode=showmap&token=<?=$token;?>&lat=<?=$lat;?>&long=<?=$long;?>&id=<?=$id;?>"><?=$lat;?> ; <?=$long;?></a></td>
 				<td nowrap valign="top"><?=$status;?></td>
@@ -50,24 +52,17 @@
 		?>
 		</table>
 <?php
-	} else if($_GET["mode"] == "approving"){
-		$id = $_GET["id"];
-		$db->addtable("indottech_geotagging_req");
-		$db->where("id",$id);
-		$db->addfield("status");		$db->addvalue("1");
-		$db->addfield("approved_by");	$db->addvalue($username);
-		$db->addfield("approved_at");	$db->addvalue(date("Y-m-d H:i:s"));
-		$db->addfield("approved_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
-		$db->update();
-		?><script> window.location="?token=<?=$token;?>"; </script><?php
 	} else if($_GET["mode"] == "showmap"){
 			$id = $_GET["id"];
 			$status = $db->fetch_single_data("indottech_geotagging_req","status",["id" => $id]);
+			$data = $db->fetch_all_data("indottech_geotagging_req",[],"id='".$id."'")[0];
 		?>
 			<input type="button" value="Back" onclick="window.location='?';">
 			<?php if($status == "0"){ ?>
-				<input type="button" value="Approve" onclick="window.location='?mode=approving&token=<?=$token;?>&id=<?=$id;?>';">
+				<input type="button" value="Approve" onclick="window.location='indottech_geotagging_approving.php?id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
 			<?php } ?>
+			<br><h3><b><?="[".$data["site_id"]."] ".$data["sitename"];?></b></h3>
+			<b>Requested By <?=$db->fetch_single_data("users","name",["id" => $data["user_id"]]);?></b>
 			<div id="map"></div>
 			<script>
 			  function initMap() {

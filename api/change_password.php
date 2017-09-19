@@ -1,0 +1,42 @@
+<?php
+	include_once "../common.php";
+	include_once "user_info.php";
+?>
+<?php
+	if(isset($_POST["save"])){
+		$error_message = "";
+		$_oldpassword = base64_decode($db->fetch_single_data("users","password",["id"=>$user_id]));
+		if($_oldpassword != $_POST["oldpassword"] || $_POST["password"] != $_POST["repassword"] || strlen($_POST["password"]) < 6){
+			$error_message = "<font color='red'>Password salah, silakan ulangi lagi!</font>";			
+		}
+		
+		if($error_message == ""){
+			$db->addtable("users");					$db->where("id",$user_id);
+			$db->addfield("password");				$db->addvalue(base64_encode($_POST["password"]));
+			$db->addfield("updated_at");			$db->addvalue(date("Y-m-d H:i:s"));
+			$db->addfield("updated_by");			$db->addvalue($username);
+			$db->addfield("updated_ip");			$db->addvalue($_SERVER["REMOTE_ADDR"]);
+			$updating = $db->update();
+			if($updating["affected_rows"] >= 0){
+				$error_message = "<font color='blue'>Password berhasil diubah</font>";
+			} else {
+				$error_message = "<font color='red'>Password gagal diubah, silakan ulangi lagi!</font>";
+			}
+		}
+		echo $error_message."<br>";
+	}
+	
+	$txt_oldpassword 		= $f->input("oldpassword","","type='password'");
+	$txt_password 			= $f->input("password","","type='password'");
+	$txt_repassword 		= $f->input("repassword","","type='password'");
+?>
+<h3><b>Change Password</b></h3>
+<?=$f->start();?>
+	<?=$t->start();?>
+		<?=$t->row(array("Password Lama",$txt_oldpassword));?>
+		<?=$t->row(array("Password Baru",$txt_password));?>
+		<?=$t->row(array("Ulangi Password",$txt_repassword));?>
+	<?=$t->end();?>
+	<?=$f->input("save","Save","type='submit'");?>
+<?=$f->end();?>
+<?php include_once "footer.php";?>

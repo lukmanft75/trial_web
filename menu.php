@@ -35,7 +35,6 @@
 													echo "<li>&nbsp;</li>";
 												}
 											}
-											echo "<li class='bo_menu'><a href='change_password.php'>Change Password</a></li>";
 											echo "<li class='bo_menu'><a href='index.php?logout_action=1'>LOGOUT</a></li>";
 										}
 									?>
