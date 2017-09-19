@@ -40,7 +40,9 @@ $current = $_GET["current"];
 		echo "<ul>";
 		foreach($indottech_geotaggings as $indottech_geotagging){
 			echo "<li>";
-			echo "<img src='../icons/cam.png' width='20' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'> ".get_complete_name($indottech_geotagging["photo_item_id"]);
+			echo "<a href=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."&dl_url=".$_GET["dl_url"]."\">";
+			echo "<img src='../icons/cam.png' width='20'> ".get_complete_name($indottech_geotagging["photo_item_id"]);
+			echo "</a>";
 			echo "</li>";
 		}
 		echo "</ul>";
