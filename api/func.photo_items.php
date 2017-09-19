@@ -1,5 +1,5 @@
 <?php
-	function get_complete_name($id){
+	function get_complete_name($id = 0){
 		global $db;
 		$return = $db->fetch_single_data("indottech_photo_items","name",["id" => $id]);
 		$parent_id = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $id]);
