@@ -57,7 +57,7 @@ $current = $_GET["current"];
 		</tr>
 	<?php
 		$db->addtable("indottech_geotagging");
-		if($XXXgroup_id == 13 || $XXXgroup_id < 4){
+		if($XXXgroup_id == 13 || $XXXgroup_id == 11 || $XXXgroup_id < 4){
 			$db->awhere("1=1 GROUP BY user_id,site_id,tagging_at ");
 		} else {
 			$db->awhere("site_id <>'' AND user_id = '".$user_id."' OR user_id IN (SELECT user_id FROM indottech_group WHERE parent_user_id = '".$user_id."') GROUP BY user_id,site_id,tagging_at ");
