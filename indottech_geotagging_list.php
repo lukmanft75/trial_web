@@ -62,18 +62,19 @@
 	<?php
 		foreach($indottech_geotaggings as $no => $indottech_geotagging){
 			$user_id = $indottech_geotagging["user_id"];
+			$site_id = $indottech_geotagging["site_id"];
 			$sitename = $indottech_geotagging["sitename"];
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["user_id" => $indottech_geotagging["user_id"],"sitename"=>$sitename,"tagging_at"=>$tagging_at]);
-			$dl_url = "geophoto/geotag_".$user_id."_site_".$sitename."_".$tagging_at.".zip";
-			$actions = "<a href=\"indottech_geotagging_view.php?user_id=".$user_id."&sitename=".$sitename."&tagging_at=".$tagging_at."\">View</a>";
+			$dl_url = "geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip";
+			$actions = "<a href=\"indottech_geotagging_view.php?user_id=".$user_id."&sitename=".$sitename."&site_id=".$site_id."&tagging_at=".$tagging_at."\">View</a>";
 			$actions .= " | <a target='_BLANK' href='".$dl_url."'>Download</a>";
 			
 			$arr_row = array();
 			$arr_row[] = $no+$start+1;
 			if($is_parent) $arr_row[] = $name;
-			$arr_row[] = $indottech_geotagging["sitename"];
+			$arr_row[] = "[".$site_id."] ".$indottech_geotagging["sitename"];
 			$arr_row[] = format_tanggal($indottech_geotagging["tagging_at"],"dMY");
 			$arr_row[] = $photo;
 			$arr_row[] = $actions;
