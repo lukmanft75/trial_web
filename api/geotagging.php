@@ -26,30 +26,17 @@
 		$db->addfield("updated_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
 		$db->insert();
 		
-		$db->addtable("indottech_group");
-		$db->addfield("parent_user_id");
-		$db->where("user_id",$user_id);
-		$parent_user_ids = $db->fetch_data(true);
-		foreach($parent_user_ids as $indottech_group){		
-			$db->addtable("indottech_notifications");
-			$db->addfield("user_id");	$db->addvalue($indottech_group["parent_user_id"]);
-			$db->addfield("message");	$db->addvalue("GeoTagging Request From ".$name);
-			$db->addfield("status");	$db->addvalue("0");
-			$db->addfield("created_at");$db->addvalue(date("Y-m-d H:i:s"));
-			$db->addfield("created_by");$db->addvalue($username);
-			$db->addfield("created_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
-			$db->addfield("updated_at");$db->addvalue(date("Y-m-d H:i:s"));
-			$db->addfield("updated_by");$db->addvalue($username);
-			$db->addfield("updated_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
-			$db->insert();
-			//kirim email
-			$address = $db->fetch_single_data("users","email",["id" => $indottech_group["parent_user_id"]]);
+		$teamleaders = $db->fetch_all_data("users",[],"group_id = '11' AND forbidden_chr_dashboards='6'");
+		foreach($teamleaders as $teamleader){	
+			$address = $teamleader["email"];
+			$address = "warih@corphr.com";
 			$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
 			$body = "<b>GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename."</b><br>";
 			$body .= "<a href='http://103.253.113.201/indottech/indottech_geotagging_req_list.php' target='_BLANK'>";
 			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!";
 			$body .= "</a>";
-			sendingmail("GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
+			//sendingmail("GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
+			sendingmail($teamleader["email"]." GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
 		}
 		echo "1";
 	}
