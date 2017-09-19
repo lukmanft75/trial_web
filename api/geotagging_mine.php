@@ -25,7 +25,7 @@
 	if($current || $fromlist){
 ?>
 	<?=$back;?>
-	<h2>Site Name : <b>[<?=$site_id;?>] <?=$sitename;?></b></h2>
+	<h4>Site Name : <b>[<?=$site_id;?>] <?=$sitename;?></b></h4>
 	<?php
 		$db->addtable("indottech_geotagging");
 		$db->where("user_id",$user_id);
