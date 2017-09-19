@@ -29,10 +29,11 @@
 <?php
 	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],"parent_id='0'");
 	foreach($indottech_photo_items as $indottech_photo_item){
-		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox'").$indottech_photo_item["name"]."<br>";
+		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox' style='height:25px;'").$indottech_photo_item["name"]."<br>";
 	}
 	echo "<br>";
-	echo $f->input("approved","Approved","type='submit'");
+	echo $f->input("approved","Approved","type='submit' style='width:100%;height:50px;font-size:20px;font-weight:bolder;'");
+	echo "<br>";
 ?>
 </form>
 <?php include_once "footer.php";?>
