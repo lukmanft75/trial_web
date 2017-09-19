@@ -12,6 +12,7 @@ $current = $_GET["current"];
 <?php 
 	include_once "../common.php";
 	include_once "user_info.php";
+	include_once "func.photo_items.php";
 	$tagging_at = $_GET["tagging_at"];
 	$sitename = $_GET["sitename"];
 	$site_id = $_GET["site_id"];
@@ -39,10 +40,8 @@ $current = $_GET["current"];
 		echo "<ul>";
 		foreach($indottech_geotaggings as $indottech_geotagging){
 			echo "<li>";
-			echo "<img src='../icons/cam.png' width='20' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'> ".$indottech_geotagging["filename"];
+			echo "<img src='../icons/cam.png' width='20' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'> ".get_complete_name($indottech_geotagging["photo_item_id"]);
 			echo "</li>";
-			
-			echo "<img src='../geophoto/".$indottech_geotagging["filename"]."' width='80' onclick='window.location=\"geotagging_img_detail.php?user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."\";'>";
 		}
 		echo "</ul>";
 	?>

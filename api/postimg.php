@@ -3,6 +3,10 @@
 	include_once "user_info.php";
 	include_once "func.photo_items.php";
 	$data = file_get_contents('php://input');
+	if(filesize($data) > 1024*1024){
+		echo "oversize||";
+		exit();
+	}
 	$site_id = $_GET["site_id"];
 	$sitename = $_GET["sitename"];
 	$photo_item_id = $_GET["photo_item_id"];
@@ -22,6 +26,7 @@
 		$db->addfield("site_id");						$db->addvalue($site_id);
 		$db->addfield("sitename");						$db->addvalue($sitename);
 		$db->addfield("tagging_at");					$db->addvalue(date("Y-m-d"));
+		$db->addfield("photo_item_id");					$db->addvalue($photo_item_id);
 		$db->addfield("filename");						$db->addvalue($basefilename);
 		$db->addfield("created_at");					$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("created_by");					$db->addvalue($username);

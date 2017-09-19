@@ -1,0 +1,1 @@
+ALTER TABLE `indottech_geotagging` ADD `photo_item_id` INT NOT NULL AFTER `tagging_at`, ADD INDEX (`photo_item_id`);
