@@ -6,7 +6,7 @@
 		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."-".$return;
 		$parent_id = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $parent_id]);
 		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."-".$return;
-		return str_replace([" ","(",")"],["","-",""],$return);
+		return str_replace([" ","(",")","/"],["","-","","-"],$return);
 	}
 	
 	function photo_items_list($id){
