@@ -10,7 +10,7 @@
 		$sitename = $_GET["sitename"];
 		$site_id = $_GET["site_id"];
 		$name = $db->fetch_single_data("users","name",["token" => $token]);
-		if($db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE"]) > 0){
+		if($db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE"]) <= 0){
 			$db->addtable("indottech_geotagging_req");
 			$db->addfield("user_id");	$db->addvalue($user_id);
 			$db->addfield("site_id");	$db->addvalue($site_id);
