@@ -38,9 +38,9 @@
 <h3><b>Change Password</b></h3>
 <?=$f->start();?>
 	<?=$t->start("","editor_content");?>
-		<?=$t->row(array("Password Lama",$txt_oldpassword));?>
-		<?=$t->row(array("Password Baru",$txt_password));?>
-		<?=$t->row(array("Ulangi Password",$txt_repassword));?>
+		<?=$t->row(array("Password Lama<br>".$txt_oldpassword));?>
+		<?=$t->row(array("Password Baru<br>".$txt_password));?>
+		<?=$t->row(array("Ulangi Password<br>".$txt_repassword));?>
 	<?=$t->end();?>
 	<?=$f->input("save","Save","type='submit'");?>
 <?=$f->end();?>
