@@ -1,3 +1,8 @@
+<html>
+	<head>
+		<meta http-equiv="refresh" content="5">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="../backoffice.css">
 <?php
 	include_once "../common.php";
 	include_once "user_info.php";
@@ -32,11 +37,12 @@
 ?>
 <h3><b>Change Password</b></h3>
 <?=$f->start();?>
-	<?=$t->start();?>
+	<?=$t->start("","editor_content");?>
 		<?=$t->row(array("Password Lama",$txt_oldpassword));?>
 		<?=$t->row(array("Password Baru",$txt_password));?>
 		<?=$t->row(array("Ulangi Password",$txt_repassword));?>
 	<?=$t->end();?>
 	<?=$f->input("save","Save","type='submit'");?>
 <?=$f->end();?>
-<?php include_once "footer.php";?>
+	</body>
+</html>
