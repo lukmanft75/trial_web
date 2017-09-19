@@ -25,7 +25,7 @@ $current = $_GET["current"];
 	$XXXuser_id = $db->fetch_single_data("users","id",["token" => $token]);
 	$XXXgroup_id = $db->fetch_single_data("users","group_id",["id" => $XXXuser_id]);
 	if($db->fetch_single_data("indottech_group","id",["parent_user_id" => $XXXuser_id]) > 0) $is_parent = true;
-	if($XXXgroup_id == 13 || $XXXgroup_id < 4) $is_parent = true;
+	if($XXXgroup_id == 13 || $XXXgroup_id == 11 || $XXXgroup_id < 4) $is_parent = true;
 
 	if($current || $fromlist){
 ?>
