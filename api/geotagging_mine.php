@@ -1,3 +1,7 @@
+<?php
+$fromlist = $_GET["fromlist"];
+$current = $_GET["current"];
+?>
 <html>
 	<head>
 		<?php if(!$current && !$fromlist){ ?>
@@ -11,8 +15,6 @@
 	$tagging_at = $_GET["tagging_at"];
 	$sitename = $_GET["sitename"];
 	$site_id = $_GET["site_id"];
-	$fromlist = $_GET["fromlist"];
-	$current = $_GET["current"];
 	if($_GET["user_id"] != ""){
 		$user_id = $_GET["user_id"];
 		$back = "<input type='button' value='Back' style='width:100%;height:50px;font-size:20px;font-weight:bolder;' onclick=\"window.location='geotagging_mine.php?token=".$token."&sitename=".$sitename."&site_id=".$site_id."';\">";
