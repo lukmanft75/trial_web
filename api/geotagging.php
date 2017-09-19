@@ -36,7 +36,7 @@
 			$body .= "Please visit Indottech - Dasboards or Indottech Apps for Approving this request!";
 			$body .= "</a>";
 			//sendingmail("GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
-			sendingmail($teamleader["email"]." GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
+			//sendingmail($teamleader["email"]." GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename,$address,$body,$replyto);
 		}
 		echo "1";
 	}
