@@ -64,13 +64,13 @@
 			$id = $_GET["id"];
 			$data = $db->fetch_all_data("indottech_geotagging_req",[],"id='".$id."'")[0];
 			$status = $data["status"];
+			if($status == "0") $btn_approve = "Approve";
+			else $btn_approve = "View Photo Items";
 		?>
 			<h2>Geotagging Request</b></h2>
 			<b><?="[".$data["site_id"]."] ".$data["sitename"];?> ==> Requested By <?=$db->fetch_single_data("users","name",["id" => $data["user_id"]]);?></b><br><br>
 			<input type="button" value="Back" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='?token=<?=$token;?>';"><br>
-			<?php if($status == "0"){ ?>
-				<input type="button" value="Approve" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_approving.php?token=<?=$token;?>&id=<?=$id;?>&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
-			<?php } ?>
+			<input type="button" value="<?=$btn_approve;?>" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_approving.php?token=<?=$token;?>&id=<?=$id;?>&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
 			<div id="map"></div>
 			<script>
 			  function initMap() {

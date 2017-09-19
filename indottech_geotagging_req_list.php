@@ -56,11 +56,11 @@
 			$id = $_GET["id"];
 			$status = $db->fetch_single_data("indottech_geotagging_req","status",["id" => $id]);
 			$data = $db->fetch_all_data("indottech_geotagging_req",[],"id='".$id."'")[0];
+			if($status == "0") $btn_approve = "Approve";
+			else $btn_approve = "View Photo Items";
 		?>
 			<input type="button" value="Back" onclick="window.location='?';">
-			<?php if($status == "0"){ ?>
-				<input type="button" value="Approve" onclick="window.location='indottech_geotagging_approving.php?id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
-			<?php } ?>
+			<input type="button" value="<?=$btn_approve;?>" onclick="window.location='indottech_geotagging_approving.php?id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
 			<br><h3><b><?="[".$data["site_id"]."] ".$data["sitename"];?></b></h3>
 			<b>Requested By <?=$db->fetch_single_data("users","name",["id" => $data["user_id"]]);?></b>
 			<div id="map"></div>

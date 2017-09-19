@@ -15,6 +15,7 @@
 		?><script> window.location="geotagging_request.php?token=<?=$token;?>"; </script><?php
 	}
 	$data = $db->fetch_all_data("indottech_geotagging_req",[],"id='".$_GET["id"]."'")[0];
+	$photo_item_ids = pipetoarray($data["photo_item_ids"]);
 ?>
 <input type="button" value="Back" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_request.php?token=<?=$token;?>';"><br>
 <h3><b>Approving Geotagging</b></h3>
@@ -29,7 +30,9 @@
 <?php
 	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],"parent_id='0'");
 	foreach($indottech_photo_items as $indottech_photo_item){
-		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox' style='zoom:1.5'").$indottech_photo_item["name"]."<br>";
+		$checked = "";
+		if(in_array($indottech_photo_item["id"],$photo_item_ids)) $checked = "checked";
+		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox' style='zoom:1.5' ".$checked).$indottech_photo_item["name"]."<br>";
 	}
 	echo "<br>";
 	echo $f->input("approved","Approved","type='submit' style='width:100%;height:50px;font-size:20px;'");
