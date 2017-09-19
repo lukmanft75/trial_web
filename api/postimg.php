@@ -3,10 +3,6 @@
 	include_once "user_info.php";
 	include_once "func.photo_items.php";
 	$data = file_get_contents('php://input');
-	if(filesize($data) > 1024*1024){
-		echo "oversize||";
-		exit();
-	}
 	$site_id = $_GET["site_id"];
 	$sitename = $_GET["sitename"];
 	$photo_item_id = $_GET["photo_item_id"];
@@ -20,6 +16,10 @@
 	$filename = "../geophoto/".$basefilename;
 	$zipfile = "../geophoto/".$basezipfile;
 	if (!(file_put_contents($filename,$data) === FALSE)){
+		if(filesize($filename) > 1024*1024){
+			echo "oversize||";
+			exit();
+		}
 		$db->addtable("indottech_geotagging");
 		$db->addfield("indottech_geotagging_req_id");	$db->addvalue($indottech_geotagging_req_id);
 		$db->addfield("user_id");						$db->addvalue($user_id);
