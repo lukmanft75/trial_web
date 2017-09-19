@@ -1,6 +1,8 @@
 <html>
 	<head>
+		<?php if(!$current && !$fromlist){ ?>
 		<meta http-equiv="refresh" content="5">
+		<?php } ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 		<link rel="stylesheet" type="text/css" href="../backoffice.css">
 <?php 
