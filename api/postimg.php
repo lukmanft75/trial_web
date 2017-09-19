@@ -7,10 +7,8 @@
 	$sitename = $_GET["sitename"];
 	$photo_item_id = $_GET["photo_item_id"];
 	$indottech_geotagging_req_id = $_GET["indottech_geotagging_req_id"];
-	echo $photo_item_id."<br>";
-	echo $indottech_geotagging_req_id."<br>";
 	
-	/* $photo_item_name = get_complete_name($photo_item_id);
+	echo $photo_item_name = get_complete_name($photo_item_id);
 	
 	$tagging_at = $_GET["tagging_at"];
 	$basefilename = "tag_".$user_id."_".$site_id."_".$tagging_at."_".$photo_item_name".jpg";
@@ -39,5 +37,5 @@
 		echo "File Transfered||".next_photo_item($photo_item_ids,$photo_item_id)."||".get_complete_name(next_photo_item($photo_item_ids,$photo_item_id));
 	} else {
 		echo "File Failed Transfered||"; 
-	} */
+	}
 ?>
