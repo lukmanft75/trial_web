@@ -42,7 +42,8 @@
 		echo "1";
 	}
 	if($_GET["wait_approving"] == "1"){
-		$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"status" => "1"]);
+		$site_id = $_GET["site_id"];
+		$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE"])
 		if($indottech_geotagging_req_id > 0){
 			$db->addtable("indottech_geotagging_req"); 
 			$db->where("id",$indottech_geotagging_req_id);
