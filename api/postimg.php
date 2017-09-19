@@ -16,7 +16,7 @@
 	$filename = "../geophoto/".$basefilename;
 	$zipfile = "../geophoto/".$basezipfile;
 	if (!(file_put_contents($filename,$data) === FALSE)){
-		if(filesize($filename) > 1024*1024){
+		if(filesize($filename) > 3*1024*1024){
 			echo "oversize||";
 			exit();
 		}
