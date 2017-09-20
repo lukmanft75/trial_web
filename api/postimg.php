@@ -7,7 +7,7 @@
 	$sitename = $_GET["sitename"];
 	$photo_item_id = $_GET["photo_item_id"];
 	$indottech_geotagging_req_id = $_GET["indottech_geotagging_req_id"];
-	
+	$sitename = $db->fetch_single_data("indottech_geotagging_req","sitename",["id" => $indottech_geotagging_req_id]);
 	$photo_item_name = get_complete_name($photo_item_id);
 	
 	$tagging_at = $_GET["tagging_at"];
@@ -20,12 +20,17 @@
 			echo "oversize||";
 			exit();
 		}
+		$db->addtable("indottech_geotagging"); 
+		$db->where("indottech_geotagging_req_id",$indottech_geotagging_req_id);
+		$db->where("photo_item_id",$photo_item_id);
+		$db->delete_();
+		
 		$db->addtable("indottech_geotagging");
 		$db->addfield("indottech_geotagging_req_id");	$db->addvalue($indottech_geotagging_req_id);
 		$db->addfield("user_id");						$db->addvalue($user_id);
 		$db->addfield("site_id");						$db->addvalue($site_id);
 		$db->addfield("sitename");						$db->addvalue($sitename);
-		$db->addfield("tagging_at");					$db->addvalue(date("Y-m-d"));
+		$db->addfield("tagging_at");					$db->addvalue($tagging_at);
 		$db->addfield("photo_item_id");					$db->addvalue($photo_item_id);
 		$db->addfield("filename");						$db->addvalue($basefilename);
 		$db->addfield("created_at");					$db->addvalue(date("Y-m-d H:i:s"));

@@ -3,18 +3,18 @@
 		global $db;
 		$return = $db->fetch_single_data("indottech_photo_items","name",["id" => $id]);
 		$parent_id = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $id]);
-		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."-".$return;
+		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."--".$return;
 		$parent_id = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $parent_id]);
-		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."-".$return;
-		return str_replace([" ","(",")","/"],["","-","","-"],$return);
+		if($parent_id > 0) $return = $db->fetch_single_data("indottech_photo_items","name",["id" => $parent_id])."--".$return;
+		return str_replace([" ","(",")","/"],["","_","","_"],$return);
 	}
 	
 	function photo_items_list($ids){
 		global $db;
+		$i=-1;
 		$return = array();
 		foreach($ids as $id){
 			$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],"parent_id = '".$id."'");
-			$i=-1;
 			foreach($indottech_photo_items as $photo_items_list){
 				if($photo_items_list["is_childest"] == 1){
 					$i++;

@@ -28,6 +28,7 @@
 				<th>Name</th>
 				<th>Sitename</th>
 				<th>Location</th>
+				<th>Request At</th>
 				<th>Status</th>
 			</tr>
 		<?php
@@ -53,6 +54,7 @@
 				<td nowrap valign="top"><?=$db->fetch_single_data("users","name",["id" => $indottech_geotagging_req["user_id"]]);?></td>
 				<td nowrap valign="top">[<?=$indottech_geotagging_req["site_id"];?>] <?=$indottech_geotagging_req["sitename"];?></td>
 				<td valign="top"><?=$lat;?> ; <?=$long;?></td>
+				<td nowrap valign="top"><?=format_tanggal($indottech_geotagging_req["created_at"]);?></td>
 				<td nowrap valign="top"><?=$status;?></td>
 			</tr>
 		<?php

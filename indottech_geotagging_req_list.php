@@ -21,6 +21,7 @@
 				<th>Site ID</th>
 				<th>Sitename</th>
 				<th>Location</th>
+				<th>Request At</th>
 				<th>Status</th>
 			</tr>
 		<?php
@@ -45,6 +46,7 @@
 				<td nowrap valign="top"><?=$indottech_geotagging_req["site_id"];?></td>
 				<td nowrap valign="top"><?=$indottech_geotagging_req["sitename"];?></td>
 				<td valign="top"><a href="?mode=showmap&token=<?=$token;?>&lat=<?=$lat;?>&long=<?=$long;?>&id=<?=$id;?>"><?=$lat;?> ; <?=$long;?></a></td>
+				<td nowrap valign="top"><?=format_tanggal($indottech_geotagging_req["created_at"]);?></td>
 				<td nowrap valign="top"><?=$status;?></td>
 			</tr>
 		<?php
