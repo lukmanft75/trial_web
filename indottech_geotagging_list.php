@@ -1,4 +1,5 @@
 <?php include_once "head.php";?>
+<?php include_once "api/func.photo_items.php";?>
 	<div class="bo_title">Geotagging List</div>
 	<?php
 		$is_parent = false;
@@ -44,7 +45,8 @@
 		if(@$_GET["txt_tagging_at"]!="") $whereclause .= "(tagging_at LIKE '%".$_GET["txt_tagging_at"]."%') AND ";
 		
 		$db->addtable("indottech_geotagging");
-		if($whereclause != "") $db->awhere(substr($whereclause,0,-4)." GROUP BY user_id,sitename,tagging_at ");
+		// if($whereclause != "") $db->awhere(substr($whereclause,0,-4)." GROUP BY user_id,sitename,tagging_at ");
+		if($whereclause != "") $db->awhere(substr($whereclause,0,-4)." GROUP BY indottech_geotagging_req_id ");
 		if(@$_GET["sort"] == "") $_GET["sort"] = "id DESC";
 		if(@$_GET["sort"] != "") $db->order($_GET["sort"]);
 		$db->limit(200);
@@ -60,12 +62,14 @@
 	<?=$t->header($arrheader);?>
 	<?php
 		foreach($indottech_geotaggings as $no => $indottech_geotagging){
+			$indottech_geotagging_req_id = $indottech_geotagging["indottech_geotagging_req_id"];
 			$user_id = $indottech_geotagging["user_id"];
 			$site_id = $indottech_geotagging["site_id"];
 			$sitename = $indottech_geotagging["sitename"];
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
-			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["user_id" => $indottech_geotagging["user_id"],"sitename"=>$sitename,"tagging_at"=>$tagging_at]);
+			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["indottech_geotagging_req_id" => $indottech_geotagging_req_id]);
+			$photo .= "/".count(photo_items_list(pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $_indottech_geotagging_req_id]))));
 			$dl_url = "geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip";
 			$actions = "<a href=\"indottech_geotagging_view.php?user_id=".$user_id."&sitename=".$sitename."&site_id=".$site_id."&tagging_at=".$tagging_at."\">View</a>";
 			$actions .= " | <a target='_BLANK' href='".$dl_url."'>Download</a>";
