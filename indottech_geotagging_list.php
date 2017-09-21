@@ -69,7 +69,7 @@
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["indottech_geotagging_req_id" => $indottech_geotagging_req_id]);
-			$photo .= "/".count(photo_items_list(pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $_indottech_geotagging_req_id]))));
+			$photo .= "/".count(photo_items_list(pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $indottech_geotagging_req_id]))));
 			$dl_url = "geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip";
 			$actions = "<a href=\"indottech_geotagging_view.php?user_id=".$user_id."&sitename=".$sitename."&site_id=".$site_id."&tagging_at=".$tagging_at."\">View</a>";
 			$actions .= " | <a target='_BLANK' href='".$dl_url."'>Download</a>";
