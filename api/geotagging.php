@@ -25,7 +25,6 @@
 		$teamleaders = $db->fetch_all_data("users",[],"group_id = '11' AND forbidden_chr_dashboards='6'");
 		foreach($teamleaders as $teamleader){	
 			$address = $teamleader["email"];
-			$address = "warih@corphr.com";
 			$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
 			$body = "<b>GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename."</b><br>";
 			$body .= "<a href='http://103.253.113.201/indottech/indottech_geotagging_req_list.php' target='_BLANK'>";
@@ -56,7 +55,6 @@
 			$teamleaders = $db->fetch_all_data("users",[],"group_id = '11' AND forbidden_chr_dashboards='6'");
 			foreach($teamleaders as $teamleader){	
 				$address = $teamleader["email"];
-				$address = "warih@corphr.com";
 				$replyto = $db->fetch_single_data("users","email",["id" => $user_id]);
 				$body = "<b>GeoTagging Request From ".$name." Sitename: [".$site_id."] ".$sitename."</b><br>";
 				$body .= "<a href='http://103.253.113.201/indottech/indottech_geotagging_req_list.php' target='_BLANK'>";

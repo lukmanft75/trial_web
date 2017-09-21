@@ -16,10 +16,7 @@
 	$filename = "../geophoto/".$basefilename;
 	$zipfile = "../geophoto/".$basezipfile;
 	if (!(file_put_contents($filename,$data) === FALSE)){
-		if(filesize($filename) > 3*1024*1024){
-			echo "oversize||";
-			exit();
-		}
+		resizeImage($filename);
 		$db->addtable("indottech_geotagging"); 
 		$db->where("indottech_geotagging_req_id",$indottech_geotagging_req_id);
 		$db->where("photo_item_id",$photo_item_id);
