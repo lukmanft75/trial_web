@@ -76,7 +76,7 @@ $current = $_GET["current"];
 		
 		foreach($indottech_geotaggings as $indottech_geotagging){
 			echo "<li>";
-			echo "<a style='font-weight: bolder;' href=\"geotagging_img_detail.php?fromlist=".$fromlist."&current=".$current."&user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."&indottech_geotagging_req_id=".$indottech_geotagging_req_id."&dl_url=".$_GET["dl_url"]."\">";
+			echo "<a style='font-weight: bolder;' href=\"geotagging_img_detail.php?fromlist=".$fromlist."&current=".$current."&user_id=".$_GET["user_id"]."&token=".$token."&sitename=".$sitename."&site_id=".$site_id."&id=".$indottech_geotagging["id"]."&indottech_geotagging_req_id=".$indottech_geotagging_req_id."&photo_item_id=".$indottech_geotagging["photo_item_id"]."&dl_url=".$_GET["dl_url"]."\">";
 			echo "<img src='../icons/search_window.png' width='20'> ".get_complete_name($indottech_geotagging["photo_item_id"]);
 			echo "</a>";
 			echo "</li>";
