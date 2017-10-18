@@ -72,10 +72,11 @@
 			$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE","status" => "0:>"]);
 			if($indottech_geotagging_req_id > 0){
 				$updateStatus = true;
-			}
-			$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE","status" => "-1"]);
-			if($indottech_geotagging_req_id > 0){
-				echo "geotagging_rejected||";
+			} else {
+				$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE","status" => "-1"]);
+				if($indottech_geotagging_req_id > 0){
+					echo "geotagging_rejected||";exit();
+				}
 			}
 		} else {
 			$indottech_geotagging_req_id = $_GET["indottech_geotagging_req_id"];
