@@ -75,6 +75,13 @@
 			} else {
 				$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE","status" => "-1"]);
 				if($indottech_geotagging_req_id > 0){
+					$db->addtable("indottech_geotagging_req"); 
+					$db->where("id",$indottech_geotagging_req_id);
+					$db->addfield("status");	$db->addvalue("-2");
+					$db->addfield("updated_at");$db->addvalue(date("Y-m-d H:i:s"));
+					$db->addfield("updated_by");$db->addvalue($username);
+					$db->addfield("updated_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
+					$db->update();
 					echo "geotagging_rejected||";exit();
 				}
 			}

@@ -40,7 +40,7 @@
 				if($indottech_geotagging_req["status"] == 2){
 					$status = "<b><a href='?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."'>Approved</a></b>";
 				}
-				if($indottech_geotagging_req["status"] == -1){
+				if($indottech_geotagging_req["status"] == -1 || $indottech_geotagging_req["status"] == -2){
 					$status = "<b style='color:red;'>Rejected</b>";
 				}
 		?>
