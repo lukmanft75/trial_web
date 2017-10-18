@@ -40,6 +40,9 @@
 				if($indottech_geotagging_req["status"] == 2){
 					$status = "<b><a href='?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."'>Approved</a></b>";
 				}
+				if($indottech_geotagging_req["status"] == -1){
+					$status = "<b style='color:red;'>Rejected</b>";
+				}
 		?>
 			<tr <?=$trstyle;?>>
 				<td nowrap valign="top"><?=$db->fetch_single_data("users","name",["id" => $indottech_geotagging_req["user_id"]]);?></td>
@@ -62,7 +65,12 @@
 			else $btn_approve = "View Photo Items";
 		?>
 			<input type="button" value="Back" onclick="window.location='?';">
+			<?php if($status != "-1"){ ?>
 			<input type="button" value="<?=$btn_approve;?>" onclick="window.location='indottech_geotagging_approving.php?id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
+			<?php } ?>
+			<?php if($status == "0"){ ?>
+				<input type="button" value="Reject" onclick="window.location='indottech_geotagging_approving.php?reject=1&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
+			<?php } ?>
 			<br><h3><b><?="[".$data["site_id"]."] ".$data["sitename"];?></b></h3>
 			<b>Requested By <?=$db->fetch_single_data("users","name",["id" => $data["user_id"]]);?></b>
 			<div id="map"></div>

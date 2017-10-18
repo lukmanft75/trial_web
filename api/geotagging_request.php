@@ -49,6 +49,9 @@
 					$status = "<b>Approved</b>";
 					$status = "<b><a href='?mode=showmap&token=".$token."&lat=".$lat."&long=".$long."&id=".$id."'>Approved</a></b>";
 				}
+				if($indottech_geotagging_req["status"] == -1){
+					$status = "<b style='color:red;'>Rejected</b>";
+				}
 		?>
 			<tr <?=$trstyle;?>>
 				<td nowrap valign="top"><?=$db->fetch_single_data("users","name",["id" => $indottech_geotagging_req["user_id"]]);?></td>
@@ -72,7 +75,12 @@
 			<h2>Geotagging Request</b></h2>
 			<b><?="[".$data["site_id"]."] ".$data["sitename"];?> ==> Requested By <?=$db->fetch_single_data("users","name",["id" => $data["user_id"]]);?></b><br><br>
 			<input type="button" value="Back" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='?token=<?=$token;?>';"><br>
-			<input type="button" value="<?=$btn_approve;?>" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_approving.php?token=<?=$token;?>&id=<?=$id;?>&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
+			<?php if($status != "-1"){ ?>
+				<input type="button" value="<?=$btn_approve;?>" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_approving.php?token=<?=$token;?>&id=<?=$id;?>&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
+			<?php } ?>
+			<?php if($status == "0"){ ?>
+				<input type="button" value="Reject" style="width:100%;height:50px;font-size:20px;font-weight:bolder;" onclick="window.location='geotagging_approving.php?token=<?=$token;?>&reject=1&id=<?=$id;?>&lat=<?=$_GET["lat"];?>&long=<?=$_GET["long"];?>';">
+			<?php } ?>
 			<div id="map"></div>
 			<script>
 			  function initMap() {

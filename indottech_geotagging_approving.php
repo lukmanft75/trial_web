@@ -1,12 +1,16 @@
 <?php include_once "head.php";?>
 <?php 
 	if($__group_id == "12") { ?> <script> window.location="index.php"; </script> <?php } 
-	if(isset($_POST["approved"]) && count($_POST["chk"]) > 0){
+	if((isset($_POST["approved"]) && count($_POST["chk"]) > 0) || isset($_GET["reject"])){
 		$id = $_GET["id"];
 		$db->addtable("indottech_geotagging_req");
 		$db->where("id",$id);
-		$db->addfield("status");		$db->addvalue("1");
-		$db->addfield("photo_item_ids");$db->addvalue(sel_to_pipe($_POST["chk"]));
+		if(isset($_GET["reject"])){
+			$db->addfield("status");		$db->addvalue("-1");
+		} else {
+			$db->addfield("status");		$db->addvalue("1");
+			$db->addfield("photo_item_ids");$db->addvalue(sel_to_pipe($_POST["chk"]));
+		}
 		$db->addfield("approved_by");	$db->addvalue($username);
 		$db->addfield("approved_at");	$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("approved_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
