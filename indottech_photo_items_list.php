@@ -6,7 +6,7 @@
 		<?=$f->start("filter","GET");?>
 			<?=$t->start();?>
 			<?php
-				$itemtypes = ["" => "","1"=>"Survey","2"=>"Installation","3"=>"Dismantle"];
+				$itemtypes = ["" => "","1"=>"Survey","2"=>"Installation","3"=>"Dismantle","4"=>"HS"];
 				$sel_parent_id = $f->select("sel_parent_id",$db->fetch_select_data("indottech_photo_items","id","name",["is_childest" => "0"],[],"",true),@$_GET["sel_parent_id"],"style='height:20px'");
 				$sel_itemtype= $f->select("sel_itemtype",$itemtypes,@$_GET["sel_itemtype"],"style='height:20px'");
 				$txt_name = $f->input("txt_name",@$_GET["txt_name"]);
@@ -54,6 +54,7 @@
 			if($indottech_photo_item["itemtype"] == "1") $itemtype = "Survey";
 			if($indottech_photo_item["itemtype"] == "2") $itemtype = "Installation";
 			if($indottech_photo_item["itemtype"] == "3") $itemtype = "Dismantle";
+			if($indottech_photo_item["itemtype"] == "4") $itemtype = "HS";
 			$group = $db->fetch_single_data("indottech_photo_items","name",["id" => $indottech_photo_item["parent_id"]]);
 			$group_parent_id = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $indottech_photo_item["parent_id"]]);
 			if($group_parent_id > 0) $group = $db->fetch_single_data("indottech_photo_items","name",["id" => $group_parent_id])." -- ".$group;
