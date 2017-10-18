@@ -78,6 +78,9 @@
 			if($db->fetch_single_data("indottech_geotagging_req","status",["id" => $indottech_geotagging_req_id]) == "1"){
 				$updateStatus = true;
 			}
+			if($db->fetch_single_data("indottech_geotagging_req","status",["id" => $indottech_geotagging_req_id]) == "-1"){
+				echo "geotagging_rejected||";
+			}
 		}
 		if($updateStatus){
 			$db->addtable("indottech_geotagging_req"); 
