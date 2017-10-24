@@ -10,14 +10,18 @@
 	$tagging_at = $_GET["tagging_at"];
 	$indottech_geotagging_req_id = $_GET["indottech_geotagging_req_id"];
 	$name = $db->fetch_single_data("users","name",["token" => $token]);
-	
 	if($_GET["retakeMode"] && $_GET["wait_approving"] == ""){
+		$datediff = $db->fetch_single_data("indottech_geotagging_req","concat(HOUR(TIMEDIFF(NOW(), approved_at)))",["id" => $indottech_geotagging_req_id]);
 		$db->addtable("indottech_geotagging_req");
 		$db->where("id",$indottech_geotagging_req_id);
 		$db->where("status",2);
 		$db->addfield("latitude");	$db->addvalue($lat);
 		$db->addfield("longitude");	$db->addvalue($long);
-		$db->addfield("status");	$db->addvalue(0);
+		if($datediff >= 2){
+			$db->addfield("status");	$db->addvalue(0);
+		} else {
+			$db->addfield("status");	$db->addvalue(1);
+		}
 		$db->addfield("updated_at");$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("updated_by");$db->addvalue($username);
 		$db->addfield("updated_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);
