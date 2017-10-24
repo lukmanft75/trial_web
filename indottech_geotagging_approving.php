@@ -11,7 +11,7 @@
 			$db->addfield("status");		$db->addvalue("1");
 			$db->addfield("photo_item_ids");$db->addvalue(sel_to_pipe($_POST["chk"]));
 		}
-		$db->addfield("approved_by");	$db->addvalue($username);
+		$db->addfield("approved_by");	$db->addvalue($__username);
 		$db->addfield("approved_at");	$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("approved_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
 		$db->update();
