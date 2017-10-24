@@ -21,6 +21,7 @@
 			$db->addfield("status");	$db->addvalue(0);
 		} else {
 			$db->addfield("status");	$db->addvalue(1);
+			$db->addfield("approved_at");$db->addvalue(date("Y-m-d H:i:s"));
 		}
 		$db->addfield("updated_at");$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("updated_by");$db->addvalue($username);
