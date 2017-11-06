@@ -1,7 +1,7 @@
 <?php include_once "head.php";?>
 <?php
 	if($_GET["deleting"]){
-		if($db->fetch_single_data("prf","approve_by",array("id" => $_GET["deleting"])) == ""){
+		if($db->fetch_single_data("prf","approve_at",array("id" => $_GET["deleting"])) == "0000-00-00"){
 			$db->addtable("prf");
 			$db->where("id",$_GET["deleting"]);
 			$db->where("created_by",$__username);
