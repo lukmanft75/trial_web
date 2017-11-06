@@ -1,16 +1,30 @@
 <?php include_once "head.php";?>
+<?php include_once "prf_js.php";?>
 <?php
+	$maker_user_email = $db->fetch_single_data("prf","maker_by",["id"=>$_GET["id"]]);
+	$maker_user_id = $db->fetch_single_data("users","id",["email"=>$maker_user_email]);
+	$projects = array();
+	$data = $db->fetch_all_data("indottech_roles",[],"user_id = '".$maker_user_id."' AND module = 'PRF' AND role='maker'");
+	if(count($data) > 0){
+		$projects[] = "";
+		foreach($data as $row){
+			$project = $db->fetch_single_data("indottech_projects","name",["id"=>$row["project_id"]]);
+			$project .= " -- ".$db->fetch_single_data("indottech_scopes","name",["id"=>$row["scope_id"]]);
+			if($row["region_id"] > 0) $project .= " -- ".$db->fetch_single_data("indottech_regions","name",["id"=>$row["region_id"]]);
+			$projects[$row["project_id"].":".$row["scope_id"].":".$row["region_id"]] = $project;
+		}
+	}
+	
 	if($db->fetch_single_data("prf","paid_by",array("id" => $_GET["id"])) != ""){
 		javascript("alert('This PRF has Paid, You`re not allow to edit this PRF');");
 		javascript("window.location='prf_list.php';");
 	}
-	if($__group_id > 4 && $__username != $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]))){
+	if($__username != $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]))){
 		javascript("alert('You`re not allow to update this document');");
 		javascript("window.location='prf_list.php';");
 		exit();
 	}
-	if($__group_id > 4 
-		&& ($db->fetch_single_data("prf","checker_at",array("id" => $_GET["id"])) != "0000-00-00" || $db->fetch_single_data("prf","signer_at",array("id" => $_GET["id"])) != "0000-00-00" )
+	if(($db->fetch_single_data("prf","checker_at",array("id" => $_GET["id"])) != "0000-00-00" || $db->fetch_single_data("prf","signer_at",array("id" => $_GET["id"])) != "0000-00-00" )
 		&& $__username != $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]))
 	){
 		javascript("alert('This PRF has Checked or Signed, You`re not allow to edit this PRF');");
@@ -35,11 +49,13 @@
         $db->addfield("description");	$db->addvalue($_POST["description"]);
         $db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
         $db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
-		if($__group_id > 4 || $__username == $prf_created_by){
+		if($__username == $prf_created_by){
 			$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
 			$db->addfield("checker_at");	$db->addvalue("0000-00-00");
 			$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
 			$db->addfield("signer_at");		$db->addvalue("0000-00-00");
+			$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
+			$db->addfield("approve_at");	$db->addvalue("0000-00-00");
 		}
 		$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
 		$db->addfield("updated_by");	$db->addvalue($__username);
@@ -54,14 +70,22 @@
 	}
 	
 	$notallowchange = "";
-	if($__group_id <= 4 && $__username != $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]))){
+	if($__username != $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]))){
 		$notallowchange = " readonly";
 	}
 	
 	$db->addtable("prf");$db->where("id",$_GET["id"]);$db->limit(1);$data = $db->fetch_data();
+	$db->addtable("indottech_prfs");$db->where("prf_id",$data["id"]);$db->limit(1);$prfs = $db->fetch_data();
+	$project_val = $prfs["project_id"].":".$prfs["scope_id"].":".$prfs["region_id"];
+	if(!$projects[$project_val]){
+		$project_val = $prfs["project_id"].":".$prfs["scope_id"].":0";
+	}
+	
+	$sel_projects = $f->select("project",$projects,$project_val,"onchange='has_region(this.value);'");
+	$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_POST["region_id"],"onchange='load_checker(project.value,this.value);'");
 	
     $txt_code = $f->input("code",$data["code"],"");
-    $txt_nominal = $f->input("nominal",$data["nominal"],"type='number'".$notallowchange);
+    $txt_nominal = $f->input("nominal",$data["nominal"],"type='number'".$notallowchange." onblur='load_checker(project.value,region_id.value,this.value);'");
 	$sel_deduct_type = $f->select("deduct_type",array(""=>"","1"=>"PPh 21","2"=>"PPh 23","3"=>"Other"),$data["deduct_type"]);
     $txt_deduct_nominal = $f->input("deduct_nominal",$data["deduct_nominal"],"type='number'");
 	$sel_payment_method = $f->select("payment_method",array(""=>"","1"=>"Cheque","2"=>"Bilyet Giro","3"=>"Transfer","4"=>"Cash"),$data["payment_method"]);
@@ -72,11 +96,11 @@
 	$txt_description = $f->textarea("description",$data["description"],"style='width:400px;height:100px;'".$notallowchange);
 	$sel_prf_mode = $f->select("prf_mode",array("1"=>"Normal","2"=>"Reimburse","3"=>"Advance"),$data["prf_mode"]);
 	$txt_maker_at = $f->input("maker_at",$data["maker_at"],"type='date' readonly");
-	$sel_checker = $f->select("checker_by",$db->fetch_select_data("users","email","name",array(),array(),"",true),$data["checker_by"]);
-	$sel_signer = $f->select("signer_by",$db->fetch_select_data("users","email","name",array(),array(),"",true),$data["signer_by"]);
 ?>
 <?=$f->start("","POST");?>
 	<?=$t->start("","editor_content");?>
+        <?=$t->row(array("Project",$sel_projects));?>
+        <?=$t->row(array("Region","<div id='div_region' style='visibility:hidden;'>".$sel_region."</div>"));?>
         <?=$t->row(array("PRF Code",$txt_code));?>
         <?=$t->row(array("Code Number","<b>".$data["code_number"]."</b>"));?>
         <?=$t->row(array("Nominal Amount",$txt_nominal));?>
@@ -90,12 +114,18 @@
         <?=$t->row(array("PRF Mode",$sel_prf_mode));?>
         <?=$t->row(array("Request Date",$txt_maker_at));?>
         <?=$t->row(array("Maker By",$data["maker_by"]));?>
-        <?=$t->row(array("Checker",$sel_checker));?>
-        <?=$t->row(array("Signer",$sel_signer));?>
+        <?=$t->row(array("Checker By","<div id='div_checker'></div>"));?>
+        <?=$t->row(array("Signer By","<div id='div_signer'></div>"));?>
+        <?=$t->row(array("Approval By","<div id='div_approve'></div>"));?>
 	<?=$t->end();?>
 	<br>
 	<?=$f->input("save","Save","type='submit'");?> 
 	<?=$f->input("back","Back","type='button' onclick=\"window.location='".str_replace("_edit","_list",$_SERVER["PHP_SELF"])."';\"");?>
 	<?=$f->input("view","View","type='button' onclick=\"window.location='prf_view.php?id=".$_GET["id"]."';\"");?>
 <?=$f->end();?>
+<script>
+	has_region(project.value);
+	region_id.value = "<?=$prfs["region_id"];?>";
+	load_checker(project.value,"<?=$prfs["region_id"];?>","<?=$data["nominal"];?>");
+</script>
 <?php include_once "footer.php";?>

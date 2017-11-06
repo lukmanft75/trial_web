@@ -4,9 +4,7 @@
 		if($db->fetch_single_data("prf","approve_by",array("id" => $_GET["deleting"])) == ""){
 			$db->addtable("prf");
 			$db->where("id",$_GET["deleting"]);
-			if($__group_id > 4){
-				$db->where("created_by",$__username);
-			}
+			$db->where("created_by",$__username);
 			$db->delete_();
 			?> <script> window.location="?";</script> <?php
 		}else{
@@ -25,12 +23,14 @@
                 $created_by = $f->input("created_by",@$_GET["created_by"]);
                 $checker_by = $f->input("checker_by",@$_GET["checker_by"]);
                 $signer_by = $f->input("signer_by",@$_GET["signer_by"]);
+                $approve_by = $f->input("approve_by",@$_GET["approve_by"]);
                 $paid = $f->select("paid",[""=>"","1"=>"paid","2"=>"unpaid"],@$_GET["paid"],"style='height:20px;'");
 			?>
 			<?=$t->row(array("Maker Date",$maker_at));?>
 			<?=$t->row(array("Created By",$created_by));?>
 			<?=$t->row(array("Checker By",$checker_by));?>
 			<?=$t->row(array("Signer By",$signer_by));?>
+			<?=$t->row(array("Approve By",$approve_by));?>
 			<?=$t->row(array("Is Paid",$paid));?>
 			<?=$t->end();?>
 			<?=$f->input("page","1","type='hidden'");?>
@@ -42,14 +42,14 @@
 </div>
 
 <?php	
-	$whereclause = "";
-	if($__group_id > 4) $whereclause .= "(created_by = '".$__username."' OR checker_by = '".$__username."' OR signer_by = '".$__username."') AND ";
-	if(@$_GET["maker_at"]!="") $whereclause .= "(maker_at LIKE '%".$_GET["maker_at"]."%') AND ";
-	if(@$_GET["created_by"]!="") $whereclause .= "(created_by LIKE '%".$_GET["created_by"]."%') AND ";
-	if(@$_GET["paid"]=="1") $whereclause .= "(paid_by <> '') AND ";
-	if(@$_GET["paid"]=="2") $whereclause .= "(paid_by = '') AND ";
-	if(@$_GET["checker_by"]!="") $whereclause .= "(checker_by LIKE '".$_GET["checker_by"]."') AND ";
+	$whereclause = "(created_by = '".$__username."' OR checker_by = '".$__username."' OR signer_by = '".$__username."' OR approve_by = '".$__username."') AND ";
+	if(@$_GET["maker_at"]!="")	$whereclause .= "(maker_at LIKE '%".$_GET["maker_at"]."%') AND ";
+	if(@$_GET["created_by"]!="")$whereclause .= "(created_by LIKE '%".$_GET["created_by"]."%') AND ";
+	if(@$_GET["paid"]=="1") 	$whereclause .= "(paid_by <> '') AND ";
+	if(@$_GET["paid"]=="2") 	$whereclause .= "(paid_by = '') AND ";
+	if(@$_GET["checker_by"]!="")$whereclause .= "(checker_by LIKE '".$_GET["checker_by"]."') AND ";
 	if(@$_GET["signer_by"]!="") $whereclause .= "(signer_by LIKE '".$_GET["signer_by"]."') AND ";
+	if(@$_GET["approve_by"]!="") $whereclause .= "(approve_by LIKE '".$_GET["approve_by"]."') AND ";
 	
 	$db->addtable("prf");
 	if($whereclause != "") $db->awhere(substr($whereclause,0,-4));$db->limit($_max_counting);
@@ -67,18 +67,28 @@
 			document.getElementById("paid").value=2;
 			document.getElementById('checker_by').value='';
 			document.getElementById('signer_by').value='';
+			document.getElementById('approve_by').value='';
 			document.getElementById("do_filter").click();
 		}
 		function checker_by_me(){
 			document.getElementById("paid").value='';
 			document.getElementById('checker_by').value='<?=$__username;?>';
 			document.getElementById('signer_by').value='';
+			document.getElementById('approve_by').value='';
 			document.getElementById('do_filter').click();
 		}
 		function signer_by_me(){
 			document.getElementById("paid").value='';
 			document.getElementById('checker_by').value='';
 			document.getElementById('signer_by').value='<?=$__username;?>';
+			document.getElementById('approve_by').value='';
+			document.getElementById('do_filter').click();
+		}
+		function approve_by_me(){
+			document.getElementById("paid").value='';
+			document.getElementById('checker_by').value='';
+			document.getElementById('signer_by').value='';
+			document.getElementById('approve_by').value='<?=$__username;?>';
 			document.getElementById('do_filter').click();
 		}
 	</script>
@@ -87,6 +97,7 @@
 	<?=$f->input("unpaid","Show Unpaid","type='button' onclick=\"unpaid();\"");?>
 	<?=$f->input("mychecker","Checker By Me","type='button' onclick=\"checker_by_me();\"");?>
 	<?=$f->input("mysigner","Signer By Me","type='button' onclick=\"signer_by_me();\"");?>
+	<?=$f->input("myapprove","Approve By Me","type='button' onclick=\"approve_by_me();\"");?>
 	<?=$paging;?>
 	<?=$t->start("","data_content");?>
 	<?=$t->header(array("No",
@@ -107,6 +118,10 @@
             $checked = ($prf["checker_at"] != "0000-00-00" && $prf["checker_at"] != "") ? "Yes":"No";
             $signed = ($prf["signer_at"] != "0000-00-00" && $prf["signer_at"] != "") ? "Yes":"No";
             $paid = ($prf["paid_by"] != "") ? "Yes":"No";
+			$approved_by = "";
+			if($prf["approve_at"] != "0000-00-00"){
+				$approved_by = $prf["approve_by"];
+			}
 		?>
 		<?=$t->row(
 					array($no+$start+1,
@@ -118,7 +133,7 @@
 						format_amount($prf["nominal"]),
 						$checked,
 						$signed,
-						$prf["approve_by"],
+						$approved_by,
 						format_tanggal($prf["approve_at"],"dMY"),
 						$paid),
 					array("align='right' valign='top'","width='110' nowrap","","","","","align='right'","","","")

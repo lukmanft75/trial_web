@@ -184,12 +184,12 @@
 <br>
 <?php
 	if(!$__print){
-		if($prf["checker_at"] == "0000-00-00") echo $f->input("checker","Checked","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=checker';\"")."&nbsp;";
-		if($prf["signer_at"] == "0000-00-00") echo $f->input("signer","Signed","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=signer';\"")."&nbsp;";
+		if($prf["checker_at"] == "0000-00-00" && $__username == $prf["checker_by"]) echo $f->input("checker","Checked","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=checker';\"")."&nbsp;";
+		if($prf["signer_at"] == "0000-00-00" && $__username == $prf["signer_by"]) echo $f->input("signer","Signed","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=signer';\"")."&nbsp;";
+		if($prf["approve_at"] == "0000-00-00" && $__username == $prf["approve_by"]) echo $f->input("approved","Approved","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=approve';\"")."&nbsp;";
 		if($__group_id <= 4) {
 			if($prf["finance_by"] == "") echo $f->input("finance_ok","Finance OK","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=finance';\"")."&nbsp;";
 			if($prf["accounting_by"] == "") echo $f->input("accounting_ok","Accounting OK","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=accounting';\"")."&nbsp;";
-			if($prf["approve_by"] == "") echo $f->input("approved","Approved","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=approve';\"")."&nbsp;";
 			if($prf["paid_by"] == "") echo $f->input("paid","Paid","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=paid';\"")."&nbsp;";
 		}
 		echo "<br><br>";
