@@ -81,6 +81,16 @@
 				$db->addfield("updated_by");	$db->addvalue($__username);
 				$db->addfield("updated_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
 				$db->insert();
+				
+				if($_FILES["attachment"]["tmp_name"]){
+					$_ext = strtolower(pathinfo($_FILES['attachment']['name'],PATHINFO_EXTENSION));
+					$attachment_name = $prf_id.".".$_ext;
+					move_uploaded_file($_FILES['attachment']['tmp_name'],"prf_attachments/".$attachment_name);
+					$db->addtable("prf");			$db->where("id",$prf_id);
+					$db->addfield("attachment");	$db->addvalue($attachment_name);
+					$db->update();
+				}
+				
 				javascript("alert('Data Saved');");
 				javascript("window.location='prf_view.php?id=".$prf_id."';");
 			} else {
@@ -102,11 +112,12 @@
 	$txt_purpose = $f->textarea("purpose",$_POST["purpose"],"style='width:400px;height:30px;'");
 	$txt_description = $f->textarea("description",$_POST["description"],"style='width:400px;height:100px;'");
 	$sel_prf_mode = $f->select("prf_mode",array("1"=>"Normal","2"=>"Reimburse","3"=>"Advance"),$_POST["prf_mode"]);
+	$txt_attachment = $f->input("attachment","","type='file'");
 	if($_POST["maker_at"] == "") $_POST["maker_at"] = date("Y-m-d");
 	$txt_maker_at = $f->input("maker_at",$_POST["maker_at"],"type='date' readonly");
 ?>
 
-<?=$f->start("","POST");?>
+<?=$f->start("","POST","","enctype='multipart/form-data'");?>
 	<?=$t->start("","editor_content");?>
         <?=$t->row(array("Project",$sel_projects));?>
         <?=$t->row(array("Region","<div id='div_region' style='visibility:hidden;'>".$sel_region."</div>"));?>
@@ -119,6 +130,7 @@
         <?=$t->row(array("Payment's Purpose",$txt_purpose));?>
         <?=$t->row(array("Note",$txt_description));?>
         <?=$t->row(array("PRF Mode",$sel_prf_mode));?>
+        <?=$t->row(array("Attachment",$txt_attachment));?>
         <?=$t->row(array("Request Date",$txt_maker_at));?>
         <?=$t->row(array("Checker By","<div id='div_checker'></div>"));?>
         <?=$t->row(array("Signer By","<div id='div_signer'></div>"));?>

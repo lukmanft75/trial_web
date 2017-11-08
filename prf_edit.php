@@ -35,37 +35,69 @@
 <div class="bo_title">Edit PRF</div>
 <?php
 	if(isset($_POST["save"])){
-		$prf_created_by = $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]));
-		$db->addtable("prf");			$db->where("id",$_GET["id"]);
-		$db->addfield("code");			$db->addvalue($_POST["code"]);
-        $db->addfield("nominal");		$db->addvalue($_POST["nominal"]);
-        $db->addfield("deduct_type");	$db->addvalue($_POST["deduct_type"]);
-        $db->addfield("deduct_nominal");$db->addvalue($_POST["deduct_nominal"]);
-        $db->addfield("payment_method");$db->addvalue($_POST["payment_method"]);
-        $db->addfield("payment_to");	$db->addvalue($_POST["payment_to"]);
-        $db->addfield("bank_name");		$db->addvalue($_POST["bank_name"]);
-        $db->addfield("bank_account");	$db->addvalue($_POST["bank_account"]);
-        $db->addfield("purpose");		$db->addvalue($_POST["purpose"]);
-        $db->addfield("description");	$db->addvalue($_POST["description"]);
-        $db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
-        $db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
-		if($__username == $prf_created_by){
-			$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
-			$db->addfield("checker_at");	$db->addvalue("0000-00-00");
-			$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
-			$db->addfield("signer_at");		$db->addvalue("0000-00-00");
-			$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
-			$db->addfield("approve_at");	$db->addvalue("0000-00-00");
-		}
-		$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
-		$db->addfield("updated_by");	$db->addvalue($__username);
-		$db->addfield("updated_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
-		$inserting = $db->update();
-		if($inserting["affected_rows"] >= 0){
-			javascript("alert('Data Saved');");
-			javascript("window.location='prf_view.php?id=".$_GET["id"]."';");
+		$_projects = explode(":",$_POST["project"]);
+		if($project[2] > 0)	$region_id = $_projects[1]; else $region_id = $_POST["region_id"];
+		if($region_id > 0){
+			$prf_created_by = $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]));
+			$db->addtable("prf");			$db->where("id",$_GET["id"]);
+			$db->addfield("code");			$db->addvalue($_POST["code"]);
+			$db->addfield("nominal");		$db->addvalue($_POST["nominal"]);
+			$db->addfield("deduct_type");	$db->addvalue($_POST["deduct_type"]);
+			$db->addfield("deduct_nominal");$db->addvalue($_POST["deduct_nominal"]);
+			$db->addfield("payment_method");$db->addvalue($_POST["payment_method"]);
+			$db->addfield("payment_to");	$db->addvalue($_POST["payment_to"]);
+			$db->addfield("bank_name");		$db->addvalue($_POST["bank_name"]);
+			$db->addfield("bank_account");	$db->addvalue($_POST["bank_account"]);
+			$db->addfield("purpose");		$db->addvalue($_POST["purpose"]);
+			$db->addfield("description");	$db->addvalue($_POST["description"]);
+			$db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
+			$db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
+			if($__username == $prf_created_by){
+				$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
+				$db->addfield("checker_at");	$db->addvalue("0000-00-00");
+				$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
+				$db->addfield("signer_at");		$db->addvalue("0000-00-00");
+				$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
+				$db->addfield("approve_at");	$db->addvalue("0000-00-00");
+			}
+			$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
+			$db->addfield("updated_by");	$db->addvalue($__username);
+			$db->addfield("updated_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
+			$inserting = $db->update();
+			if($inserting["affected_rows"] >= 0){
+				$prf_id = $_GET["id"];
+				$db->addtable("indottech_prfs");$db->where("prf_id",$prf_id);$db->delete_();
+				
+				$db->addtable("indottech_prfs");
+				$db->addfield("prf_id");		$db->addvalue($prf_id);
+				$db->addfield("project_id");	$db->addvalue($_projects[0]);
+				$db->addfield("scope_id");		$db->addvalue($_projects[1]);
+				$db->addfield("region_id");		$db->addvalue($region_id);
+				$db->addfield("created_at");	$db->addvalue(date("Y-m-d H:i:s"));
+				$db->addfield("created_by");	$db->addvalue($__username);
+				$db->addfield("created_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
+				$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
+				$db->addfield("updated_by");	$db->addvalue($__username);
+				$db->addfield("updated_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
+				$db->insert();
+				
+				if($_FILES["attachment"]["tmp_name"]){
+					$_ext = strtolower(pathinfo($_FILES['attachment']['name'],PATHINFO_EXTENSION));
+					$attachment_name = $prf_id.".".$_ext;
+					move_uploaded_file($_FILES['attachment']['tmp_name'],"prf_attachments/".$attachment_name);
+					$db->addtable("prf");			$db->where("id",$prf_id);
+					$db->addfield("attachment");	$db->addvalue($attachment_name);
+					$db->update();
+				}
+				
+				
+				javascript("alert('Data Saved');");
+				javascript("window.location='prf_view.php?id=".$_GET["id"]."';");
+			} else {
+				javascript("alert('Saving data failed');");
+			}
 		} else {
-			javascript("alert('Saving data failed');");
+			javascript("alert('Silakan pilih Region');");
 		}
 	}
 	
@@ -95,9 +127,12 @@
 	$txt_purpose = $f->textarea("purpose",$data["purpose"],"style='width:400px;height:30px;'".$notallowchange);
 	$txt_description = $f->textarea("description",$data["description"],"style='width:400px;height:100px;'".$notallowchange);
 	$sel_prf_mode = $f->select("prf_mode",array("1"=>"Normal","2"=>"Reimburse","3"=>"Advance"),$data["prf_mode"]);
+	$txt_attachment = "";
+	if($data["attachment"] != ""){ $txt_attachment = "<i>".$data["attachment"]."</i><br>"; }
+	$txt_attachment .= $f->input("attachment","","type='file'");
 	$txt_maker_at = $f->input("maker_at",$data["maker_at"],"type='date' readonly");
 ?>
-<?=$f->start("","POST");?>
+<?=$f->start("","POST","","enctype='multipart/form-data'");?>
 	<?=$t->start("","editor_content");?>
         <?=$t->row(array("Project",$sel_projects));?>
         <?=$t->row(array("Region","<div id='div_region' style='visibility:hidden;'>".$sel_region."</div>"));?>
@@ -112,6 +147,7 @@
         <?=$t->row(array("Payment's Purpose",$txt_purpose));?>
         <?=$t->row(array("Note",$txt_description));?>
         <?=$t->row(array("PRF Mode",$sel_prf_mode));?>
+        <?=$t->row(array("Attachment",$txt_attachment));?>
         <?=$t->row(array("Request Date",$txt_maker_at));?>
         <?=$t->row(array("Maker By",$data["maker_by"]));?>
         <?=$t->row(array("Checker By","<div id='div_checker'></div>"));?>

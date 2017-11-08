@@ -114,7 +114,10 @@
                         "<div onclick=\"sorting('paid_by');\">Paid</div>"));?>
 	<?php foreach($prfs as $no => $prf){ ?>
 		<?php
-			$actions = "<a href=\"prf_view.php?id=".$prf["id"]."\">View</a> | <a href=\"prf_edit.php?id=".$prf["id"]."\">Edit</a> | <a href='#' onclick=\"if(confirm('Are You sure to delete this data?')){window.location='?deleting=".$prf["id"]."';}\">Delete</a>";
+			$actions = "<a href=\"prf_view.php?id=".$prf["id"]."\">View</a>|<a href=\"prf_edit.php?id=".$prf["id"]."\">Edit</a>|<a href='#' onclick=\"if(confirm('Are You sure to delete this data?')){window.location='?deleting=".$prf["id"]."';}\">Delete</a>";
+			if($prf["attachment"] != ""){
+				$actions .= "|<a target='_BLANK' href=\"prf_attachments/".$prf["attachment"]."\">Attachment</a>";
+			}
             $checked = ($prf["checker_at"] != "0000-00-00" && $prf["checker_at"] != "") ? "Yes":"No";
             $signed = ($prf["signer_at"] != "0000-00-00" && $prf["signer_at"] != "") ? "Yes":"No";
             $paid = ($prf["paid_by"] != "") ? "Yes":"No";

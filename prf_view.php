@@ -195,7 +195,10 @@
 		echo "<br><br>";
 		echo $f->input("back","Back","type='button' onclick=\"window.location='".str_replace("_view","_list",$_SERVER["PHP_SELF"])."';\"")."&nbsp;";
 		echo $f->input("edit","Edit","type='button' onclick=\"window.location='".str_replace("_view","_edit",$_SERVER["PHP_SELF"])."?id=".$_GET["id"]."';\"")."&nbsp;";
-		echo $f->input("print","Print","type='button' onclick=\"window.open('prf_view.php?print=1&id=".$_GET["id"]."','_blank');\"");
+		echo $f->input("print","Print","type='button' onclick=\"window.open('prf_view.php?print=1&id=".$_GET["id"]."','_blank');\"")."&nbsp;";
+		if($prf["attachment"] != ""){
+			echo $f->input("attachment","View Attachment","type='button' onclick=\"window.open('prf_attachments/".$prf["attachment"]."');\"")."&nbsp;";
+		}
 		echo "<br><br>";
 		include_once "footer.php";
 	} else {
