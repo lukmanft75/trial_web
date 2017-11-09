@@ -25,7 +25,7 @@
 	$departement = $db->fetch_single_data("users","job_division",array("id"=>$__user_id));
 	if(isset($_POST["save"])){
 		$_projects = explode(":",$_POST["project"]);
-		if($project[2] > 0)	$region_id = $_projects[1]; else $region_id = $_POST["region_id"];
+		if($project[2] > 0)	$region_id = $_projects[2]; else $region_id = $_POST["region_id"];
 		if($region_id > 0){
 			$project = $db->fetch_single_data("indottech_projects","initial",["id" => $_projects[0]]);
 			$scope = $db->fetch_single_data("indottech_scopes","initial",["id" => $_projects[1]]);
