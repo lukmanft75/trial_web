@@ -26,7 +26,7 @@
 	if(isset($_POST["save"])){
 		$_projects = explode(":",$_POST["project"]);
 		if($_projects[2] > 0)	$region_id = $_projects[2]; else $region_id = $_POST["region_id"];
-		if($region_id > 0){
+		if($region_id > 0 || true){
 			$project = $db->fetch_single_data("indottech_projects","initial",["id" => $_projects[0]]);
 			$scope = $db->fetch_single_data("indottech_scopes","initial",["id" => $_projects[1]]);
 			$region = $db->fetch_single_data("indottech_regions","initial",["id" => $region_id]);
