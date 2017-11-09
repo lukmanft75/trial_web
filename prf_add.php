@@ -36,6 +36,7 @@
 			if($code_number == ""){
 				$_code = "001";
 			} else {
+				$temp_code = str_replace("%","",$temp_code);
 				$_code = (str_replace($temp_code,"",$code_number) * 1) + 1;
 				$_code = substr("000",0,3 - strlen($_code)).$_code;
 			}
