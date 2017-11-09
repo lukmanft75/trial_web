@@ -36,7 +36,7 @@
 <?php
 	if(isset($_POST["save"])){
 		$_projects = explode(":",$_POST["project"]);
-		if($project[2] > 0)	$region_id = $_projects[1]; else $region_id = $_POST["region_id"];
+		if($_projects[2] > 0)	$region_id = $_projects[2]; else $region_id = $_POST["region_id"];
 		if($region_id > 0){
 			$prf_created_by = $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]));
 			$db->addtable("prf");			$db->where("id",$_GET["id"]);
