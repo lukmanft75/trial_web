@@ -32,16 +32,15 @@
 			$region = $db->fetch_single_data("indottech_regions","initial",["id" => $region_id]);
 		
 			$temp_code = "%/".$project."/".$scope."/".$region."/".integerToRoman(date("m") * 1)."/".date("Y");
-			$code_number = $db->fetch_single_data("prf","code",array("code" => $temp_code.":LIKE"),array("code DESC"));
+			$code_number = $db->fetch_single_data("prf","code_number",array("code_number" => $temp_code.":LIKE"),array("code_number DESC"));
 			if($code_number == ""){
 				$_code = "001";
 			} else {
-				$temp_code = str_replace("%","",$temp_code);
-				$_code = (str_replace($temp_code,"",$code_number) * 1) + 1;
+				$pattern = str_replace("%","",$temp_code);
+				$_code = (str_replace($pattern,"",$code_number) * 1) + 1;
 				$_code = substr("000",0,3 - strlen($_code)).$_code;
 			}
-			echo $code_number = str_replace("%",$_code,$temp_code);
-			
+			$code_number = str_replace("%",$_code,$temp_code);
 			$db->addtable("prf");
 			$db->addfield("code_number");	$db->addvalue($code_number);
 			$db->addfield("departement");	$db->addvalue($departement);
