@@ -3,6 +3,25 @@
 	if($__print) include_once "common.php";
 	else  include_once "head.php";
 	
+	$maker_by = $db->fetch_single_data("prf","maker_by",["id" => $_GET["id"]]);
+	$checker_by = $db->fetch_single_data("prf","checker_by",["id" => $_GET["id"]]);
+	$signer_by = $db->fetch_single_data("prf","signer_by",["id" => $_GET["id"]]);
+	$approve_by = $db->fetch_single_data("prf","approve_by",["id" => $_GET["id"]]);
+	$forbidden_chr_dashboards = $db->fetch_single_data("users","forbidden_chr_dashboards",["id" => $__user_id]);
+	if($forbidden_chr_dashboards == 6){
+		if(	$__username != $maker_by 
+			&& $__username != $checker_by
+			&& $__username != $signer_by
+			&& $__username != $approve_by
+		){
+			?><script> 
+				alert("Anda tidak ada kepentingan dengan PRF ini, silakan pilih PRF yang lain!"); 
+				window.location = "prf_list.php";
+			</script> <?php
+			exit();
+		}
+	}
+	
 	if($_POST["upload"] && $_GET["id"] > 0){
 		if($_FILES["settlement"]["tmp_name"]){
 			$prf_id = $_GET["id"];
