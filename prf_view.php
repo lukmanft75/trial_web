@@ -13,6 +13,7 @@
 			&& $__username != $checker_by
 			&& $__username != $signer_by
 			&& $__username != $approve_by
+			&& $__username != "romana@corphr-nokia.com"
 		){
 			?><script> 
 				alert("Anda tidak ada kepentingan dengan PRF ini, silakan pilih PRF yang lain!"); 

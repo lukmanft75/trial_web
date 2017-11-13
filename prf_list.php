@@ -8,7 +8,7 @@
 			$db->delete_();
 			?> <script> window.location="?";</script> <?php
 		}else{
-			?> <script> alert('You`re not allow to delete this PRF'); </script> <?php
+			?> <script> alert('This PRF has Approved, You`re not allow to delete this PRF'); </script> <?php
 		}
 	}
 ?>
