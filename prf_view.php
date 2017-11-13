@@ -3,6 +3,32 @@
 	if($__print) include_once "common.php";
 	else  include_once "head.php";
 	
+	if($_POST["upload"] && $_GET["id"] > 0){
+		if($_FILES["settlement"]["tmp_name"]){
+			$prf_id = $_GET["id"];
+			$_ext = strtolower(pathinfo($_FILES['settlement']['name'],PATHINFO_EXTENSION));
+			$attachment_name = "settlement_".$prf_id.".".$_ext;
+			move_uploaded_file($_FILES['settlement']['tmp_name'],"prf_attachments/".$attachment_name);
+			$db->addtable("prf");			$db->where("id",$prf_id);
+			$db->addfield("settlement");	$db->addvalue($attachment_name);
+			$db->update();
+		}
+	}
+	
+	if($_GET["rejecting"] == "1"){
+		$db->addtable("prf");
+		$db->addfield("is_rejected"); 	$db->addvalue("1");
+		$db->addfield("rejected_at"); 	$db->addvalue($__now);
+		$db->addfield("rejected_by"); 	$db->addvalue($__username);
+		$db->addfield("rejected_ip"); 	$db->addvalue($__remoteaddr);
+		$db->addfield("rejected_notes");$db->addvalue($_GET["reject_notes"]);
+		$db->addfield("updated_at"); 	$db->addvalue($__now);
+		$db->addfield("updated_by"); 	$db->addvalue($__username);
+		$db->addfield("updated_ip"); 	$db->addvalue($__remoteaddr);
+		$db->where("id",$_GET["prf_id"]);
+		$updating = $db->update();
+	}
+	
 	if($_GET["approving"] != ""){
 		$db->addtable("prf");
 		$db->addfield($_GET["approving"]."_at"); $db->addvalue($__now);
@@ -182,15 +208,68 @@
 <tr><td style="height:140px;vertical-align:top;"><b><u>Note :</u></b><br><?=str_replace(chr(10),"<br>",$prf["description"]);?></td></tr>
 </table>
 <br>
+<script>
+	function rejecting(prf_id){
+		var reject_notes = prompt("The reason for rejection:", "");
+		if(reject_notes != "" && reject_notes != null){
+			window.location="?rejecting=1&reject_notes=" + reject_notes + "&prf_id="+prf_id + "&id="+prf_id;
+		} else if(reject_notes != null) {
+			alert("Please fill the answer");
+			rejecting(prf_id);
+		} else if(reject_notes == null){
+			return false;
+		}
+	}
+	
+	function toogle_settlement_div(){
+		var bo_filter_container = document.getElementById('bo_filter_container'),
+		style = window.getComputedStyle(bo_filter_container),
+		bo_filter_container_display = style.getPropertyValue('display');
+		if(bo_filter_container_display == "none") {
+			bo_filter_container.style.display="block";
+			bo_expand.innerHTML="[-] Hide Upload Settlement";
+		}
+		if(bo_filter_container_display == "block") {
+			bo_filter_container.style.display="none";
+			bo_expand.innerHTML="[+] View Upload Settlement";
+		}
+	}
+</script>
 <?php
 	if(!$__print){
-		if($prf["checker_at"] == "0000-00-00" && $__username == $prf["checker_by"]) echo $f->input("checker","Checked","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=checker';\"")."&nbsp;";
-		if($prf["signer_at"] == "0000-00-00" && $__username == $prf["signer_by"]) echo $f->input("signer","Signed","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=signer';\"")."&nbsp;";
-		if($prf["approve_at"] == "0000-00-00" && $__username == $prf["approve_by"]) echo $f->input("approved","Approved","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=approve';\"")."&nbsp;";
-		if($__group_id <= 4) {
+		if($prf["checker_at"] == "0000-00-00" && $__username == $prf["checker_by"] && $prf["is_rejected"] == "0"){
+			echo $f->input("checker","Checked","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=checker';\"")."&nbsp;";
+		}
+		if($prf["signer_at"] == "0000-00-00" && $__username == $prf["signer_by"] && $prf["is_rejected"] == "0"){
+			echo $f->input("signer","Signed","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=signer';\"")."&nbsp;";
+		}
+		if($prf["approve_at"] == "0000-00-00" && $__username == $prf["approve_by"] && $prf["is_rejected"] == "0"){
+			echo $f->input("approved","Approved","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=approve';\"")."&nbsp;";
+		}
+		if($prf["is_rejected"] == "0" && $prf["approve_at"] == "0000-00-00"){
+			echo $f->input("reject","Reject","type='button' onclick=\"rejecting('".$_GET["id"]."');\"")."&nbsp;";
+		}
+		if($__group_id <= 4 && $prf["is_rejected"] == "0") {
 			if($prf["finance_by"] == "") echo $f->input("finance_ok","Finance OK","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=finance';\"")."&nbsp;";
 			if($prf["accounting_by"] == "") echo $f->input("accounting_ok","Accounting OK","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=accounting';\"")."&nbsp;";
 			if($prf["paid_by"] == "") echo $f->input("paid","Paid","type='button' onclick=\"window.location='?id=".$_GET["id"]."&approving=paid';\"")."&nbsp;";
+		}
+		if($prf["is_rejected"] == "1") {
+			echo "<b style='color:red;'>This PRF Rejected By ".$prf["rejected_by"]." at ".format_tanggal($prf["rejected_at"])."</b><br>";
+			echo "<b><u>Rejected Reason:</u><br>".$prf["rejected_notes"]."</b>";
+		}
+		if($prf["paid_by"] != "") {
+			?>
+			<div id="bo_expand" onclick="toogle_settlement_div();">[+] View Upload Settlement</div>
+			<div id="bo_filter">
+				<div id="bo_filter_container">
+					<form method="POST" action="?id=<?=$_GET["id"];?>" enctype="multipart/form-data">
+						Choose Settlement File: <?=$f->input("settlement","","type='file'");?><br><br>
+						<?=$f->input("upload","Upload","type='submit'");?>
+					</form>
+				</div>
+			</div>
+			<?php
 		}
 		echo "<br><br>";
 		echo $f->input("back","Back","type='button' onclick=\"window.location='".str_replace("_view","_list",$_SERVER["PHP_SELF"])."';\"")."&nbsp;";
@@ -198,6 +277,12 @@
 		echo $f->input("print","Print","type='button' onclick=\"window.open('prf_view.php?print=1&id=".$_GET["id"]."','_blank');\"")."&nbsp;";
 		if($prf["attachment"] != ""){
 			echo $f->input("attachment","View Attachment","type='button' onclick=\"window.open('prf_attachments/".$prf["attachment"]."');\"")."&nbsp;";
+		}
+		if($prf["proof_of_payment"] != ""){
+			echo $f->input("proof_of_payment","View Proof of Payment","type='button' onclick=\"window.open('prf_attachments/".$prf["proof_of_payment"]."');\"")."&nbsp;";
+		}
+		if($prf["settlement"] != ""){
+			echo $f->input("settlement","View Settlement","type='button' onclick=\"window.open('prf_attachments/".$prf["settlement"]."');\"")."&nbsp;";
 		}
 		echo "<br><br>";
 		include_once "footer.php";

@@ -119,12 +119,24 @@
 		<?php
 			$actions = "<a href=\"prf_view.php?id=".$prf["id"]."\">View</a>|<a href=\"prf_edit.php?id=".$prf["id"]."\">Edit</a>|<a href='#' onclick=\"if(confirm('Are You sure to delete this data?')){window.location='?deleting=".$prf["id"]."';}\">Delete</a>";
 			if($prf["attachment"] != ""){
-				$actions .= "|<a target='_BLANK' href=\"prf_attachments/".$prf["attachment"]."\">Attachment</a>";
+				$actions .= "<br><a target='_BLANK' href=\"prf_attachments/".$prf["attachment"]."\">Attachment</a>";
+			}
+			if($prf["proof_of_payment"] != ""){
+				$actions .= "|<a target='_BLANK' href=\"prf_attachments/".$prf["proof_of_payment"]."\">Proof_of_Payment</a>";
+			}
+			if($prf["settlement"] != ""){
+				$actions .= "|<a target='_BLANK' href=\"prf_attachments/".$prf["settlement"]."\">Settlement</a>";
 			}
             $checked = ($prf["checker_at"] != "0000-00-00" && $prf["checker_at"] != "") ? "Yes":"No";
             $signed = ($prf["signer_at"] != "0000-00-00" && $prf["signer_at"] != "") ? "Yes":"No";
             $approved = ($prf["approve_at"] != "0000-00-00" && $prf["approve_at"] != "") ? "Yes":"No";
             $paid = ($prf["paid_by"] != "") ? "Yes":"No";
+			if($prf["is_rejected"] == 1){
+				$checked = "<font color='red'>Rejected</font>";
+				$signed = "<font color='red'>Rejected</font>";
+				$approved = "<font color='red'>Rejected</font>";
+				$paid = "<font color='red'>Rejected</font>";
+			}
 			
 		?>
 		<?=$t->row(

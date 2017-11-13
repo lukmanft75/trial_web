@@ -1,0 +1,2 @@
+ALTER TABLE `prf` ADD `proof_of_payment` VARCHAR(255) NOT NULL AFTER `paid_at`, ADD `settlement` VARCHAR(255) NOT NULL AFTER `proof_of_payment`, ADD `rejected_at` DATETIME NOT NULL AFTER `settlement`, ADD `rejected_by` VARCHAR(100) NOT NULL AFTER `rejected_at`, ADD `rejected_ip` VARCHAR(20) NOT NULL AFTER `rejected_by`, ADD `rejected_notes` VARCHAR(255) NOT NULL AFTER `rejected_ip`;
+ALTER TABLE `prf` ADD `is_rejected` SMALLINT NOT NULL AFTER `settlement`, ADD INDEX (`is_rejected`);

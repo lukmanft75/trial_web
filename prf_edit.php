@@ -60,6 +60,7 @@
 				$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
 				$db->addfield("approve_at");	$db->addvalue("0000-00-00");
 			}
+			$db->addfield("is_rejected");	$db->addvalue(0);
 			$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
 			$db->addfield("updated_by");	$db->addvalue($__username);
 			$db->addfield("updated_ip");	$db->addvalue($_SERVER["REMOTE_ADDR"]);
