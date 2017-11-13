@@ -27,7 +27,7 @@
 		if($_FILES["settlement"]["tmp_name"]){
 			$prf_id = $_GET["id"];
 			$_ext = strtolower(pathinfo($_FILES['settlement']['name'],PATHINFO_EXTENSION));
-			$attachment_name = "settlement_".$prf_id.".".$_ext;
+			$attachment_name = "settlement_".$prf_id."_".rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).".".$_ext;
 			move_uploaded_file($_FILES['settlement']['tmp_name'],"prf_attachments/".$attachment_name);
 			$db->addtable("prf");			$db->where("id",$prf_id);
 			$db->addfield("settlement");	$db->addvalue($attachment_name);

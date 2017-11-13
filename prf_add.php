@@ -84,7 +84,7 @@
 				
 				if($_FILES["attachment"]["tmp_name"]){
 					$_ext = strtolower(pathinfo($_FILES['attachment']['name'],PATHINFO_EXTENSION));
-					$attachment_name = $prf_id.".".$_ext;
+					$attachment_name = "attachment_".$prf_id."_".rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).".".$_ext;
 					move_uploaded_file($_FILES['attachment']['tmp_name'],"prf_attachments/".$attachment_name);
 					$db->addtable("prf");			$db->where("id",$prf_id);
 					$db->addfield("attachment");	$db->addvalue($attachment_name);
