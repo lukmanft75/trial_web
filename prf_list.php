@@ -42,7 +42,11 @@
 </div>
 
 <?php	
-	$whereclause = "(created_by = '".$__username."' OR checker_by = '".$__username."' OR signer_by = '".$__username."' OR approve_by = '".$__username."') AND ";
+	if($__group_id != 0 && $__group_id != 3 && $__group_id != 4 && $__username != "romana@corphr-nokia.com"){
+		$whereclause = "(created_by = '".$__username."' OR checker_by = '".$__username."' OR signer_by = '".$__username."' OR approve_by = '".$__username."') AND ";
+	} else {
+		$whereclause = "departement = 'Indottech' AND ";
+	}
 	if(@$_GET["maker_at"]!="")	$whereclause .= "(maker_at LIKE '%".$_GET["maker_at"]."%') AND ";
 	if(@$_GET["created_by"]!="")$whereclause .= "(created_by LIKE '%".$_GET["created_by"]."%') AND ";
 	if(@$_GET["paid"]=="1") 	$whereclause .= "(paid_by <> '') AND ";
@@ -105,12 +109,11 @@
 						"<div onclick=\"sorting('code');\">Code</div>",
                         "<div onclick=\"sorting('maker_at');\">Maker Date</div>",
                         "<div onclick=\"sorting('created_by');\">Created By</div>",
-                        "<div onclick=\"sorting('purpose');\">Purpose</div>",
                         "<div onclick=\"sorting('nominal');\">Nominal</div>",
+                        "<div onclick=\"sorting('purpose');\">Purpose</div>",
                         "<div onclick=\"sorting('checker_at');\">Checked</div>",
                         "<div onclick=\"sorting('signer_at');\">Signed</div>",
-                        "<div onclick=\"sorting('approve_by');\">Approve By</div>",
-                        "<div onclick=\"sorting('approve_at');\">Approve At</div>",
+                        "<div onclick=\"sorting('approve_at');\">Approved</div>",
                         "<div onclick=\"sorting('paid_by');\">Paid</div>"));?>
 	<?php foreach($prfs as $no => $prf){ ?>
 		<?php
@@ -120,11 +123,9 @@
 			}
             $checked = ($prf["checker_at"] != "0000-00-00" && $prf["checker_at"] != "") ? "Yes":"No";
             $signed = ($prf["signer_at"] != "0000-00-00" && $prf["signer_at"] != "") ? "Yes":"No";
+            $approved = ($prf["approve_at"] != "0000-00-00" && $prf["approve_at"] != "") ? "Yes":"No";
             $paid = ($prf["paid_by"] != "") ? "Yes":"No";
-			$approved_by = "";
-			if($prf["approve_at"] != "0000-00-00"){
-				$approved_by = $prf["approve_by"];
-			}
+			
 		?>
 		<?=$t->row(
 					array($no+$start+1,
@@ -132,14 +133,13 @@
 						"<a href=\"prf_view.php?id=".$prf["id"]."\">".$prf["code"]."</a>",
                         format_tanggal($prf["maker_at"],"dMY"),
 						$prf["created_by"],
-						$prf["purpose"],
 						format_amount($prf["nominal"]),
+						$prf["purpose"],
 						$checked,
 						$signed,
-						$approved_by,
-						format_tanggal($prf["approve_at"],"dMY"),
+						$approved,
 						$paid),
-					array("align='right' valign='top'","width='110' nowrap","","","","","align='right'","","","")
+					array("align='right' valign='top'","width='110' nowrap valign='top'","nowrap valign='top'"," valign='top'"," valign='top'","align='right' valign='top'","style='word-wrap: break-word'"," valign='top'"," valign='top'")
 				);?>
 	<?php } ?>
 	<?=$t->end();?>

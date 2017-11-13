@@ -158,7 +158,7 @@
 	</tr>
 	<tr style="font-weight:bold;text-align:center;height:70px;">
 		<td>Finance</td>
-		<td>Accounting</td>
+		<td>Authorize</td>
 		<td>Approve</td>
 	</tr>
 	<tr>
