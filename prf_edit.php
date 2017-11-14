@@ -61,6 +61,7 @@
 			$prf_created_by = $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]));
 			$db->addtable("prf");			$db->where("id",$_GET["id"]);
 			$db->addfield("code");			$db->addvalue($_POST["code"]);
+			$db->addfield("cost_center_code");$db->addvalue($_POST["cost_center_code"]);
 			$db->addfield("nominal");		$db->addvalue($_POST["nominal"]);
 			$db->addfield("deduct_type");	$db->addvalue($_POST["deduct_type"]);
 			$db->addfield("deduct_nominal");$db->addvalue($_POST["deduct_nominal"]);
@@ -136,6 +137,7 @@
 	
 	$sel_projects = $f->select("project",$projects,$project_val,"onchange='has_region(this.value);'");
 	$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_POST["region_id"],"onchange='load_checker(project.value,this.value);'");
+	$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","code","concat('[',code,'] ',name)",[],[],"",true),$data["cost_center_code"]);
 	
     $txt_code = $f->input("code",$data["code"],"");
     $txt_nominal = $f->input("nominal",$data["nominal"],"type='number'".$notallowchange." onblur='load_checker(project.value,region_id.value,this.value);'");
@@ -159,6 +161,7 @@
         <?=$t->row(array("Region","<div id='div_region' style='visibility:hidden;'>".$sel_region."</div>"));?>
         <?=$t->row(array("PRF Code",$txt_code));?>
         <?=$t->row(array("Code Number","<b>".$data["code_number"]."</b>"));?>
+        <?=$t->row(array("Cost Center",$sel_cost_center));?>
         <?=$t->row(array("Nominal Amount",$txt_nominal));?>
         <?=$t->row(array("Deduct",$sel_deduct_type." ".$txt_deduct_nominal));?>
         <?=$t->row(array("Payment's Method",$sel_payment_method));?>

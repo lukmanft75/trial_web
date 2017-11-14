@@ -44,6 +44,7 @@
 			$db->addtable("prf");
 			$db->addfield("code_number");	$db->addvalue($code_number);
 			$db->addfield("departement");	$db->addvalue($departement);
+			$db->addfield("cost_center_code");$db->addvalue($_POST["cost_center_code"]);
 			$db->addfield("nominal");		$db->addvalue($_POST["nominal"]);
 			$db->addfield("payment_method");$db->addvalue($_POST["payment_method"]);
 			$db->addfield("payment_to");	$db->addvalue($_POST["payment_to"]);
@@ -103,6 +104,7 @@
 	
 	$sel_projects = $f->select("project",$projects,$_POST["project"],"onchange='has_region(this.value);'");
 	$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_POST["region_id"],"onchange='load_checker(project.value,this.value);'");
+	$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","code","concat('[',code,'] ',name)",[],[],"",true),$_POST["cost_center_code"]);
 	
     $txt_nominal = $f->input("nominal",$_POST["nominal"],"type='number' onblur='load_checker(project.value,region_id.value,this.value);'");
 	$sel_payment_method = $f->select("payment_method",array(""=>"","1"=>"Cheque","2"=>"Bilyet Giro","3"=>"Transfer","4"=>"Cash"),$_POST["payment_method"]);
@@ -122,6 +124,7 @@
         <?=$t->row(array("Project",$sel_projects));?>
         <?=$t->row(array("Region","<div id='div_region' style='visibility:hidden;'>".$sel_region."</div>"));?>
         <?=$t->row(array("Code Number","<i>Auto generate</i>"));?>
+        <?=$t->row(array("Cost Center",$sel_cost_center));?>
         <?=$t->row(array("Nominal Amount",$txt_nominal));?>
         <?=$t->row(array("Payment's Method",$sel_payment_method));?>
         <?=$t->row(array("Payment To",$txt_payment_to));?>

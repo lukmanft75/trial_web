@@ -225,7 +225,13 @@
 </table>
 <br>
 <table style="border:1px solid black;width:800px;">
-<tr><td style="height:140px;vertical-align:top;"><b><u>Note :</u></b><br><?=str_replace(chr(10),"<br>",$prf["description"]);?></td></tr>
+<tr><td style="height:140px;vertical-align:top;">
+	<b><u>Note :</u></b>
+	<br><?=str_replace(chr(10),"<br>",$prf["description"]);?>
+	<?php if($prf["cost_center_code"] != ""){ ?>
+	<br><br><i>Cost Center : </i> <?=$db->fetch_single_data("cost_centers","concat('[',code,'] ',name)",["code" => $prf["cost_center_code"]]);?>
+	<?php } ?>
+</td></tr>
 </table>
 <br>
 <script>

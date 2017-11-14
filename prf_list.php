@@ -1,4 +1,15 @@
-<?php include_once "head.php";?>
+<?php
+	if($_GET["export"]){
+		$_exportname = "prfList.xls";
+		header("Content-type: application/x-msdownload");
+		header("Content-Disposition: attachment; filename=".$_exportname);
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		$_GET["do_filter"]="Load";
+		$_isexport = true;
+	}
+	include_once "head.php";
+?>
 <?php
 	if($_GET["deleting"]){
 		if($db->fetch_single_data("prf","approve_at",array("id" => $_GET["deleting"])) == "0000-00-00"){
@@ -11,35 +22,73 @@
 			?> <script> alert('This PRF has Approved, You`re not allow to delete this PRF'); </script> <?php
 		}
 	}
+	
+	$arr_range_date = ["" => "",
+						"maker_at" => "Maker Date",
+						"checker_at" => "CheckerDate",
+						"signer_at" => "Signer Date",
+						"finance_at" => "Finance Date",
+						"accounting_at" => "Authorize Date",
+						"approve_at" => "Approve Date",
+						"paid_at" => "Paid Date"];
 ?>
-<div class="bo_title">PRF</div>
-<div id="bo_expand" onclick="toogle_bo_filter();">[+] View Filter</div>
-<div id="bo_filter">
-	<div id="bo_filter_container">
-		<?=$f->start("filter","GET");?>
-			<?=$t->start();?>
-			<?php
-                $maker_at = $f->input("maker_at",@$_GET["maker_at"],"type='date'");
-                $created_by = $f->input("created_by",@$_GET["created_by"]);
-                $checker_by = $f->input("checker_by",@$_GET["checker_by"]);
-                $signer_by = $f->input("signer_by",@$_GET["signer_by"]);
-                $approve_by = $f->input("approve_by",@$_GET["approve_by"]);
-                $paid = $f->select("paid",[""=>"","1"=>"paid","2"=>"unpaid"],@$_GET["paid"],"style='height:20px;'");
-			?>
-			<?=$t->row(array("Maker Date",$maker_at));?>
-			<?=$t->row(array("Created By",$created_by));?>
-			<?=$t->row(array("Checker By",$checker_by));?>
-			<?=$t->row(array("Signer By",$signer_by));?>
-			<?=$t->row(array("Approve By",$approve_by));?>
-			<?=$t->row(array("Is Paid",$paid));?>
-			<?=$t->end();?>
-			<?=$f->input("page","1","type='hidden'");?>
-			<?=$f->input("sort",@$_GET["sort"],"type='hidden'");?>
-			<?=$f->input("do_filter","Load","type='submit'");?>
-			<?=$f->input("reset","Reset","type='button' onclick=\"window.location='?';\"");?>
-		<?=$f->end();?>
+<?php if(!$_isexport){ ?>
+	<div class="bo_title">PRF</div>
+	<div id="bo_expand" onclick="toogle_bo_filter();">[+] View Filter</div>
+	<div id="bo_filter">
+		<div id="bo_filter_container">
+			<?=$f->start("filter","GET");?>
+				<?=$t->start();?>
+				<?php
+					$sel_project = $f->select("project_id",$db->fetch_select_data("indottech_projects","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["project_id"],"style='height:20px;'");
+					$sel_scope = $f->select("scope_id",$db->fetch_select_data("indottech_scopes","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["scope_id"],"style='height:20px;'");
+					$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["region_id"],"style='height:20px;'");
+					$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","id","concat('[',code,'] ',name)",["departement" => "Indottech"],[],"",true),$_GET["region_id"],"style='height:20px;'");
+					$sel_range_date = $f->select("range_date",$arr_range_date,$_GET["range_date"],"style='height:20px;'");
+					$range_date_1 = $f->input("range_date_1",@$_GET["range_date_1"],"type='date' style='width:130px;'");
+					$range_date_2 = $f->input("range_date_2",@$_GET["range_date_2"],"type='date' style='width:130px;");
+					
+					$created_by = $f->input("created_by",@$_GET["created_by"]);
+					$checker_by = $f->input("checker_by",@$_GET["checker_by"]);
+					$signer_by = $f->input("signer_by",@$_GET["signer_by"]);
+					$approve_by = $f->input("approve_by",@$_GET["approve_by"]);
+					$paid = $f->select("paid",[""=>"","1"=>"paid","2"=>"unpaid"],@$_GET["paid"],"style='height:20px;'");
+				?>
+				<?=$t->row(array("Project",$sel_project));?>
+				<?=$t->row(array("Scope",$sel_scope));?>
+				<?=$t->row(array("Region",$sel_region));?>
+				<?=$t->row(array("Cost Center",$sel_cost_center));?>
+				<?=$t->row(array($sel_range_date,$range_date_1." - ".$range_date_2));?>
+				<?=$t->row(array("Created By",$created_by));?>
+				<?=$t->row(array("Checker By",$checker_by));?>
+				<?=$t->row(array("Signer By",$signer_by));?>
+				<?=$t->row(array("Approve By",$approve_by));?>
+				<?=$t->row(array("Is Paid",$paid));?>
+				<?=$t->end();?>
+				<?=$f->input("page","1","type='hidden'");?>
+				<?=$f->input("sort",@$_GET["sort"],"type='hidden'");?>
+				<?=$f->input("do_filter","Load","type='submit' style='width:150px;'");?>
+				<?=$f->input("export","Export to Excel","type='submit' style='width:150px;'");?>
+				<?=$f->input("reset","Reset","type='button' onclick=\"window.location='?';\" style='width:150px;'");?>
+			<?=$f->end();?>
+		</div>
 	</div>
-</div>
+<?php } else { ?>
+	<h2><b>PRF</b></h2>
+	<?php 
+		echo "<b>";
+		if($_GET["project_id"]!=""){ echo $db->fetch_single_data("indottech_projects","name",["id" => $_GET["project_id"]]); } else { echo "All Projects";}
+		if($_GET["scope_id"]!=""){ echo " - ".$db->fetch_single_data("indottech_scopes","name",["id" => $_GET["scope_id"]]); } else { echo " - All Scopes";}
+		if($_GET["region_id"]!=""){ echo " - ".$db->fetch_single_data("indottech_regions","name",["id" => $_GET["region_id"]]); } else { echo " - All Regions";}
+		if($_GET["cost_center_code"]!=""){ echo "<br>Cost Center : ".$db->fetch_single_data("cost_centers","name",["code" => $_GET["cost_center_code"]]); } else { echo "<br>All Cost Centers";}
+		echo "</b><br>";
+		if(@$_GET["range_date"]!="" && (@$_GET["range_date_1"]!="" || @$_GET["range_date_2"]!="")){
+			echo $arr_range_date[$_GET["range_date"]]." : ";
+			if(@$_GET["range_date_1"]!="") echo format_tanggal($_GET["range_date_1"]);
+			if(@$_GET["range_date_2"]!="") echo " s/d ".format_tanggal($_GET["range_date_2"]);
+		}
+	?>
+<?php } ?>
 
 <?php	
 	if($__group_id != 0 && $__group_id != 3 && $__group_id != 4 && $__username != "romana@corphr-nokia.com"){
@@ -47,7 +96,18 @@
 	} else {
 		$whereclause = "departement = 'Indottech' AND ";
 	}
-	if(@$_GET["maker_at"]!="")	$whereclause .= "(maker_at LIKE '%".$_GET["maker_at"]."%') AND ";
+	if(@$_GET["project_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE project_id = '".$_GET["project_id"]."')) AND ";
+	if(@$_GET["scope_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE scope_id = '".$_GET["scope_id"]."')) AND ";
+	if(@$_GET["region_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE region_id = '".$_GET["region_id"]."')) AND ";
+	if(@$_GET["cost_center_code"]!="") $whereclause .= "cost_center_code = '".$_GET["cost_center_code"]."')) AND ";
+	if(@$_GET["range_date"]!=""){
+		if(@$_GET["range_date_1"]!=""){
+			$whereclause .= "(".$_GET["range_date"]." >= '".$_GET["range_date_1"]."') AND ";
+		}
+		if(@$_GET["range_date_2"]!=""){
+			$whereclause .= "(".$_GET["range_date"]." <= '".$_GET["range_date_2"]."') AND ";
+		}
+	}
 	if(@$_GET["created_by"]!="")$whereclause .= "(created_by LIKE '%".$_GET["created_by"]."%') AND ";
 	if(@$_GET["paid"]=="1") 	$whereclause .= "(paid_by <> '') AND ";
 	if(@$_GET["paid"]=="2") 	$whereclause .= "(paid_by = '') AND ";
@@ -61,8 +121,14 @@
 	$start = getStartRow(@$_GET["page"],$_rowperpage);
 	$paging = paging($_rowperpage,$maxrow,@$_GET["page"],"paging");
 	
+	if($whereclause != "") $TOTAL = $db->fetch_all_data("prf",["concat(sum(nominal)) as total"],substr($whereclause,0,-4))[0][0];
+	else $TOTAL = $db->fetch_all_data("prf",["concat(sum(nominal)) as total"])[0][0];
+	
 	$db->addtable("prf");
-	if($whereclause != "") $db->awhere(substr($whereclause,0,-4));$db->limit($start.",".$_rowperpage);
+	if($whereclause != "") $db->awhere(substr($whereclause,0,-4));
+	if(!$_isexport){
+		$db->limit($start.",".$_rowperpage);
+	}
 	if(@$_GET["sort"] != "") $db->order($_GET["sort"]);
 	$prfs = $db->fetch_data(true);
 ?>
@@ -102,11 +168,14 @@
 	<?=$f->input("mychecker","Checker By Me","type='button' onclick=\"checker_by_me();\"");?>
 	<?=$f->input("mysigner","Signer By Me","type='button' onclick=\"signer_by_me();\"");?>
 	<?=$f->input("myapprove","Approve By Me","type='button' onclick=\"approve_by_me();\"");?>
-	<?=$paging;?>
-	<?=$t->start("","data_content");?>
+	<?php if(!$_isexport){ ?>
+		<?=$paging;?>
+	<?php } ?>
+	<?php if($_isexport){ $_tableattr = "border='1'"; $action_header = "Cost Center";}?>
+	<?=$t->start($_tableattr,"data_content");?>
 	<?=$t->header(array("No",
-						"",
-						"<div onclick=\"sorting('code');\">Code</div>",
+						$action_header,
+						"<div onclick=\"sorting('code_number');\">Code Number</div>",
                         "<div onclick=\"sorting('maker_at');\">Maker Date</div>",
                         "<div onclick=\"sorting('created_by');\">Created By</div>",
                         "<div onclick=\"sorting('nominal');\">Nominal</div>",
@@ -115,6 +184,9 @@
                         "<div onclick=\"sorting('signer_at');\">Signed</div>",
                         "<div onclick=\"sorting('approve_at');\">Approved</div>",
                         "<div onclick=\"sorting('paid_by');\">Paid</div>"));?>
+	<?php
+		$total = 0;
+	?>
 	<?php foreach($prfs as $no => $prf){ ?>
 		<?php
 			$actions = "<a href=\"prf_view.php?id=".$prf["id"]."\">View</a>|<a href=\"prf_edit.php?id=".$prf["id"]."\">Edit</a>|<a href='#' onclick=\"if(confirm('Are You sure to delete this data?')){window.location='?deleting=".$prf["id"]."';}\">Delete</a>";
@@ -127,6 +199,7 @@
 			if($prf["settlement"] != ""){
 				$actions .= "|<a target='_BLANK' href=\"prf_attachments/".$prf["settlement"]."\">Settlement</a>";
 			}
+			if($_isexport){ $actions = $prf["cost_center_code"]; }
             $checked = ($prf["checker_at"] != "0000-00-00" && $prf["checker_at"] != "") ? "Yes":"No";
             $signed = ($prf["signer_at"] != "0000-00-00" && $prf["signer_at"] != "") ? "Yes":"No";
             $approved = ($prf["approve_at"] != "0000-00-00" && $prf["approve_at"] != "") ? "Yes":"No";
@@ -137,12 +210,12 @@
 				$approved = "<font color='red'>Rejected</font>";
 				$paid = "<font color='red'>Rejected</font>";
 			}
-			
+			$total += $prf["nominal"];
 		?>
 		<?=$t->row(
 					array($no+$start+1,
 						$actions,
-						"<a href=\"prf_view.php?id=".$prf["id"]."\">".$prf["code"]."</a>",
+						"<a href=\"prf_view.php?id=".$prf["id"]."\">".$prf["code_number"]."</a>",
                         format_tanggal($prf["maker_at"],"dMY"),
 						$prf["created_by"],
 						format_amount($prf["nominal"]),
@@ -151,9 +224,15 @@
 						$signed,
 						$approved,
 						$paid),
-					array("align='right' valign='top'","width='110' nowrap valign='top'","nowrap valign='top'"," valign='top'"," valign='top'","align='right' valign='top'","style='word-wrap: break-word'"," valign='top'"," valign='top'")
+					array("align='right' valign='top'","width='110' nowrap valign='top'","nowrap valign='top'"," valign='top'"," valign='top'","align='right' valign='top'","valign='top' style='word-wrap: break-word'"," valign='top'"," valign='top'")
 				);?>
 	<?php } ?>
+	<?php if($maxrow > $_rowperpage){ ?>
+		<?=$t->row(["<b>Total per Page</b>","<b>".format_amount($total)."</b>",""],["colspan='5'","align='right'","colspan='5'"]);?>
+	<?php } ?>
+	<?=$t->row(["<b>Grand Total</b>","<b>".format_amount($TOTAL)."</b>",""],["colspan='5'","align='right'","colspan='5'"]);?>
 	<?=$t->end();?>
-	<?=$paging;?>
+	<?php if(!$_isexport){ ?>
+		<?=$paging;?>
+	<?php } ?>
 <?php include_once "footer.php";?>
