@@ -23,9 +23,15 @@
 			$varName = "signer_by";
 		}
 		if($_mode == "get_select_approve"){
-			if($nominal > 10000000) $whereRole = " AND role='approve_max'";
-			if($nominal <= 10000000) $whereRole = " AND role='approve_min'";
 			$varName = "approve_by";
+			if($nominal <= $db->fetch_single_data("indottech_roles","approve_max",[],["approve_max DESC"])){
+				$whereRole = " AND role='approver' AND approve_min <= '".$nominal."' AND approve_max >= '".$nominal."'";
+			} else {
+				$checkers = array();
+				$checkers["ahanifah@corphr.com"] = "ahanifah@corphr.com";
+				echo $f->select($varName,$checkers,$_POST[$varName]);
+				exit();
+			}
 		}
 		
 		$checkers = array();
