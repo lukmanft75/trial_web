@@ -74,12 +74,12 @@
 			$db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
 			$db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
 			if($__username == $prf_created_by){
-				$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
+				/* $db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
 				$db->addfield("checker_at");	$db->addvalue("0000-00-00");
 				$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
 				$db->addfield("signer_at");		$db->addvalue("0000-00-00");
 				$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
-				$db->addfield("approve_at");	$db->addvalue("0000-00-00");
+				$db->addfield("approve_at");	$db->addvalue("0000-00-00"); */
 			}
 			$db->addfield("is_rejected");	$db->addvalue(0);
 			$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
