@@ -59,6 +59,9 @@
 		if($_projects[2] > 0)	$region_id = $_projects[2]; else $region_id = $_POST["region_id"];
 		if($region_id > 0 || true){
 			$prf_created_by = $db->fetch_single_data("prf","created_by",array("id"=>$_GET["id"]));
+			$last_checker_by = $db->fetch_single_data("prf","checker_by",array("id"=>$_GET["id"]));
+			$last_signer_by = $db->fetch_single_data("prf","signer_by",array("id"=>$_GET["id"]));
+			$last_approve_by = $db->fetch_single_data("prf","approve_by",array("id"=>$_GET["id"]));
 			$db->addtable("prf");			$db->where("id",$_GET["id"]);
 			$db->addfield("code");			$db->addvalue($_POST["code"]);
 			$db->addfield("cost_center_code");$db->addvalue($_POST["cost_center_code"]);
@@ -74,12 +77,18 @@
 			$db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
 			$db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
 			if($__username == $prf_created_by){
-				/* $db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
-				$db->addfield("checker_at");	$db->addvalue("0000-00-00");
-				$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
-				$db->addfield("signer_at");		$db->addvalue("0000-00-00");
-				$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
-				$db->addfield("approve_at");	$db->addvalue("0000-00-00"); */
+				if($_POST["checker_by"] != $last_checker_by){
+					$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
+					$db->addfield("checker_at");	$db->addvalue("0000-00-00");
+				}
+				if($_POST["signer_by"] != $last_signer_by){
+					$db->addfield("signer_by");		$db->addvalue($_POST["signer_by"]);
+					$db->addfield("signer_at");		$db->addvalue("0000-00-00");
+				}
+				if($_POST["approve_by"] != $last_approve_by){
+					$db->addfield("approve_by");	$db->addvalue($_POST["approve_by"]);
+					$db->addfield("approve_at");	$db->addvalue("0000-00-00");
+				}
 			}
 			$db->addfield("is_rejected");	$db->addvalue(0);
 			$db->addfield("updated_at");	$db->addvalue(date("Y-m-d H:i:s"));
