@@ -43,7 +43,7 @@
 					$sel_project = $f->select("project_id",$db->fetch_select_data("indottech_projects","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["project_id"],"style='height:20px;'");
 					$sel_scope = $f->select("scope_id",$db->fetch_select_data("indottech_scopes","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["scope_id"],"style='height:20px;'");
 					$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_GET["region_id"],"style='height:20px;'");
-					$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","id","concat('[',code,'] ',name)",["departement" => "Indottech"],[],"",true),$_GET["region_id"],"style='height:20px;'");
+					$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","code","concat('[',code,'] ',name)",["departement" => "Indottech"],[],"",true),$_GET["region_id"],"style='height:20px;'");
 					$sel_range_date = $f->select("range_date",$arr_range_date,$_GET["range_date"],"style='height:20px;'");
 					$range_date_1 = $f->input("range_date_1",@$_GET["range_date_1"],"type='date' style='width:130px;'");
 					$range_date_2 = $f->input("range_date_2",@$_GET["range_date_2"],"type='date' style='width:130px;");
@@ -99,7 +99,7 @@
 	if(@$_GET["project_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE project_id = '".$_GET["project_id"]."')) AND ";
 	if(@$_GET["scope_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE scope_id = '".$_GET["scope_id"]."')) AND ";
 	if(@$_GET["region_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE region_id = '".$_GET["region_id"]."')) AND ";
-	if(@$_GET["cost_center_code"]!="") $whereclause .= "cost_center_code = '".$_GET["cost_center_code"]."')) AND ";
+	if(@$_GET["cost_center_code"]!="") $whereclause .= "cost_center_code = '".$_GET["cost_center_code"]."' AND ";
 	if(@$_GET["range_date"]!=""){
 		if(@$_GET["range_date_1"]!=""){
 			$whereclause .= "(".$_GET["range_date"]." >= '".$_GET["range_date_1"]."') AND ";
