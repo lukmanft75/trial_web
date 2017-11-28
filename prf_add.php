@@ -102,9 +102,14 @@
 		}
 	}
 	
+	$project_ids = $db->fetch_select_data("indottech_roles","id","project_id",["user_id"=>$__user_id]);
+	$_project_ids = "";
+	foreach(array_unique($project_ids) as $project_id){ $_project_ids .= $project_id.","; }
+	$_project_ids = substr($_project_ids,0,-1);
+	
 	$sel_projects = $f->select("project",$projects,$_POST["project"],"onchange='has_region(this.value);'");
 	$sel_region = $f->select("region_id",$db->fetch_select_data("indottech_regions","id","concat('[',initial,'] ',name)",[],[],"",true),$_POST["region_id"],"onchange='load_checker(project.value,this.value);'");
-	$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","code","concat('[',code,'] ',name)",[],[],"",true),$_POST["cost_center_code"]);
+	$sel_cost_center = $f->select("cost_center_code",$db->fetch_select_data("cost_centers","code","concat('[',code,'] ',name)",["project_id"=>$_project_ids.":IN"],[],"",true),$_POST["cost_center_code"]);
 	
     $txt_nominal = $f->input("nominal",$_POST["nominal"],"type='number' onblur='load_checker(project.value,region_id.value,this.value);'");
 	$sel_payment_method = $f->select("payment_method",array(""=>"","1"=>"Cheque","2"=>"Bilyet Giro","3"=>"Transfer","4"=>"Cash"),$_POST["payment_method"]);
