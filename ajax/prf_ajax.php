@@ -12,7 +12,7 @@
 		else $region_id = $_GET["region_id"];
 		
 		$whereWithRegion = "";
-		if($region_id > 0) $whereWithRegion = " AND region_id = '".$region_id."'";
+		if($region_id > 0) $whereWithRegion = " AND (region_id = '".$region_id."' || region_id = '0')";
 		
 		if($_mode == "get_select_checker"){
 			$whereRole = " AND role='checker'";
