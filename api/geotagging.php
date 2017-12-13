@@ -79,7 +79,10 @@
 	if($_GET["wait_approving"] == "1"){
 		$updateStatus = false;
 		if($_GET["retakeMode"] == ""){
-			$indottech_geotagging_req_id = $db->fetch_single_data("indottech_geotagging_req","id",["user_id" => $user_id,"site_id" => $site_id,"created_at" => date("Y-m-d")."%:LIKE","status" => "0:>"]);
+			$db->addtable("indottech_geotagging_req"); $db->addfield("id");
+			$db->awhere("user_id = '".$user_id."' AND site_id = '".$site_id."' AND status > '0' AND DATEDIFF(NOW(), created_at) <= '7'");
+			$db->order("id DESC"); $db->limit(1);
+			$indottech_geotagging_req_id = $db->fetch_data()[0];
 			if($indottech_geotagging_req_id > 0){
 				$updateStatus = true;
 			} else {
