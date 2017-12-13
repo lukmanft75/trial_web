@@ -1,2 +1,0 @@
-INSERT INTO backoffice_menu (id,seqno,parent_id,name,url) VALUES ('108','3','92','Sites','indottech_sites_list.php');
-INSERT INTO backoffice_menu_privileges (group_id,backoffice_menu_id,privilege) VALUES ('11','108','1');
