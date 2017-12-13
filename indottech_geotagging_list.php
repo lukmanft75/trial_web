@@ -18,6 +18,8 @@
 					}
 					$txt_sitename = $f->input("txt_sitename",@$_GET["txt_sitename"]);
 					$txt_tagging_at = $f->input("txt_tagging_at",@$_GET["txt_tagging_at"],"type='date'");
+					if($_GET["chkFsfl"] == "1") $chkFsflchecked = "checked";
+					$sel_fsfl = $f->select("sel_fsfl",["" => "","1" => "Yes","2" => "No"],$_GET["sel_fsfl"],"style='height:20px;'");
 					
 				?>
 				<?php if($is_parent){ ?>
@@ -25,6 +27,7 @@
 				<?php } ?>
 				<?=$t->row(array("Site Name",$txt_sitename));?>
 				<?=$t->row(array("Tagging At",$txt_tagging_at));?>
+				<?=$t->row(array("FSFL",$sel_fsfl));?>
 				<?=$t->end();?>
 				<?=$f->input("page","1","type='hidden'");?>
 				<?=$f->input("sort",@$_GET["sort"],"type='hidden'");?>
@@ -43,6 +46,8 @@
 		if(@$_GET["sel_user_id"]!="") $whereclause .= "(user_id = '".$_GET["sel_user_id"]."') AND ";
 		if(@$_GET["txt_sitename"]!="") $whereclause .= "(sitename LIKE '%".$_GET["txt_sitename"]."%') AND ";
 		if(@$_GET["txt_tagging_at"]!="") $whereclause .= "(tagging_at LIKE '%".$_GET["txt_tagging_at"]."%') AND ";
+		if(@$_GET["sel_fsfl"]=="1") $whereclause .= "indottech_geotagging_req_id IN (SELECT id FROM indottech_geotagging_req WHERE fsfl_mode='1') AND ";
+		if(@$_GET["sel_fsfl"]=="2") $whereclause .= "indottech_geotagging_req_id IN (SELECT id FROM indottech_geotagging_req WHERE fsfl_mode='0') AND ";
 		
 		$db->addtable("indottech_geotagging");
 		// if($whereclause != "") $db->awhere(substr($whereclause,0,-4)." GROUP BY user_id,sitename,tagging_at ");
@@ -65,9 +70,13 @@
 			$indottech_geotagging_req_id = $indottech_geotagging["indottech_geotagging_req_id"];
 			$user_id = $indottech_geotagging["user_id"];
 			$site_id = $indottech_geotagging["site_id"];
+
+			$fsfl_mode = $db->fetch_single_data("indottech_geotagging_req","fsfl_mode",["id" => $indottech_geotagging_req_id]);
+			if($fsfl_mode == 1) $indottech_geotagging["sitename"] .= " <b>[FSFL]</b>";
 			$sitename = $indottech_geotagging["sitename"];
+
 			$tagging_at = $indottech_geotagging["tagging_at"];
-			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
+			$name = $db->fetch_single_data("users","name",["id" => $user_id]);			
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["indottech_geotagging_req_id" => $indottech_geotagging_req_id]);
 			$photo .= "/".count(photo_items_list(pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $indottech_geotagging_req_id]))));
 			$dl_url = "geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip";

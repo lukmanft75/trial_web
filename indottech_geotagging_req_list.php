@@ -43,6 +43,9 @@
 				if($indottech_geotagging_req["status"] == -1 || $indottech_geotagging_req["status"] == -2){
 					$status = "<b style='color:red;'>Rejected</b>";
 				}
+				if($indottech_geotagging_req["fsfl_mode"] == 1){
+					$indottech_geotagging_req["sitename"] .= " <b>[FSFL]</b>";
+				}
 		?>
 			<tr <?=$trstyle;?>>
 				<td nowrap valign="top"><?=$db->fetch_single_data("users","name",["id" => $indottech_geotagging_req["user_id"]]);?></td>

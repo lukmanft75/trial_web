@@ -108,6 +108,8 @@ $current = $_GET["current"];
 			$site_id = $indottech_geotagging["site_id"];
 			$_indottech_geotagging_req_id = $indottech_geotagging["indottech_geotagging_req_id"];
 			$sitename = $db->fetch_single_data("indottech_geotagging_req","sitename",["id" => $_indottech_geotagging_req_id]);
+			$fsfl_mode = $db->fetch_single_data("indottech_geotagging_req","fsfl_mode",["id" => $_indottech_geotagging_req_id]);
+			
 			$tagging_at = $indottech_geotagging["tagging_at"];
 			$name = $db->fetch_single_data("users","name",["id" => $user_id]);
 			$photo = $db->fetch_single_data("indottech_geotagging","count(0)",["user_id" => $indottech_geotagging["user_id"],"site_id"=>$site_id,"tagging_at"=>$tagging_at]);
@@ -118,6 +120,7 @@ $current = $_GET["current"];
 				if($is_parent){
 					echo "<td>".$name."</td>";
 				}
+				if($fsfl_mode == 1) $sitename .= " <b>[FSFL]</b>";
 				echo "<td>[".$site_id."] ".$sitename."</td>";
 				echo "<td>".format_tanggal($indottech_geotagging["tagging_at"],"dMY")."</td>";
 				echo "<td>".$photo."</td>";

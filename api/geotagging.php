@@ -9,6 +9,7 @@
 	$sitename = $_GET["sitename"];
 	$tagging_at = $_GET["tagging_at"];
 	$indottech_geotagging_req_id = $_GET["indottech_geotagging_req_id"];
+	$siteIdSelected = $_GET["siteIdSelected"];
 	$name = $db->fetch_single_data("users","name",["token" => $token]);
 	if($_GET["retakeMode"] && $_GET["wait_approving"] == ""){
 		$datediff = $db->fetch_single_data("indottech_geotagging_req","concat(HOUR(TIMEDIFF(NOW(), approved_at)))",["id" => $indottech_geotagging_req_id]);
@@ -49,6 +50,10 @@
 			$db->addfield("latitude");	$db->addvalue($lat);
 			$db->addfield("longitude");	$db->addvalue($long);
 			$db->addfield("status");	$db->addvalue(0);
+			if($siteIdSelected > 0){
+				$db->addfield("fsfl_mode");$db->addvalue(1);
+				$db->addfield("siteIdSelected");$db->addvalue($siteIdSelected);
+			}
 			$db->addfield("created_at");$db->addvalue(date("Y-m-d H:i:s"));
 			$db->addfield("created_by");$db->addvalue($username);
 			$db->addfield("created_ip");$db->addvalue($_SERVER["REMOTE_ADDR"]);

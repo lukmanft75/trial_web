@@ -32,7 +32,12 @@
 </table>
 <form method="POST">
 <?php
-	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],"parent_id='0'");
+	if($data["fsfl_mode"] == "1" && $data["siteIdSelected"] > 0){
+		$whereclause = "itemtype='9' AND parent_id='0'";
+	} else {
+		$whereclause = "parent_id='0'";
+	}
+	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],$whereclause);
 	foreach($indottech_photo_items as $indottech_photo_item){
 		$checked = "";
 		if(in_array($indottech_photo_item["id"],$photo_item_ids)) $checked = "checked";
