@@ -15,6 +15,7 @@
 <?php 
 	include_once "../common.php";
 	include_once "user_info.php";
+	if($db->fetch_single_data("backoffice_menu_privileges","id",["group_id"=>$group_id,"backoffice_menu_id"=>"97"]) <= 0){ echo "Forbidden Page!"; exit(); } 
 	if($group_id == "12" || $group_id == "" || $token == "") { echo "Forbidden Page!"; exit(); } 
 	if(!isset($_GET["mode"])){//listing
 		$db->addtable("indottech_geotagging_req");
