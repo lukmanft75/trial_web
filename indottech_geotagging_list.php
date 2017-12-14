@@ -81,7 +81,7 @@
 			$photo .= "/".count(photo_items_list(pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $indottech_geotagging_req_id]))));
 			$dl_url = "geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip";
 			$actions = "<a href=\"indottech_geotagging_view.php?indottech_geotagging_req_id=".$indottech_geotagging_req_id."\">View</a>";
-			$actions .= " | <a target='_BLANK' href='".$dl_url."'>Download</a>";
+			$actions .= " | <a href='#' onclick='window.open(\"geotag_downloader.php?id=".$indottech_geotagging_req_id."\");'>Download</a>";
 			
 			$arr_row = array();
 			$arr_row[] = $no+$start+1;

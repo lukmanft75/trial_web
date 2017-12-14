@@ -12,7 +12,7 @@
 	Site Name : <b><?=$sitename;?></b><br>
 	Tagging At: <b><?=format_tanggal($tagging_at,"dMY");?></b><br>
 	<br>
-	<?=$f->input("download","Download All","type='button' onclick='window.open(\"geophoto/geotag_".$user_id."_".$site_id."_".$tagging_at.".zip\");'");?>
+	<?=$f->input("download","Download All","type='button' onclick='window.open(\"geotag_downloader.php?id=".$indottech_geotagging_req_id."\");'");?>
 	<?=$f->input("back","Back","type='button' onclick='window.location=\"indottech_geotagging_list.php\";'");?>
 	<br>
 	<br>
