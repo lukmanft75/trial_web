@@ -3,7 +3,7 @@
 	<div class="bo_title">Geotagging List</div>
 	<?php
 		$is_parent = false;
-		if($__group_id == 13 || $__group_id < 4 || $__group_id == 11) $is_parent = true;
+		if($__group_id == 13 || $__group_id < 4 || $__group_id == 11 || $__group_id == 18) $is_parent = true;
 		$db->fetch_query("DELETE FROM indottech_geotagging WHERE DATEDIFF(NOW(), created_at) >= 30");
 	?>
 	<div id="bo_expand" onclick="toogle_bo_filter();">[+] View Filter</div>
