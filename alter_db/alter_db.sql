@@ -1,0 +1,1 @@
+ALTER TABLE `indottech_geotagging` ADD `serial_number` VARCHAR(20) NOT NULL AFTER `skip_reason`;
