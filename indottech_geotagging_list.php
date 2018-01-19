@@ -54,7 +54,7 @@
 		if($whereclause != "") $db->awhere(substr($whereclause,0,-4)." GROUP BY indottech_geotagging_req_id ");
 		if(@$_GET["sort"] == "") $_GET["sort"] = "id DESC";
 		if(@$_GET["sort"] != "") $db->order($_GET["sort"]);
-		$db->limit(200);
+		$db->limit(2000);
 		$indottech_geotaggings = $db->fetch_data(true);
 		$arrheader[] = "No";
 		if($is_parent) $arrheader[] = "<div onclick=\"sorting('user_id');\">Name</div>";
