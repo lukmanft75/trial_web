@@ -47,6 +47,7 @@
 						<td colspan="3">
 							<?php if($__isloggedin){ ?>
 								<b>Welcome, <?=$__fullname;?></b>
+								<span class="notification-counter" style="visibility:hidden;" id="notifNavCount" onclick="window.location='messages.php'"></span>
 							<?php } ?>
 						</td>
 					</tr>

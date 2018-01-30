@@ -78,6 +78,31 @@
 			javascript("alert('PRF Paid are success');");
 			javascript("window.location='prf_list.php';");
 		}
+		
+		if($updating["affected_rows"] > 0){
+			$prf_id = $_GET["id"];
+			$checker_at = $db->fetch_single_data("prf","checker_at",["id" => $_GET["id"]]);
+			$signer_at = $db->fetch_single_data("prf","signer_at",["id" => $_GET["id"]]);
+			$approve_at = $db->fetch_single_data("prf","approve_at",["id" => $_GET["id"]]);
+			$purpose = $db->fetch_single_data("prf","purpose",["id" => $_GET["id"]]);
+			$nominal = format_amount($db->fetch_single_data("prf","nominal",["id" => $_GET["id"]]));
+			$maker_by = $db->fetch_single_data("prf","maker_by",["id" => $_GET["id"]]);
+			$maker_id = $db->fetch_single_data("users","id",["email" => $maker_by]);
+			$maker_name = $db->fetch_single_data("users","name",["id" => $maker_id]);
+			if($checker_at != "0000-00-00" && $signer_at != "0000-00-00" && $approve_at == "0000-00-00"){// notifikasi ke approver
+				$approve_by = $db->fetch_single_data("prf","approve_by",["id" => $_GET["id"]]);
+				if($approve_by != ""){
+					$approve_id = $db->fetch_single_data("users","id",["email" => $approve_by]);
+					$message = "<a href=\"?sender_id=$maker_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan sudah di `checker` dan `signer` dan sedang menunggu di Approve oleh Anda. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
+					sendMessage("0",$approve_id,$message);
+				}
+			} else if($checker_at != "0000-00-00" && $signer_at != "0000-00-00" && $approve_at != "0000-00-00"){// notifikasi ke finance
+				$message = "<a href=\"?sender_id=$maker_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan sudah di `checker`, `signer` dan `approve` harap Tim Finance Follow Up PRF ini. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
+				sendMessage("0","5",$message);
+				sendMessage("0","7",$message);
+				sendMessage("0","8",$message);
+			}
+		}
 		echo "<font color='blue'>".strtoupper($_GET["approving"])." Success!</font>";
 	}
 	$db->addtable("prf");$db->where("id",$_GET["id"]);$db->limit(1);$prf = $db->fetch_data();

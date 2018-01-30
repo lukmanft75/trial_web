@@ -366,5 +366,18 @@
 		}
 		return $result;
 	}
+	
+	function sendMessage($sender_id,$opponent_id,$message){
+		global $db,$__now,$__now,$__remoteaddr;
+		$db->addtable("messages");
+		$db->addfield("user_id");	$db->addvalue($sender_id);
+		$db->addfield("user_id2");	$db->addvalue($opponent_id);
+		$db->addfield("message");	$db->addvalue($message);
+		$db->addfield("created_at");$db->addvalue($__now);
+		$db->addfield("created_by");$db->addvalue($__username);
+		$db->addfield("created_ip");$db->addvalue($__remoteaddr);
+		$db->addfield("status");	$db->addvalue(0);
+		return $db->insert();
+	}
 ?>
 <?php include_once "log_action.php"; ?>

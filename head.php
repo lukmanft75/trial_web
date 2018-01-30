@@ -17,14 +17,55 @@
 			<script type="text/javascript" src="calendar/calendar.js"></script>
 			<script type="text/javascript" src="calendar/lang/calendar-en.js"></script>
 			<script type="text/javascript" src="calendar/calendar-setup.js"></script>
+			<script src="scripts/bootstrap.min.js"></script>
+			<script src="scripts/toastr.min.js"></script>
+			<script src="scripts/bootstrap-slider.js"></script>
 
 			<link rel="stylesheet" type="text/css" href="styles/style.css">
 			<link rel="stylesheet" type="text/css" href="backoffice.css">
 			<link rel="stylesheet" type="text/css" href="calendar/calendar-win2k-cold-1.css">
 			<link rel="stylesheet" type="text/css" href="styles/jquery.fancybox.css" media="screen" />
-			<link rel="stylesheet" href="font/font.css">
+			<link rel="stylesheet" type="text/css" href="font/font.css">
+			<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="styles/bootstrap-slider.css">
+			<link rel="stylesheet" type="text/css" href="styles/animate.css">
+			<link rel="stylesheet" type="text/css" href="styles/toastr.min.css">
+			<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 			<script>
 				var global_respon = new Array();
+				var toastroptions = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": true,
+					"positionClass": "toast-bottom-right",
+					"preventDuplicates": false,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				}
+				
+				var toastrMessage = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": true,
+					"positionClass": "toast-message-icon",
+					"preventDuplicates": false,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "15000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				}
 				
 				function adding_row(detail_area,firstrow_area){
 					var elm_detail_area = document.getElementById(detail_area);
@@ -149,6 +190,25 @@
 						x1 = x1.replace(rgx, '$1' + ',' + '$2');
 					}
 					return x1 + x2;
+				}
+				function loadNotifMessageCount(count){
+					try{
+						if(count != 0){
+							$("#notifNavCount").html(count);
+							$("#notifNavCount").attr("style","visibility:visible");
+							$("#titleid").html("<?=substr($__appstitle,0,9)."...";?> ("+count+")");
+						} else {
+							$("#notifNavCount").html("");
+							$("#notifNavCount").attr("style","visibility:hidden");
+							$("#titleid").html("<?=$__appstitle;?>");
+						}
+					 } catch(e){}
+				}
+				
+				function showToastrMessage(){
+					<?php if($__phpself != "messages.php"){ ?>
+					toastr.success("<b>Klik icon biru di atas (sebelah kanan nama Anda), atau pilih menu 'General' -> 'Message' untuk melihat Pesan</b>","",toastrMessage);
+					<?php } ?>
 				}
 			</script>
 		</head>

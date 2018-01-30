@@ -92,6 +92,24 @@
 					$db->update();
 				}
 				
+				if($_POST["checker_by"] != ""){
+					$checker_id = $db->fetch_single_data("users","id",["email" => $_POST["checker_by"]]);
+					$checker_name = $db->fetch_single_data("users","name",["id" => $checker_id]);
+					$maker_name = $db->fetch_single_data("users","name",["id" => $__user_id]);
+					$purpose = $_POST["purpose"];
+					$nominal = format_amount($_POST["nominal"]);
+					$message = "<a href=\"?sender_id=$__user_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan menunggu Anda untuk melakukan `chekcer`. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
+					sendMessage("0",$checker_id,$message);
+				}
+				
+				if($_POST["signer_by"] != ""){
+					$signer_id = $db->fetch_single_data("users","id",["email" => $_POST["signer_by"]]);
+					$signer_name = $db->fetch_single_data("users","name",["id" => $signer_id]);
+					$maker_name = $db->fetch_single_data("users","name",["id" => $__user_id]);
+					$message = "<a href=\"?sender_id=$__user_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan menunggu Anda untuk melakukan `signer`. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
+					sendMessage("0",$signer_id,$message);
+				}
+				
 				javascript("alert('Data Saved');");
 				javascript("window.location='prf_view.php?id=".$prf_id."';");
 			} else {
