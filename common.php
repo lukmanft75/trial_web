@@ -368,7 +368,7 @@
 	}
 	
 	function sendMessage($sender_id,$opponent_id,$message){
-		global $db,$__now,$__now,$__remoteaddr;
+		global $db,$__now,$__now,$__remoteaddr,$__username;
 		$db->addtable("messages");
 		$db->addfield("user_id");	$db->addvalue($sender_id);
 		$db->addfield("user_id2");	$db->addvalue($opponent_id);
