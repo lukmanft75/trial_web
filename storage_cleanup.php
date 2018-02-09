@@ -1,4 +1,5 @@
-<?php 
+<?php
+	error_reporting(0);
 	$_SERVER["DOCUMENT_ROOT"] = "../";
 	include_once "common.php";
 	$storages = $db->fetch_all_data("storage",[],"expired_at < NOW()");
