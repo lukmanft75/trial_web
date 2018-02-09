@@ -167,7 +167,7 @@
 			
 			$txt_filename = $f->input("uploadFile","","type='file'");
 			if($_filename != "") $txt_filename .= "<br>".$_filename;
-			$txt_expired_at = $f->input("expired_at",$_expired_at,"type='date'");
+			$txt_expired_at = $f->input("expired_at",$_expired_at,"type='date' required");
 			$btn_save = $f->input($_save_button,"Save","type='submit'","btn btn-primary");
 			if($_GET["mode"] == "edit") $btn_save .= $f->input("id",$_GET["id"],"type='hidden'");
 			
