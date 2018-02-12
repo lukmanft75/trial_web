@@ -96,6 +96,8 @@
 	} else {
 		$whereclause = "departement = 'Indottech' AND ";
 	}
+	$whereclause .= "IF(is_rejected = '1',IF(created_by = '".$__username."',1,IF('".$__username."' = 'superuser',1,0)),1) = 1 AND ";
+	
 	if(@$_GET["project_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE project_id = '".$_GET["project_id"]."')) AND ";
 	if(@$_GET["scope_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE scope_id = '".$_GET["scope_id"]."')) AND ";
 	if(@$_GET["region_id"]!="") $whereclause .= "(id IN (SELECT prf_id FROM indottech_prfs WHERE region_id = '".$_GET["region_id"]."')) AND ";
