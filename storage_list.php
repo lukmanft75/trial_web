@@ -60,6 +60,7 @@
 		if($_POST["edit_trx"]) $_physicalname = $db->fetch_single_data("storage","physicalname",["id" => $_POST["id"]]);
 		else $_physicalname = getPhysicalname();
 		if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], "storage_share/".$_physicalname) || $_FILES["uploadFile"]["tmp_name"] == "") {
+			chmod("storage_share/".$_physicalname, 0755);
 			$db->addtable("storage");
 			$db->addfield("user_id");			$db->addvalue($__user_id);
 			$db->addfield("allowed_user_ids");	$db->addvalue(sel_to_pipe($_POST["allowed_user_ids"]));
