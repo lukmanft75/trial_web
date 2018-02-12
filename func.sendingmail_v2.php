@@ -20,7 +20,7 @@ function sendingmail($subject,$address,$body,$replyto = "cs@jalurkerja.com|Custo
 		sleep($pause);
 		$_server = gethttp_value("http://103.253.113.164/api/smtp_notes.php?mode=available&domain=".$domain[1]) * 1;
 	} */
-	$_server = 8;
+	$_server = 7;
 
 	$config[1]["secure"] = "";
 	$config[2]["secure"] = "ssl";
