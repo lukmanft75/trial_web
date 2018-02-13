@@ -2,6 +2,7 @@
 	if($_GET["print"] == 1) $__print = true;
 	if($__print) include_once "common.php";
 	else  include_once "head.php";
+	include_once "func.sendingmail_v2.php";
 	
 	$maker_by = $db->fetch_single_data("prf","maker_by",["id" => $_GET["id"]]);
 	$checker_by = $db->fetch_single_data("prf","checker_by",["id" => $_GET["id"]]);
@@ -95,12 +96,16 @@
 					$approve_id = $db->fetch_single_data("users","id",["email" => $approve_by]);
 					$message = "<a href=\"?sender_id=$maker_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan sudah di `checker` dan `signer` dan sedang menunggu di Approve oleh Anda. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
 					sendMessage("0",$approve_id,$message);
+					sendingmail("PRF Notification -- Approve Request",$approve_by,str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
 				}
 			} else if($checker_at != "0000-00-00" && $signer_at != "0000-00-00" && $approve_at != "0000-00-00"){// notifikasi ke finance
 				$message = "<a href=\"?sender_id=$maker_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan sudah di `checker`, `signer` dan `approve` harap Tim Finance Follow Up PRF ini. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
 				sendMessage("0","5",$message);
 				sendMessage("0","7",$message);
 				sendMessage("0","8",$message);
+				sendingmail("PRF Notification -- Finance Approval Request","rohmayadi@corphr.com",str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
+				sendingmail("PRF Notification -- Finance Approval Request","firman@corphr.com",str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
+				sendingmail("PRF Notification -- Finance Approval Request","dodi@corphr.com",str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
 			}
 		}
 		echo "<font color='blue'>".strtoupper($_GET["approving"])." Success!</font>";

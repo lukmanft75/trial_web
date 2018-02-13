@@ -1,5 +1,6 @@
 <?php include_once "head.php";?>
 <?php include_once "prf_js.php";?>
+<?php include_once "func.sendingmail_v2.php";?>
 <div class="bo_title">Add PRF</div>
 <?php
 	$projects = array();
@@ -100,6 +101,7 @@
 					$nominal = format_amount($_POST["nominal"]);
 					$message = "<a href=\"?sender_id=$__user_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan menunggu Anda untuk melakukan `chekcer`. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
 					sendMessage("0",$checker_id,$message);
+					sendingmail("PRF Notification -- Checker Request",$_POST["checker_by"],str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
 				}
 				
 				if($_POST["signer_by"] != ""){
@@ -108,6 +110,7 @@
 					$maker_name = $db->fetch_single_data("users","name",["id" => $__user_id]);
 					$message = "<a href=\"?sender_id=$__user_id\">$maker_name</a> telah membuat PRF untuk <b>$purpose</b> sebesar <b>Rp. $nominal</b> dan menunggu Anda untuk melakukan `signer`. Silakan klik <a href=\"prf_view.php?id=$prf_id\" target=\"_BLANK\">link ini</a> untuk melihat PRF tersebut.";
 					sendMessage("0",$signer_id,$message);
+					sendingmail("PRF Notification -- Signer Request",$_POST["signer_by"],str_replace("prf_view.php","http://103.253.113.201/indottech/prf_view.php",$message));
 				}
 				
 				javascript("alert('Data Saved');");
