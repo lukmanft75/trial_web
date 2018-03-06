@@ -17,6 +17,13 @@
 	$zipfile = "../geophoto/".$basezipfile;
 	if (!(file_put_contents($filename,$data) === FALSE)){
 		resizeImage($filename);
+		$latitude = $db->fetch_single_data("indottech_geotagging_req","latitude",["id" => $indottech_geotagging_req_id]);
+		$longitude = $db->fetch_single_data("indottech_geotagging_req","longitude",["id" => $indottech_geotagging_req_id]);
+		$imgtext = $site_id." ".$sitename;
+		$imgtext .= "<br>".$latitude.";".$longitude;
+		$imgtext .= "<br>".date("Y/m/d H:i:s");
+		insertTextImg($filename,$filename,$imgtext);
+		
 		$db->addtable("indottech_geotagging"); 
 		$db->where("indottech_geotagging_req_id",$indottech_geotagging_req_id);
 		$db->where("photo_item_id",$photo_item_id);

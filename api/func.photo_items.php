@@ -75,4 +75,27 @@
 		return 1;
 	}
 	
+	function insertTextImg($source,$dest,$text){
+		ob_start();
+		$image = imagecreatefromjpeg($source);
+		$color = imagecolorallocate($image, 255, 255, 255);
+		$color2 = imagecolorallocate($image, 0, 0, 0);
+		// $font = 5;
+		$font = imageloadfont("font.gdf");
+		list($width, $height, $image_type) = getimagesize($source);
+		$x = $width - 370;
+		$y = $height - 100;
+		$arrtext = explode("<br>",$text);
+		foreach($arrtext as $text){
+			imagestring($image, $font, $x+2, $y+2, $text, $color2);
+			imagestring($image, $font, $x, $y, $text, $color);
+			$y+=23;
+		}
+		imagejpeg($image);
+		$return = ob_get_contents();
+		ob_clean();
+		$fp = fopen($dest, "w");
+		fwrite($fp, $return);
+		fclose($fp);
+	}
 ?>
