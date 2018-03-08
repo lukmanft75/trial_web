@@ -77,7 +77,7 @@
 			$db->addfield("prf_mode");		$db->addvalue($_POST["prf_mode"]);
 			$db->addfield("maker_at");		$db->addvalue($_POST["maker_at"]);
 			if($__username == $prf_created_by){
-				if($_POST["checker_by"] != $last_checker_by){
+				if($_POST["checker_by"] != $last_checker_by || true){ // di ubah || true, permintaan mba tita , supaya kalo ada revisi, cukup checker saya yg ngulang, yang lainnya tetep sudah ter approved
 					$db->addfield("checker_by");	$db->addvalue($_POST["checker_by"]);
 					$db->addfield("checker_at");	$db->addvalue("0000-00-00");
 				}
