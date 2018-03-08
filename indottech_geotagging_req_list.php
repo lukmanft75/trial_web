@@ -11,7 +11,7 @@
 	
 	if(!isset($_GET["mode"])){//listing
 		$db->addtable("indottech_geotagging_req");
-		$db->order("status,id DESC");
+		$db->order("created_at DESC,status,id DESC");
 		$db->limit("200");
 		$indottech_geotagging_reqs = $db->fetch_data(true);
 		?>
