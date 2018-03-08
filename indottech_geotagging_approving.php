@@ -35,12 +35,21 @@
 	} else {
 		$whereclause = "parent_id='0'";
 	}
-	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],$whereclause);
+	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],$whereclause." AND itemtype<>'10'");
 	foreach($indottech_photo_items as $indottech_photo_item){
 		$checked = "";
 		if(in_array($indottech_photo_item["id"],$photo_item_ids)) $checked = "checked";
 		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox' ".$checked).$indottech_photo_item["name"]."<br>";
 	}
+	$indottech_photo_items = $db->fetch_all_data("indottech_photo_items",[],"itemtype='10' AND parent_id > 0 AND is_childest=0");
+	echo "<u>SIMO MIMO:</u><br>";
+	foreach($indottech_photo_items as $indottech_photo_item){
+		$checked = "";
+		if(in_array($indottech_photo_item["id"],$photo_item_ids)) $checked = "checked";
+		$parent_name = $db->fetch_single_data("indottech_photo_items","name",["id" => $indottech_photo_item["parent_id"]]);
+		echo $f->input("chk[]",$indottech_photo_item["id"],"type='checkbox' ".$checked).$parent_name." -- ".$indottech_photo_item["name"]."<br>";
+	}
+	
 	echo "<br>";
 	echo $f->input("approved","Approved","type='submit'");
 	echo "&nbsp;&nbsp;&nbsp;";
