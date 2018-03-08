@@ -21,7 +21,7 @@
 						setTimeout(function(){ checkMessageCount(); }, 1000); 
 					}
 					checkMessageCount();
-					try{ setTimeout(function(){ if($("#notifNavCount").css("visibility") == "visible") showToastrMessage(); }, 3000); } catch(e){} 
+					// try{ setTimeout(function(){ if($("#notifNavCount").css("visibility") == "visible") showToastrMessage(); }, 3000); } catch(e){} 
 				<?php } ?>
 				
 				function session_checker(){
