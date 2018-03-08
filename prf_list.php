@@ -131,6 +131,8 @@
 	if(!$_isexport){
 		$db->limit($start.",".$_rowperpage);
 	}
+	
+	if(@$_GET["sort"] == "") $_GET["sort"] = "maker_at DESC";
 	if(@$_GET["sort"] != "") $db->order($_GET["sort"]);
 	$prfs = $db->fetch_data(true);
 ?>
