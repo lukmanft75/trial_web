@@ -5,6 +5,16 @@
 	$no_of_bank = $atr["battery_no_of_bank"];
 	if(isset($_GET["takephoto"])) $_errormessage = "<font color='red'>Harap tunggu, sedang memuat koordinat GPS</font>";
 ?>
+<script>
+	function zoomimage(filename){
+		modalBody = "<img src=\"../geophoto/"+filename+"\" width=\"100%\">";
+		modalFooter = "<button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>";
+		$('#modalTitle').html("Photo");
+		$('#modalBody').html(modalBody);
+		$('#modalFooter').html(modalFooter);
+		$('#myModal').modal('show');
+	}
+</script>
 <center><h4><b>BATTERY SERIAL NUMBER AND VOLTAGE AFTER 30 MINUTES ATP</b></h4></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
@@ -26,11 +36,11 @@
 				<tr>
 					<td align="right"><?=($xx+1);?></td>
 					<td align="center">
-						<img onclick="zoomimage('<?=$battery_discharge_id;?>','serialnumber')" src="../geophoto/<?=$serialnumber;?>" width="100">
+						<img onclick="zoomimage('<?=$serialnumber;?>');" src="../geophoto/<?=$serialnumber;?>" width="100">
 						<br><input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&takephoto=serialnumber|<?=$atd_id;?>|<?=$battery_discharge_id;?>';">
 					</td>
 					<td align="center">
-						<img onclick="zoomimage('<?=$battery_discharge_id;?>','serialnumber')" src="../geophoto/<?=$voltmeter;?>" width="100">
+						<img onclick="zoomimage('<?=$voltmeter;?>');" src="../geophoto/<?=$voltmeter;?>" width="100">
 						<br><input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&takephoto=voltmeter|<?=$atd_id;?>|<?=$battery_discharge_id;?>';">
 					</td>
 					<td></td>
