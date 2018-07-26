@@ -333,6 +333,25 @@
 			$nonull_fields = array();
             foreach($this->no_nullable_fields($_table,$this->fields) as $field){ $_fields .= "`".$field."`,"; $nonull_fields[] = $field;}
             $_fields = substr($_fields,0,-1);
+			
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'created_at'",true)) > 0 && stripos(" ".$_fields,"created_at") <= 0){
+				$_fields .= ",`created_at`"; array_push($this->values,date("Y-m-d H:i:s"));
+			}
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'created_by'",true)) > 0 && stripos(" ".$_fields,"created_by") <= 0){
+				$_fields .= ",`created_by`"; array_push($this->values,$_SESSION["username"]);
+			}
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'created_ip'",true)) > 0 && stripos(" ".$_fields,"created_ip") <= 0){
+				$_fields .= ",`created_ip`"; array_push($this->values,$_SERVER["REMOTE_ADDR"]);
+			}
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_at'",true)) > 0 && stripos(" ".$_fields,"updated_at") <= 0){
+				$_fields .= ",`updated_at`"; array_push($this->values,date("Y-m-d H:i:s"));
+			}
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_by'",true)) > 0 && stripos(" ".$_fields,"updated_by") <= 0){
+				$_fields .= ",`updated_by`"; array_push($this->values,$_SESSION["username"]);
+			}
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_ip'",true)) > 0 && stripos(" ".$_fields,"updated_ip") <= 0){
+				$_fields .= ",`updated_ip`"; array_push($this->values,$_SERVER["REMOTE_ADDR"]);
+			}
 
             $_values = "";
             foreach($this->values as $values){ $_values .= "'".$values."',"; }
@@ -405,6 +424,10 @@
             }
            
             $_values = substr($_values,0,-1);
+			
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_at'",true)) > 0 && stripos(" ".$_values,"updated_at") <= 0) $_values .= ",`updated_at` = '".date("Y-m-d H:i:s")."'";
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_by'",true)) > 0 && stripos(" ".$_values,"updated_by") <= 0) $_values .= ",`updated_by` = '".$_SESSION["username"]."'";
+			if(count($this->fetch_query("SHOW COLUMNS FROM $_table WHERE field = 'updated_ip'",true)) > 0 && stripos(" ".$_values,"updated_ip") <= 0) $_values .= ",`updated_ip` = '".$_SERVER["REMOTE_ADDR"]."'";
 
             $whereclause = "";
             foreach($this->where as $arr){
