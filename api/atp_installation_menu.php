@@ -17,4 +17,6 @@
 <?php } ?>
 <button class="big_button" onclick="window.location='atp_installation_batteries.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Batteries</button>
 <button class="big_button" onclick="window.location='atp_installation_photos.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Photos</button>
+<br><br>
+<button class="big_button" onclick="window.location='atp_installation.php?token=<?=$token;?>';">BACK</button>
 <?php include_once "footer.php";?>

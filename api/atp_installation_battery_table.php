@@ -5,19 +5,21 @@
 	$battery_discharge = $db->fetch_all_data("indottech_battery_discharge",[],"atd_id='".$atd_id."'");
 	
 	if(isset($_POST["save"])){
-		$db->addtable("indottech_battery_discharge"); $db->where("atd_id",$atd_id); $db->delete_();
+		// $db->addtable("indottech_battery_discharge"); $db->where("atd_id",$atd_id); $db->delete_();
 		$is_any_failed = 0;
 		foreach($_POST["val"] as $bank_no => $batteries){
 			foreach($batteries as $batt_no => $vals){
 				foreach($vals as $minute_at => $val){
+					$battery_discharge_id = $db->fetch_single_data("indottech_battery_discharge","id",["atd_id"=>$atd_id, "bank_no" => $bank_no,"batt_no" => $batt_no,"minute_at" => $minute_at]);
 					$db->addtable("indottech_battery_discharge");
+					if($battery_discharge_id > 0) $db->where("id",$battery_discharge_id);
 					$db->addfield("atd_id");		$db->addvalue($atd_id);
 					$db->addfield("load_current");	$db->addvalue($_POST["load_current"][$bank_no]);
 					$db->addfield("bank_no");		$db->addvalue($bank_no);
 					$db->addfield("batt_no");		$db->addvalue($batt_no);
 					$db->addfield("minute_at");		$db->addvalue($minute_at);
 					$db->addfield("val");			$db->addvalue($val);
-					$inserting = $db->insert();
+					if($battery_discharge_id > 0) $inserting = $db->update(); else $inserting = $db->insert();
 					if($inserting["affected_rows"] <= 0) $is_any_failed++;
 				}
 			}

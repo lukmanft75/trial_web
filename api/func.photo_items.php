@@ -84,6 +84,7 @@
 		$font = imageloadfont("font.gdf");
 		list($width, $height, $image_type) = getimagesize($source);
 		$x = $width - 370;
+		$x = 10;
 		$y = $height - 100;
 		$arrtext = explode("<br>",$text);
 		foreach($arrtext as $text){

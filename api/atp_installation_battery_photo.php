@@ -3,8 +3,9 @@
 	$atd_id = $_GET["atd_id"];
 	$atr = $db->fetch_all_data("indottech_acceptance_test_rectifier",[],"atd_id='".$atd_id."'")[0];
 	$no_of_bank = $atr["battery_no_of_bank"];
+	if(isset($_GET["takephoto"])) $_errormessage = "<font color='red'>Harap tunggu, sedang memuat koordinat GPS</font>";
 ?>
-<center><h4><b>BATTERY SERIAL NUMBER AND VOLTAGE AFTER 30 MINUUTES ATP</b></h4></center>
+<center><h4><b>BATTERY SERIAL NUMBER AND VOLTAGE AFTER 30 MINUTES ATP</b></h4></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
 	<?php 
@@ -26,11 +27,11 @@
 					<td align="right"><?=($xx+1);?></td>
 					<td align="center">
 						<img onclick="zoomimage('<?=$battery_discharge_id;?>','serialnumber')" src="../geophoto/<?=$serialnumber;?>" width="100">
-						<br><input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&battery_discharge_id=<?=$battery_discharge_id;?>&takephoto=serialnumber';">
+						<br><input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&takephoto=serialnumber|<?=$atd_id;?>|<?=$battery_discharge_id;?>';">
 					</td>
 					<td align="center">
-						<img src="../geophoto/<?=$voltmeter;?>" width="100">
-						<br><input onclick="zoomimage('<?=$battery_discharge_id;?>','serialnumber')" style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&battery_discharge_id=<?=$battery_discharge_id;?>&takephoto=voltmeter';">
+						<img onclick="zoomimage('<?=$battery_discharge_id;?>','serialnumber')" src="../geophoto/<?=$voltmeter;?>" width="100">
+						<br><input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&takephoto=voltmeter|<?=$atd_id;?>|<?=$battery_discharge_id;?>';">
 					</td>
 					<td></td>
 				</tr>
