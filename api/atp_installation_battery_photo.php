@@ -5,16 +5,6 @@
 	$no_of_bank = $atr["battery_no_of_bank"];
 	if(isset($_GET["takephoto"])) $_errormessage = "<font color='red'>Harap tunggu, sedang memuat koordinat GPS</font>";
 ?>
-<script>
-	function zoomimage(filename){
-		modalBody = "<img src=\"../geophoto/"+filename+"\" width=\"100%\">";
-		modalFooter = "<button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>";
-		$('#modalTitle').html("Photo");
-		$('#modalBody').html(modalBody);
-		$('#modalFooter').html(modalFooter);
-		$('#myModal').modal('show');
-	}
-</script>
 <center><h4><b>BATTERY SERIAL NUMBER AND VOLTAGE AFTER 30 MINUTES ATP</b></h4></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">

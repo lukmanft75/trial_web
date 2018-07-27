@@ -9,9 +9,18 @@
 		<link rel="stylesheet" type="text/css" href="forms.css">
 		<link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../styles/bootstrap-slider.css">
-
 	</head>
 	<body>
+		<script>			
+			function zoomimage(filename){
+				modalBody = "<img src=\"../geophoto/"+filename+"\" width=\"100%\">";
+				modalFooter = "<button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>";
+				$('#modalTitle').html("Photo");
+				$('#modalBody').html(modalBody);
+				$('#modalFooter').html(modalFooter);
+				$('#myModal').modal('show');
+			}
+		</script>
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->

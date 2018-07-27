@@ -17,13 +17,13 @@
 		$filename = "../geophoto/".$basefilename;
 		$zipfile = "../geophoto/".$basezipfile;
 	}
-	if($_GET["photoMode"] == "battery_discharge_photos"){
+	if($_GET["photoMode"] == "atp_installation_battery_photo"){
 		$params = explode("|",$_GET["param"]);
 		$fieldname = $params[0];
 		$atd_id = $params[1];
 		$battery_discharge_id = $params[2];
 		$tagging_at = date("YmdHis");
-		$basefilename = "tag_".$fieldname."_".$atd_id."_".$battery_discharge_id."_".$tagging_at.".jpg";
+		$basefilename = "tag_".$__user_id."_".$fieldname."_".$atd_id."_".$battery_discharge_id."_".$tagging_at.".jpg";
 		$filename = "../geophoto/".$basefilename;
 		$coordinates = explode("|",$_GET["coordinate"]);
 		$latitude = $coordinates[0];
@@ -33,6 +33,22 @@
 		$battery_discharge_photos_id = $db->fetch_single_data("indottech_battery_discharge_photos","id",["battery_discharge_id" => $battery_discharge_id,"atd_id" => $atd_id,"minute_at" => "30"]);
 		$oldfile = $db->fetch_single_data("indottech_battery_discharge_photos",$fieldname,["id" => $battery_discharge_photos_id]);
 		unlink("../geophoto/".$oldfile);
+	}
+	if($_GET["photoMode"] == "atp_installation_photos"){
+		$params = explode("|",$_GET["param"]);
+		$atd_id = $params[0];
+		$photo_items_id = $params[1];
+		$tagging_at = date("YmdHis");
+		$basefilename = "tag_atp_installation_".$__user_id."_".$atd_id."_".$photo_items_id."_".$tagging_at.".jpg";
+		$filename = "../geophoto/".$basefilename;
+		$coordinates = explode("|",$_GET["coordinate"]);
+		$latitude = $coordinates[0];
+		$longitude = $coordinates[1];
+		$site_id = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
+		$site_name = $db->fetch_single_data("indottech_atd_cover","site_name",["id" => $atd_id]);
+		$photo_title = $db->fetch_single_data("indottech_photo_items","name",["id" => $photo_items_id]);
+		$seqno = $db->fetch_single_data("indottech_photos","seqno",["atd_id" => $atd_id,"photo_items_id" => $photo_items_id],["seqno DESC"]);
+		$seqno++;
 	}
 	
 	if (!(file_put_contents($filename,$data) === FALSE)){
@@ -71,7 +87,7 @@
 			$photo_item_ids = pipetoarray($db->fetch_single_data("indottech_geotagging_req","photo_item_ids",["id" => $indottech_geotagging_req_id]));
 			echo "File Transfered||".next_photo_item($photo_item_ids,$photo_item_id)."||".get_complete_name(next_photo_item($photo_item_ids,$photo_item_id));
 		}
-		if($_GET["photoMode"] == "battery_discharge_photos"){
+		if($_GET["photoMode"] == "atp_installation_battery_photo"){
 			$imgtext = $site_id." - ".$site_name;
 			$imgtext .= "<br>".$latitude.";".$longitude;
 			$imgtext .= "<br>".date("d/m/Y H:i:s");
@@ -85,6 +101,21 @@
 			$db->addfield($fieldname);				$db->addvalue($basefilename);
 			if($battery_discharge_photos_id > 0) $db->update();
 			else $db->insert();
+			echo "OK";
+		}
+		if($_GET["photoMode"] == "atp_installation_photos"){
+			$imgtext = $site_id." - ".$site_name;
+			$imgtext .= "<br>".$latitude.";".$longitude;
+			$imgtext .= "<br>".date("d/m/Y H:i:s");
+			insertTextImg($filename,$filename,$imgtext);
+			
+			$db->addtable("indottech_photos");
+			$db->addfield("atd_id");			$db->addvalue($atd_id);
+			$db->addfield("photo_items_id");	$db->addvalue($photo_items_id);
+			$db->addfield("photo_title");		$db->addvalue($photo_title);
+			$db->addfield("filename");			$db->addvalue($basefilename);
+			$db->addfield("seqno");				$db->addvalue($seqno);
+			$db->insert();
 			echo "OK";
 		}
 	} else {
