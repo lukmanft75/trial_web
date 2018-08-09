@@ -330,3 +330,23 @@ ALTER TABLE `indottech_battery_discharge_photos` ADD `minute_at` INT NOT NULL AF
 ALTER TABLE `indottech_battery_discharge_photos` ADD `voltmeter` VARCHAR(255) NOT NULL AFTER `serialnumber`;
 ALTER TABLE `indottech_photos` ADD `photo_items_id` INT NOT NULL AFTER `atd_id`, ADD INDEX (`photo_items_id`);
 ALTER TABLE `indottech_photos` ADD `filename` VARCHAR(255) NOT NULL AFTER `photo_title`;
+
+
+INSERT INTO backoffice_menu (id,seqno,parent_id,name,url) VALUES ('121','2', '96','ATP Installation','atd_cover_list.php');
+INSERT INTO backoffice_menu_privileges (group_id,backoffice_menu_id,privilege) VALUES
+(11,121,1),
+(12,121,1),
+(13,121,1),
+(14,121,1),
+(15,121,1),
+(16,121,1),
+(17,121,1),
+(18,121,1),
+(11,96,1),
+(12,96,1),
+(13,96,1),
+(14,96,1),
+(15,96,1),
+(16,96,1),
+(17,96,1),
+(18,96,1);
