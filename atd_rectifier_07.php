@@ -24,6 +24,7 @@
 	array_push($arr1,"{indottech_acceptance_test_rectifier.rect_7_sn}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.ac_vac}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.ac_phase}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.ac_hz}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.out_vdc_to}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.out_vdc}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.float}");
@@ -57,6 +58,7 @@
 	array_push($arr2,$indottech_atr["rectifier6_sn"]);
 	array_push($arr2,$indottech_atr["rectifier7_sn"]);
 	array_push($arr2,$indottech_atr["ac_input_vac"]);
+	array_push($arr2,$indottech_atr["ac_input_phase"]);
 	array_push($arr2,$indottech_atr["ac_input_phase"]);
 	array_push($arr2,$indottech_atr["output_vdc1"]);
 	array_push($arr2,$indottech_atr["output_vdc2"]);
