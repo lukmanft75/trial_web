@@ -350,3 +350,240 @@ INSERT INTO backoffice_menu_privileges (group_id,backoffice_menu_id,privilege) V
 (16,96,1),
 (17,96,1),
 (18,96,1);
+
+--================================2018-08-09==========================
+DROP TABLE IF EXISTS indottech_sow;
+CREATE TABLE indottech_sow (
+	id int NOT NULL auto_increment,
+	name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_sow (id,name) VALUES 
+(NULL,'Add 2100'),
+(NULL,'Add LTE 15 MHz'),
+(NULL,'Add U900'),
+(NULL,'New LTE 15 MHz'),
+(NULL,'New LTE 15 MHz + Add U900'),
+(NULL,'NEW SITE'),
+(NULL,'New Site G/U900 & L1800'),
+(NULL,'paket Abis'),
+(NULL,'UG BW 15 MHz');
+
+DROP TABLE IF EXISTS indottech_sow_detail;
+CREATE TABLE indottech_sow_detail (
+	id int NOT NULL auto_increment,
+	name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_sow_detail (id,name) VALUES 
+(NULL,'Assignment Take Over'),
+(NULL,'Installation Only'),
+(NULL,'Need Confirm Nokia'),
+(NULL,'Survey + Installasi'),
+(NULL,'Survey + Installasi + cross connect TDM'),
+(NULL,'Survey + Installasi + Dismantle'),
+(NULL,'Survey Only');
+
+DROP TABLE IF EXISTS indottech_project_types;
+CREATE TABLE indottech_project_types (
+	id int NOT NULL auto_increment,
+	name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_project_types (id,name) VALUES 
+(NULL,'New site'),
+(NULL,'Overlay Capacity'),
+(NULL,'Overlay IBS'),
+(NULL,'Overlay RED'),
+(NULL,'Overlay yellow');
+
+DROP TABLE IF EXISTS indottech_milestone_categories;
+CREATE TABLE indottech_milestone_categories (
+	id int NOT NULL auto_increment,
+	name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_milestone_categories (id,name) VALUES (NULL,'Pre Implementation'),(NULL,'Implementation'),(NULL,'Dismantle'),(NULL,'ATP'),(NULL,'WCC');
+
+DROP TABLE IF EXISTS indottech_milestones_valuetypes;
+CREATE TABLE indottech_milestones_valuetypes (
+	id int NOT NULL auto_increment,
+	name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_milestones_valuetypes (id,name) VALUES (1,'Date'),(2,'Free Text'),(3,'Select'),(4,'Trigger');
+
+DROP TABLE IF EXISTS indottech_programs;
+CREATE TABLE indottech_programs (
+	id int NOT NULL auto_increment,
+	name varchar(255) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+INSERT INTO indottech_programs (id,name) VALUES 
+(NULL,'Change Transport + Packet abis / No Program / No Program / No Program / No Program'),
+(NULL,'G900/U900 (333/111)'),
+(NULL,'G900/U900/L1800 15 Mhz 4x4 MIMO/L2100 5 Mhz'),
+(NULL,'Modernization G900 / No Program / No Program / New U900 / No Porgram'),
+(NULL,'Modernization GSM / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Modernization GSM + Packet Abis / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Modernization GSM + Packet abis / No Program / No Program / New U900 / No Program'),
+(NULL,'Modernization RRU + Downgrade TRX / Modernization DCS + Downgrade TRX / No Program / New U900 / New L1800 15 mhz'),
+(NULL,'Modernization RRU + Downgrade TRX / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Modernization RRU / Modernization RRU / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Modernization RRU / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Modernization RRU / No Program / No Program / New U900 / No Program'),
+(NULL,'Modernization RRU + Packet Abis / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'New G900/-/-/New U900/-'),
+(NULL,'New G900/-/-/New U900/New L1800 15 Mhz 4x4 MIMO/New L2100 5 Mhz'),
+(NULL,'New G900 / No Program / New U2100 / New U900 / New L1800 15 Mhz'),
+(NULL,'New G900 / No Program / No Program / New U900 / New L1800 15 Mhz 4x4 MIMO / New L2100 5 Mhz'),
+(NULL,'New G900 / No Program / No Program / New U900 / No Program'),
+(NULL,'New Site G/U900 & L1800'),
+(NULL,'No Program / Modernization DCS & Downgrade TRX / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'No Program / Modernization DCS / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'No Program / Modernization DCS / No Program / No Program / Upgrade L1800 15 Mhz'),
+(NULL,'No Program / No Program / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'No Program / No Program / No Program / No Program / upgrade L1800 to 15 Mhz'),
+(NULL,'No Program / Split BCF / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'Out doorization + Downgrade TRX / No Program / No Program / New U900 / New L1800 15 Mhz'),
+(NULL,'Outdoorization / No Program / No Program / New U900 / No Program'),
+(NULL,'Packet Abis / Modernization DCS + Packet Abis / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'Packet Abis / No Program / New U2100 / No Program / No Program'),
+(NULL,'Packet Abis / No Program / No Program / New U900 / No Program'),
+(NULL,'Packet Abis / No Program / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'Packet Abis / No Program / No Program / No Program / No Program'),
+(NULL,'Packet Abis / Packet Abis / No Program / No Program / New L1800 15 Mhz'),
+(NULL,'Packet Abis / Packet Abis / No Program / No Program / upgrade L1800 to 15 Mhz'),
+(NULL,'Packet Abis / Split BCF + Packet Abis / No Program / No Program / New L1800 15 Mhz');
+
+DROP TABLE IF EXISTS indottech_project_milestones;
+CREATE TABLE indottech_project_milestones (
+	id int NOT NULL auto_increment,
+	program_id int NOT NULL,
+	sow_id int NOT NULL,
+	sow_detail_id int NOT NULL,
+	need_survey int NOT NULL,
+	project_type_id int NOT NULL,
+	site_id int NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (program_id),
+	INDEX (sow_id),
+	INDEX (sow_detail_id),
+	INDEX (project_type_id),
+	INDEX (site_id)
+);
+
+DROP TABLE IF EXISTS indottech_project_milestone_details;
+CREATE TABLE indottech_project_milestone_details (
+	id int NOT NULL auto_increment,
+	project_milestone_id int NOT NULL,
+	milestone_category_id int NOT NULL,
+	parent_id int NOT NULL,
+	name varchar(100) NOT NULL,
+	estimation_done_at date NOT NULL,
+	percentage double NOT NULL,
+	valuetype_ids varchar(100) NOT NULL,
+	datevalues date NOT NULL,
+	textvalues varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (project_milestone_id),
+	INDEX (milestone_category_id),
+	INDEX (parent_id),
+	INDEX (valuetype_ids),
+	INDEX (datevalues),
+	INDEX (textvalues)
+);
+
+DROP TABLE IF EXISTS indottech_acceptance_certificate;
+CREATE TABLE indottech_acceptance_certificate (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	entry_at date NOT NULL,
+	po_number varchar(100) NOT NULL,
+	site_id int NOT NULL,
+	site_code varchar(20) NOT NULL,
+	site_name varchar(100) NOT NULL,
+	site_address text NOT NULL,
+	site_longitude varchar(20) NOT NULL,
+	site_latitude varchar(20) NOT NULL,
+	worktype_ids varchar(100) NOT NULL,
+	sitetype_ids varchar(100) NOT NULL,
+	system_module_ids varchar(100) NOT NULL,
+	rf_module_ids varchar(100) NOT NULL,
+	configuration_ids varchar(100) NOT NULL,
+	number_of_system_modul int NOT NULL,
+	number_of_rf int NOT NULL,
+	number_of_antenna int NOT NULL,
+	installation_at date NOT NULL,
+	self_assessment_at date NOT NULL,
+	onair_at date NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+
+DELETE FROM backoffice_menu WHERE id = '122';
+INSERT INTO backoffice_menu (id,seqno,parent_id,name,url) VALUES ('122','1', '6','Projects','project_milestones_list.php');
