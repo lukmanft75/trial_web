@@ -849,3 +849,260 @@ CREATE TABLE indottech_bts_sran_2_2_2 (
 	PRIMARY KEY (id),
 	INDEX (atd_id)
 );
+
+--================================2018-08-10 14:11==========================
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_2_2_1;
+CREATE TABLE indottech_bts_sran_2_2_2_1 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	v_type smallint NOT NULL,
+	remarks varchar(255) NOT NULL,
+	info varchar(255) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_2_3;
+CREATE TABLE indottech_bts_sran_2_2_3 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	bts_restart smallint NOT NULL,
+	launch smallint NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_2_4;
+CREATE TABLE indottech_bts_sran_2_2_4 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	v1 smallint NOT NULL,
+	v2 smallint NOT NULL,
+	v3 smallint NOT NULL,
+	v4 smallint NOT NULL,
+	v5 smallint NOT NULL,
+	v6 smallint NOT NULL,
+	v7 smallint NOT NULL,
+	v8 smallint NOT NULL,
+	v9 smallint NOT NULL,
+	v10 smallint NOT NULL,
+	v11 smallint NOT NULL,
+	v12 smallint NOT NULL,
+	v13 smallint NOT NULL,
+	v14 smallint NOT NULL,
+	v15 smallint NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_2_5;
+CREATE TABLE indottech_bts_sran_2_2_5 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	arfcn_1 varchar(100) NOT NULL,
+	arfcn_2 varchar(100) NOT NULL,
+	arfcn_3 varchar(100) NOT NULL,
+	arfcn_4 varchar(100) NOT NULL,
+	arfcn_5 varchar(100) NOT NULL,
+	arfcn_6 varchar(100) NOT NULL,
+	arfcn_7 varchar(100) NOT NULL,
+	arfcn_8 varchar(100) NOT NULL,
+	arfcn_9 varchar(100) NOT NULL,
+	arfcn_10 varchar(100) NOT NULL,
+	arfcn_11 varchar(100) NOT NULL,
+	arfcn_12 varchar(100) NOT NULL,
+	arfcn_13 varchar(100) NOT NULL,
+	arfcn_14 varchar(100) NOT NULL,
+	arfcn_15 varchar(100) NOT NULL,
+	arfcn_16 varchar(100) NOT NULL,
+	arfcn_17 varchar(100) NOT NULL,
+	arfcn_18 varchar(100) NOT NULL,
+	arfcn_19 varchar(100) NOT NULL,
+	arfcn_20 varchar(100) NOT NULL,
+	arfcn_21 varchar(100) NOT NULL,
+	arfcn_22 varchar(100) NOT NULL,
+	arfcn_23 varchar(100) NOT NULL,
+	arfcn_24 varchar(100) NOT NULL,
+	psc_1 varchar(100) NOT NULL,
+	psc_2 varchar(100) NOT NULL,
+	psc_3 varchar(100) NOT NULL,
+	pci_1 varchar(100) NOT NULL,
+	pci_2 varchar(100) NOT NULL,
+	pci_3 varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_3_1;
+CREATE TABLE indottech_bts_sran_2_3_1 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	cell_id_no_1 varchar(100) NOT NULL,
+	cell_id_no_2 varchar(100) NOT NULL,
+	cell_id_no_3 varchar(100) NOT NULL,
+	originating_call_1 varchar(100) NOT NULL,
+	originating_call_2 varchar(100) NOT NULL,
+	originating_call_3 varchar(100) NOT NULL,
+	terminating_call_1 varchar(100) NOT NULL,
+	terminating_call_2 varchar(100) NOT NULL,
+	terminating_call_3 varchar(100) NOT NULL,
+	open_browser_1 varchar(100) NOT NULL,
+	open_browser_2 varchar(100) NOT NULL,
+	open_browser_3 varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_3_2;
+CREATE TABLE indottech_bts_sran_2_3_2 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	cell_id_no_1 varchar(100) NOT NULL,
+	cell_id_no_2 varchar(100) NOT NULL,
+	cell_id_no_3 varchar(100) NOT NULL,
+	originating_call_1 varchar(100) NOT NULL,
+	originating_call_2 varchar(100) NOT NULL,
+	originating_call_3 varchar(100) NOT NULL,
+	terminating_call_1 varchar(100) NOT NULL,
+	terminating_call_2 varchar(100) NOT NULL,
+	terminating_call_3 varchar(100) NOT NULL,
+	open_browser_1 varchar(100) NOT NULL,
+	open_browser_2 varchar(100) NOT NULL,
+	open_browser_3 varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_2_3_3;
+CREATE TABLE indottech_bts_sran_2_3_3 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	cell_id_no_1 varchar(100) NOT NULL,
+	cell_id_no_2 varchar(100) NOT NULL,
+	cell_id_no_3 varchar(100) NOT NULL,
+	network_attached_1 varchar(100) NOT NULL,
+	network_attached_2 varchar(100) NOT NULL,
+	network_attached_3 varchar(100) NOT NULL,
+	network_detached_1 varchar(100) NOT NULL,
+	network_detached_2 varchar(100) NOT NULL,
+	network_detached_3 varchar(100) NOT NULL,
+	dl_1 double NOT NULL,
+	dl_2 double NOT NULL,
+	dl_3 double NOT NULL,
+	ul_1 double NOT NULL,
+	ul_2 double NOT NULL,
+	ul_3 double NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_7;
+CREATE TABLE indottech_bts_sran_7 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	seqno int NOT NULL,
+	description varchar(255) NOT NULL,
+	pic varchar(100) NOT NULL,
+	close_at date NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+DROP TABLE IF EXISTS indottech_bts_sran_8;
+CREATE TABLE indottech_bts_sran_8 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	po_number varchar(100) NOT NULL,
+	site_id int NOT NULL,
+	site_name varchar(100) NOT NULL,
+	worktype_ids varchar(100) NOT NULL,
+	approval_at date NOT NULL,
+	regional_manager_name varchar(100) NOT NULL,
+	xl_representative_name varchar(100) NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
+
+
+
+DROP TABLE IF EXISTS indottech_bts_sran_9;
+CREATE TABLE indottech_bts_sran_9 (
+	id int NOT NULL auto_increment,
+	atd_id int NOT NULL,
+	seqno int NOT NULL,
+	description varchar(255) NOT NULL,
+	history_at date NOT NULL,
+	created_at datetime DEFAULT NULL,
+	created_by varchar(100) NOT NULL,
+	created_ip varchar(20) DEFAULT NULL,
+	updated_at datetime DEFAULT NULL,
+	updated_by varchar(100) NOT NULL,
+	updated_ip varchar(20) DEFAULT NULL,
+	xtimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	INDEX (atd_id)
+);
