@@ -292,32 +292,6 @@ INSERT INTO indottech_sites (project_id,kode,site_code,name,area,subarea,address
 ('13','NewSite-Kupang333','2710331','Kampung Toka KECAMATAN BORONG','Flores','Flores Tengah','Jl. Jati Putih RT.001/001 Desa Golo Kantar Kec. Borong Kab. Manggarai Timur - NTT','-8.8036','120.58498'),
 ('13','NewSite-Kupang334','2710332','SITA MBORONG','Flores','Flores Tengah','Jl. Raya Trans Flores, Dusun Kaca RT 012 RW 006 Desa Sita, Kec. Rana Mese','-8.73333','120.57109');
 
-INSERT INTO indottech_photo_items (parent_id,itemtype,beforeafter,is_childest,project_id,doctype,seqno,name) VALUES
-(0,11,0,1,13,'rectifier',1,'Drawing Tower Layout'),
-(0,11,0,1,13,'rectifier',2,'Drawing Site Layout'),
-(0,11,0,1,13,'rectifier',3,'Rectifier Open'),
-(0,11,0,1,13,'rectifier',4,'Rectifier Closed'),
-(0,11,0,1,13,'rectifier',5,'AC Input Rectifier'),
-(0,11,0,1,13,'rectifier',6,'MCB Output Rectifier'),
-(0,11,0,1,13,'rectifier',7,'Rectifier Module'),
-(0,11,0,1,13,'rectifier',8,'L1 L2 L3 Alarm/Relay'),
-(0,11,0,1,13,'rectifier',9,'Rectifier Alarm'),
-(0,11,0,1,13,'rectifier',10,'Genset'),
-(0,11,0,1,13,'rectifier',11,'Site All'),
-(0,11,0,1,13,'rectifier',12,'KWH Panel'),
-(0,11,0,1,13,'rectifier',13,'ACPDB/COS'),
-(0,11,0,1,13,'rectifier',14,'Display Rectifier On AC Power'),
-(0,11,0,1,13,'rectifier',15,'Display Rectifier On Backup Batt'),
-(0,11,0,1,13,'rectifier',16,'Display Active Alarm'),
-(0,11,0,1,13,'rectifier',17,'Power Cable Installation'),
-(0,11,0,1,13,'rectifier',18,'Grounding Rectifier'),
-(0,11,0,1,13,'rectifier',19,'Network Configuration'),
-(0,11,0,1,13,'rectifier',20,'Label Network Configuration'),
-(0,11,0,1,13,'rectifier',21,'Test Network Configuration (Ping Test)'),
-(0,11,0,1,13,'rectifier',22,'KWH Before'),
-(0,11,0,1,13,'rectifier',23,'KWH After Outdoorize'),
-(0,11,0,1,13,'rectifier',24,'Map Location'),
-(0,11,0,1,13,'rectifier',25,'Location Picture');
 
 ALTER TABLE `indottech_ba_ujiterima` ADD `site_id` INT NOT NULL AFTER `vendor`, ADD INDEX (`site_id`);
 ALTER TABLE `indottech_ba_ujiterima` CHANGE `site_no` `site_name` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
@@ -587,3 +561,33 @@ CREATE TABLE indottech_acceptance_certificate (
 
 DELETE FROM backoffice_menu WHERE id = '122';
 INSERT INTO backoffice_menu (id,seqno,parent_id,name,url) VALUES ('122','1', '6','Projects','project_milestones_list.php');
+
+--================================2018-08-10==========================
+DELETE FROM indottech_photo_items WHERE project_id='13';
+INSERT INTO indottech_photo_items (id,parent_id,itemtype,beforeafter,is_childest,project_id,doctype,seqno,name) VALUES
+(894,0,11,0,1,13,'rectifier',1,'Drawing Tower Layout'),
+(895,0,11,0,1,13,'rectifier',2,'Drawing Site Layout'),
+(896,0,11,0,1,13,'rectifier',3,'Rectifier Open'),
+(897,0,11,0,1,13,'rectifier',4,'Rectifier Closed'),
+(898,0,11,0,1,13,'rectifier',5,'AC Input Rectifier'),
+(899,0,11,0,1,13,'rectifier',6,'MCB Output Rectifier'),
+(900,0,11,0,1,13,'rectifier',7,'Rectifier Module'),
+(919,0,11,0,1,13,'rectifier',8,'Battery'),
+(901,0,11,0,1,13,'rectifier',9,'L1 L2 L3 Alarm/Relay'),
+(902,0,11,0,1,13,'rectifier',10,'Rectifier Alarm'),
+(903,0,11,0,1,13,'rectifier',11,'Genset'),
+(904,0,11,0,1,13,'rectifier',12,'Site All'),
+(905,0,11,0,1,13,'rectifier',13,'KWH Panel'),
+(906,0,11,0,1,13,'rectifier',14,'ACPDB/COS'),
+(907,0,11,0,1,13,'rectifier',15,'Display Rectifier On AC Power'),
+(908,0,11,0,1,13,'rectifier',16,'Display Rectifier On Backup Batt'),
+(909,0,11,0,1,13,'rectifier',17,'Display Active Alarm'),
+(910,0,11,0,1,13,'rectifier',18,'Power Cable Installation'),
+(911,0,11,0,1,13,'rectifier',19,'Grounding Rectifier'),
+(912,0,11,0,1,13,'rectifier',20,'Network Configuration'),
+(913,0,11,0,1,13,'rectifier',21,'Label Network Configuration'),
+(914,0,11,0,1,13,'rectifier',22,'Test Network Configuration (Ping Test)'),
+(915,0,11,0,1,13,'rectifier',23,'KWH Before'),
+(916,0,11,0,1,13,'rectifier',24,'KWH After Outdoorize'),
+(917,0,11,0,1,13,'rectifier',25,'Map Location'),
+(918,0,11,0,1,13,'rectifier',26,'Location Picture');
