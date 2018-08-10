@@ -12,7 +12,7 @@
 	array_push($arr1,"{indottech_photos.ac_input}");
 	array_push($arr1,"{indottech_photos.mcb_output}");
 	array_push($arr1,"{indottech_photos.rectifier_module}");
-	array_push($arr1,"{indottech_photos.battery}"); //tidak ada di tabel indottech_photos
+	array_push($arr1,"{indottech_photos.battery}");
 	array_push($arr1,"{indottech_photos.alarm}");
 	array_push($arr1,"{indottech_photos.rectifier_alarm}");
 	array_push($arr1,"{indottech_photos.genset}");
@@ -32,7 +32,7 @@
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "898"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "899"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "900"]));
-	array_push($arr2,"Belum_terdefinisikan_lokasi_gambar_battery");
+	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "919"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "901"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "902"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "903"]));
