@@ -11,6 +11,7 @@
 	<tr><td>SITE</td><td>:</td><td><?=$site_name;?></td></tr>
 </table>
 <button class="big_button" onclick="window.location='atp_installation_ba.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Berita Acara Uji Terima</button>
+<button class="big_button" onclick="window.location='atp_installation_rps.php.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Acceptance Test Rectifier</button>
 <button class="big_button" onclick="window.location='atp_installation_breaker.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Breaker</button>
 <?php if($is_rectifier){ ?>
 <button class="big_button" onclick="window.location='atp_installation_rps.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Rectifier Power System</button>
