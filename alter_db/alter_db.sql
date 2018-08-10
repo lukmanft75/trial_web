@@ -591,3 +591,5 @@ INSERT INTO indottech_photo_items (id,parent_id,itemtype,beforeafter,is_childest
 (916,0,11,0,1,13,'rectifier',24,'KWH After Outdoorize'),
 (917,0,11,0,1,13,'rectifier',25,'Map Location'),
 (918,0,11,0,1,13,'rectifier',26,'Location Picture');
+
+ALTER TABLE `indottech_acceptance_test_rectifier` ADD `ac_input_frequency` DOUBLE NOT NULL AFTER `ac_input_phase`;
