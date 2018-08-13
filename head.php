@@ -30,7 +30,7 @@
 			<link rel="stylesheet" type="text/css" href="styles/bootstrap-slider.css">
 			<link rel="stylesheet" type="text/css" href="styles/animate.css">
 			<link rel="stylesheet" type="text/css" href="styles/toastr.min.css">
-			<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+			<link rel="stylesheet" type="text/css" href="styles/font-awesome.min.css">
 			<script>
 				var global_respon = new Array();
 				var toastroptions = {
