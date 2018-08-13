@@ -45,20 +45,20 @@
 	if($atr["site_id"] == "") $atr["site_id"] = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
 	if($atr["site_address"] == "") $atr["site_address"] = $db->fetch_single_data("indottech_sites","address",["id" => $atr["site_id"]]);
 	$sites = $db->fetch_select_data("indottech_sites","id","concat(name,' [',site_code,']')",["project_id" => "13"],["name"],"",true);
-	foreach(pipetoarray($indottech_acceptance_certificate["worktype_ids"]) as $val){
-		$worktype_checked[$val] = "checked";
+	foreach(pipetoarray($indottech_acceptance_certificate["worktype_ids"]) as $val_1){
+		$worktype_checked[$val_1] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["sitetype_ids"]) as $val){
-		$sitetype_checked[$val] = "checked";
+	foreach(pipetoarray($indottech_acceptance_certificate["sitetype_ids"]) as $val_2){
+		$sitetype_checked[$val_2] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["system_module_ids"]) as $val){
-		$sys_mod_type_checked[$val] = "checked";
+	foreach(pipetoarray($indottech_acceptance_certificate["system_module_ids"]) as $val_3){
+		$sys_mod_type_checked[$val_3] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["rf_module_ids"]) as $val){
-		$rf_mod_checked[$val] = "checked";
+	foreach(pipetoarray($indottech_acceptance_certificate["rf_module_ids"]) as $val_4){
+		$rf_mod_checked[$val_4] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["configuration_ids"]) as $val){
-		$bts_config_checked[$val] = "checked";
+	foreach(pipetoarray($indottech_acceptance_certificate["configuration_ids"]) as $val_5){
+		$bts_config_checked[$val_5] = "checked";
 	}
 	
 ?>
