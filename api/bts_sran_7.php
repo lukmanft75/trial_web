@@ -13,14 +13,14 @@
 		$db->addfield("atd_id");				$db->addvalue($atd_id);
 		$db->addfield("seqno");					$db->addvalue($_POST["seqno"]);
 		$db->addfield("description");			$db->addvalue($_POST["description"]);
-		$db->addfield("pic");					$db->addvalue($_POST["cell_id_no_2"]);
+		$db->addfield("pic");					$db->addvalue($_POST["pic"]);
 		$db->addfield("close_at");				$db->addvalue($_POST["close_at"]);
 		if($bts_sran_7["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_7.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"bts_sran_8.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -46,19 +46,7 @@
 				</tr>
 				<tr align="left">
 					<td><?=$f->input("seqno",$bts_sran_7["seqno"],"placeholder = 'No.'","classinput");?></td>
-					<td><?=$f->input("description",$bts_sran_7["description"],"placeholder = 'Description.'","classinput");?></td>
-					<td><?=$f->input("pic",$bts_sran_7["pic"],"placeholder = 'PIC'","classinput");?></td>
-					<td><?=$f->input("close_at",$bts_sran_7["close_at"], "type='date'");?></td>
-				</tr>
-				<tr align="left">
-					<td><?=$f->input("seqno",$bts_sran_7["seqno"],"placeholder = 'No.'","classinput");?></td>
-					<td><?=$f->input("description",$bts_sran_7["description"],"placeholder = 'Description.'","classinput");?></td>
-					<td><?=$f->input("pic",$bts_sran_7["pic"],"placeholder = 'PIC'","classinput");?></td>
-					<td><?=$f->input("close_at",$bts_sran_7["close_at"], "type='date'");?></td>
-				</tr>
-				<tr align="left">
-					<td><?=$f->input("seqno",$bts_sran_7["seqno"],"placeholder = 'No.'","classinput");?></td>
-					<td><?=$f->input("description",$bts_sran_7["description"],"placeholder = 'Description.'","classinput");?></td>
+					<td><?=$f->input("description",$bts_sran_7["description"],"placeholder = 'Description'","classinput");?></td>
 					<td><?=$f->input("pic",$bts_sran_7["pic"],"placeholder = 'PIC'","classinput");?></td>
 					<td><?=$f->input("close_at",$bts_sran_7["close_at"], "type='date'");?></td>
 				</tr>

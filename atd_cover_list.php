@@ -41,6 +41,7 @@
 		$_acceptance_status = ["1" => "PASS, NO PENDING ITEMS","2" => "PASS WITH PENDING ITEMS","3" => "REJECTED BY XL AXIATA"];
 		$arrworkTypes = ["1" => "CIVIL WORK & INSTALLATION", "2" => "RADIO BASE STATION", "3" => "RECTIFIER"];
 		foreach($atd_covers as $no => $atd_cover){
+			$doc_type = ["rectifier" => "RECTIFIER","bts_sran" => "BTS_SRAN"];
 			$worktypes = "";
 			foreach(pipetoarray($atd_cover["worktype_ids"]) as $worktype_id){
 				$worktypes .= $arrworkTypes[$worktype_id].", ";
@@ -50,7 +51,7 @@
 		
 			echo $t->row([
 							($no+1),
-							ucfirst($atd_cover["doctype"]),
+							$doc_type [$atd_cover["doctype"]],
 							$worktypes,
 							$atd_cover["vendor"],
 							$atd_cover["site_id"]." ".$atd_cover["site_name"],

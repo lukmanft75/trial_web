@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_acceptance_certificate = $db->fetch_all_data("indottech_acceptance_certificate",[],"atd_id='".$atd_id."'")[0];
+	$acceptance_certificate = $db->fetch_all_data("indottech_acceptance_certificate",[],"atd_id='".$atd_id."'")[0];
 	$site_id = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
 		$indottech_sites = $db->fetch_all_data("indottech_sites",[],"id='".$site_id."'")[0];
 	
@@ -11,7 +11,7 @@
 		// echo "</pre>";
 
 		$db->addtable("indottech_acceptance_certificate");
-		if($indottech_acceptance_certificate["id"] > 0) 	$db->where("id",$indottech_acceptance_certificate["id"]);
+		if($acceptance_certificate["id"] > 0) 	$db->where("id",$acceptance_certificate["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
 		$db->addfield("po_number");							$db->addvalue($_POST["po_number"]);
 		$db->addfield("site_id");							$db->addvalue($_POST["site_id"]);
@@ -31,7 +31,7 @@
 		$db->addfield("installation_at");					$db->addvalue($_POST["installation_at"]);
 		$db->addfield("self_assessment_at");				$db->addvalue($_POST["self_assessment_at"]);
 		$db->addfield("onair_at");							$db->addvalue($_POST["onair_at"]);
-		if($indottech_acceptance_certificate["id"] > 0) $inserting = $db->update();
+		if($acceptance_certificate["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
@@ -45,19 +45,19 @@
 	if($atr["site_id"] == "") $atr["site_id"] = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
 	if($atr["site_address"] == "") $atr["site_address"] = $db->fetch_single_data("indottech_sites","address",["id" => $atr["site_id"]]);
 	$sites = $db->fetch_select_data("indottech_sites","id","concat(name,' [',site_code,']')",["project_id" => "13"],["name"],"",true);
-	foreach(pipetoarray($indottech_acceptance_certificate["worktype_ids"]) as $val_1){
+	foreach(pipetoarray($acceptance_certificate["worktype_ids"]) as $val_1){
 		$worktype_checked[$val_1] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["sitetype_ids"]) as $val_2){
+	foreach(pipetoarray($acceptance_certificate["sitetype_ids"]) as $val_2){
 		$sitetype_checked[$val_2] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["system_module_ids"]) as $val_3){
+	foreach(pipetoarray($acceptance_certificate["system_module_ids"]) as $val_3){
 		$sys_mod_type_checked[$val_3] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["rf_module_ids"]) as $val_4){
+	foreach(pipetoarray($acceptance_certificate["rf_module_ids"]) as $val_4){
 		$rf_mod_checked[$val_4] = "checked";
 	}
-	foreach(pipetoarray($indottech_acceptance_certificate["configuration_ids"]) as $val_5){
+	foreach(pipetoarray($acceptance_certificate["configuration_ids"]) as $val_5){
 		$bts_config_checked[$val_5] = "checked";
 	}
 	
@@ -73,7 +73,7 @@
 			<table align="center" border="0">
 				<tr>
 					<td>PO Number :</td>
-					<td><?=$f->input("po_number",$indottech_acceptance_certificate["po_number"],"placeholder='PO Number' required","classinput");?></td>
+					<td><?=$f->input("po_number",$acceptance_certificate["po_number"],"placeholder='PO Number' required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Site :</td>
@@ -149,25 +149,25 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("number_of_system_modul",$indottech_acceptance_certificate["number_of_system_modul"],"placeholder='System Module' required","classinput");?></td>
+					<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("number_of_system_modul",$acceptance_certificate["number_of_system_modul"],"placeholder='System Module' required","classinput");?></td>
 				</tr>
 				<tr>
-					<td>Number of RF [Units]</td><td><?=$f->input("number_of_rf",$indottech_acceptance_certificate["number_of_rf"],"placeholder='Number RF' required","classinput");?></td>
+					<td>Number of RF [Units]</td><td><?=$f->input("number_of_rf",$acceptance_certificate["number_of_rf"],"placeholder='Number RF' required","classinput");?></td>
 				</tr>
 				<tr>
-					<td>Number of <b>Antenna</b> [Units]</td><td><?=$f->input("number_of_antenna",$indottech_acceptance_certificate["number_of_antenna"],"placeholder='Number Antenna' required","classinput");?></td>
+					<td>Number of <b>Antenna</b> [Units]</td><td><?=$f->input("number_of_antenna",$acceptance_certificate["number_of_antenna"],"placeholder='Number Antenna' required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Installation Date : </td>
-					<td><?=$f->input("installation_at",$indottech_acceptance_certificate["installation_at"], "type='date'");?></td>
+					<td><?=$f->input("installation_at",$acceptance_certificate["installation_at"], "type='date'");?></td>
 				</tr>
 				<tr>
 					<td>Self-Assessment Date : </td>
-					<td><?=$f->input("self_assessment_at",$indottech_acceptance_certificate["self_assessment_at"], "type='date'");?></td>
+					<td><?=$f->input("self_assessment_at",$acceptance_certificate["self_assessment_at"], "type='date'");?></td>
 				</tr>
 				<tr>
 					<td>On Air Date : </td>
-					<td><?=$f->input("onair_at",$indottech_acceptance_certificate["onair_at"], "type='date'");?></td>
+					<td><?=$f->input("onair_at",$acceptance_certificate["onair_at"], "type='date'");?></td>
 				</tr>
 			</table>
 			<br>
