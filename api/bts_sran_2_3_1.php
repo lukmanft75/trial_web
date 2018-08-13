@@ -28,7 +28,7 @@
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_2_3_2.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -51,33 +51,33 @@
 				<tr align="left">
 					<td>Cell ID Number</td>
 					<td>
-						<?=$f->input("cell_id_no_1",$bts_sran_2_3_1["cell_id_no_1"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_2",$bts_sran_2_3_1["cell_id_no_2"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_3",$bts_sran_2_3_1["cell_id_no_3"],"required","classinput");?>
+						<?=$f->input("cell_id_no_1",$bts_sran_2_3_1["cell_id_no_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("cell_id_no_2",$bts_sran_2_3_1["cell_id_no_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("cell_id_no_3",$bts_sran_2_3_1["cell_id_no_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Orginating Call</td>
 					<td>
-						<?=$f->input("originating_call_1",$bts_sran_2_3_1["originating_call_1"],"required","classinput");?><br>
-						<?=$f->input("originating_call_2",$bts_sran_2_3_1["originating_call_2"],"required","classinput");?><br>
-						<?=$f->input("originating_call_3",$bts_sran_2_3_1["originating_call_3"],"required","classinput");?>
+						<?=$f->input("originating_call_1",$bts_sran_2_3_1["originating_call_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("originating_call_2",$bts_sran_2_3_1["originating_call_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("originating_call_3",$bts_sran_2_3_1["originating_call_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Terminating Call</td>
 					<td>
-						<?=$f->input("terminating_call_1",$bts_sran_2_3_1["terminating_call_1"],"required","classinput");?><br>
-						<?=$f->input("terminating_call_2",$bts_sran_2_3_1["terminating_call_2"],"required","classinput");?><br>
-						<?=$f->input("terminating_call_3",$bts_sran_2_3_1["terminating_call_3"],"required","classinput");?>
+						<?=$f->input("terminating_call_1",$bts_sran_2_3_1["terminating_call_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("terminating_call_2",$bts_sran_2_3_1["terminating_call_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("terminating_call_3",$bts_sran_2_3_1["terminating_call_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Open Browser (GPRS/EDGE)</td>
 					<td>
-						<?=$f->input("open_browser_1",$bts_sran_2_3_1["open_browser_1"],"required","classinput");?><br>
-						<?=$f->input("open_browser_2",$bts_sran_2_3_1["open_browser_2"],"required","classinput");?><br>
-						<?=$f->input("open_browser_3",$bts_sran_2_3_1["open_browser_3"],"required","classinput");?>
+						<?=$f->input("open_browser_1",$bts_sran_2_3_1["open_browser_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("open_browser_2",$bts_sran_2_3_1["open_browser_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("open_browser_3",$bts_sran_2_3_1["open_browser_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 			</table>
@@ -89,7 +89,7 @@
 			</table>
 			<table width="100%">
 				<tr>
-					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"bts_sran_2_2_5.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 				</tr>
 			</table>

@@ -28,7 +28,7 @@
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_2_1_2.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -57,27 +57,27 @@
 				<tr>
 					<td>1.1</td>
 					<td>Delivery checked,<br>any shortcomings are recorded</td>
-					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_1"], "required");?></td>
+					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.2</td>
 					<td>Any damages are recorded</td>
-					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_2"], "required");?></td>
+					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.3</td>
 					<td>Equipment layout checked,<br>as planned</td>
-					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_3"], "required");?></td>
+					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_3"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.4</td>
 					<td>Cabling routes checked</td>
-					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_4"], "required");?></td>
+					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_4"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.5</td>
 					<td>Installation of main grounding<br>busbar (connection to building earth) checked</td>
-					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_5"], "required");?></td>
+					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_5"], "Xrequired");?></td>
 				</tr>
 				<tr align="center">
 					<td><b>2</b></td>
@@ -86,17 +86,17 @@
 				<tr>
 					<td>2.1</td>
 					<td>BTS System module installed<br>and fixed to base frame as plan</td>
-					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_1"], "required");?></td>
+					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.2</td>
 					<td>BTS RF module installed and<br>fixed to bracket at tower leg</td>
-					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_2"], "required");?></td>
+					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.3</td>
 					<td>BTS system module and RF<br>module are grounded properly</td>
-					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_3"], "required");?></td>
+					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_3"], "Xrequired");?></td>
 				</tr>
 				<tr align="center">
 					<td><b>3</b></td>
@@ -105,28 +105,28 @@
 				<tr>
 					<td>3.1</td>
 					<td>Power cables are installed and tidy</td>
-					<td><?=$f->select("v3_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_1"], "required");?></td>
+					<td><?=$f->select("v3_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>3.2</td>
 					<td>Optic cables are installed and tidy</td>
-					<td><?=$f->select("v3_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_2"], "required");?></td>
+					<td><?=$f->select("v3_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>3.3</td>
 					<td>Alarm cables are installed and tidy</td>
-					<td><?=$f->select("v3_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_3"], "required");?></td>
+					<td><?=$f->select("v3_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_3"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>3.4</td>
 					<td>All cables are labelling preperly</td>
-					<td><?=$f->select("v3_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_4"], "required");?></td>
+					<td><?=$f->select("v3_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_4"], "Xrequired");?></td>
 				</tr>
 			</table>
 			<br>
 			<table width="100%">
 				<tr>
-					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"bts_sran_1_1_4.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 				</tr>
 			</table>

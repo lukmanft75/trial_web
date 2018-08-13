@@ -4,10 +4,6 @@
 	$bts_sran_1_1_1 = $db->fetch_all_data("indottech_bts_sran_1_1_1",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
-		// echo "<pre>";
-		// print_r($_POST);
-		// echo "</pre>";
-		
 		$db->addtable("indottech_bts_sran_1_1_1");
 		if($bts_sran_1_1_1["id"] > 0) 				$db->where("id",$bts_sran_1_1_1["id"]);
 		$db->addfield("atd_id");					$db->addvalue($atd_id);
@@ -52,7 +48,7 @@
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_1_1_2.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -82,16 +78,16 @@
 					<td rowspan="4">Antenna Type</td>
 				</tr>
 					<tr>
-						<td><?=$f->input("antena_type_1",$bts_sran_1_1_1["antena_type_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("antena_type_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_1_isok"], "required");?></td>
+						<td><?=$f->input("antena_type_1",$bts_sran_1_1_1["antena_type_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("antena_type_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("antena_type_2",$bts_sran_1_1_1["antena_type_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("antena_type_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_2_isok"], "required");?></td>
+						<td><?=$f->input("antena_type_2",$bts_sran_1_1_1["antena_type_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("antena_type_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("antena_type_3",$bts_sran_1_1_1["antena_type_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("antena_type_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_3_isok"], "required");?></td>
+						<td><?=$f->input("antena_type_3",$bts_sran_1_1_1["antena_type_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("antena_type_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antena_type_3_isok"], "Xrequired");?></td>
 					</tr>
 					
 				
@@ -99,81 +95,81 @@
 					<td rowspan="4">Serial No</td>
 				</tr>	
 					<tr>
-						<td><?=$f->input("serialno_1",$bts_sran_1_1_1["serialno_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("serialno_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_1_isok"], "required");?></td>
+						<td><?=$f->input("serialno_1",$bts_sran_1_1_1["serialno_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("serialno_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("serialno_2",$bts_sran_1_1_1["serialno_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("serialno_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_2_isok"], "required");?></td>
+						<td><?=$f->input("serialno_2",$bts_sran_1_1_1["serialno_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("serialno_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("serialno_3",$bts_sran_1_1_1["serialno_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("serialno_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_3_isok"], "required");?></td>
+						<td><?=$f->input("serialno_3",$bts_sran_1_1_1["serialno_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("serialno_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["serialno_3_isok"], "Xrequired");?></td>
 					</tr>
 				<tr align="center">
 					<td rowspan="4">Direction</td>
 				</tr>
 					<tr>
-						<td><?=$f->input("direction_1",$bts_sran_1_1_1["direction_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("direction_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_1_isok"], "required");?></td>
+						<td><?=$f->input("direction_1",$bts_sran_1_1_1["direction_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("direction_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("direction_2",$bts_sran_1_1_1["direction_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("direction_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_2_isok"], "required");?></td>
+						<td><?=$f->input("direction_2",$bts_sran_1_1_1["direction_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("direction_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("direction_3",$bts_sran_1_1_1["direction_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("direction_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_3_isok"], "required");?></td>
+						<td><?=$f->input("direction_3",$bts_sran_1_1_1["direction_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("direction_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["direction_3_isok"], "Xrequired");?></td>
 					</tr>
 				<tr align="center">
 					<td rowspan="4">Mechanical Tilt</td>
 				</tr>
 					<tr>
-						<td><?=$f->input("mechanical_tilt_1",$bts_sran_1_1_1["mechanical_tilt_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("mechanical_tilt_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_1_isok"], "required");?></td>
+						<td><?=$f->input("mechanical_tilt_1",$bts_sran_1_1_1["mechanical_tilt_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("mechanical_tilt_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("mechanical_tilt_2",$bts_sran_1_1_1["mechanical_tilt_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("mechanical_tilt_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_2_isok"], "required");?></td>
+						<td><?=$f->input("mechanical_tilt_2",$bts_sran_1_1_1["mechanical_tilt_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("mechanical_tilt_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("mechanical_tilt_3",$bts_sran_1_1_1["mechanical_tilt_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("mechanical_tilt_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_3_isok"], "required");?></td>
+						<td><?=$f->input("mechanical_tilt_3",$bts_sran_1_1_1["mechanical_tilt_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("mechanical_tilt_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["mechanical_tilt_3_isok"], "Xrequired");?></td>
 					</tr>
 				<tr align="center">
 					<td rowspan="4">Electrical Tilt</td>
 				</tr>
 					<tr>
-						<td><?=$f->input("electrical_tilt_1",$bts_sran_1_1_1["electrical_tilt_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("electrical_tilt_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_1_isok"], "required");?></td>
+						<td><?=$f->input("electrical_tilt_1",$bts_sran_1_1_1["electrical_tilt_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("electrical_tilt_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("electrical_tilt_2",$bts_sran_1_1_1["electrical_tilt_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("electrical_tilt_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_2_isok"], "required");?></td>
+						<td><?=$f->input("electrical_tilt_2",$bts_sran_1_1_1["electrical_tilt_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("electrical_tilt_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("electrical_tilt_3",$bts_sran_1_1_1["electrical_tilt_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("electrical_tilt_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_3_isok"], "required");?></td>
+						<td><?=$f->input("electrical_tilt_3",$bts_sran_1_1_1["electrical_tilt_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("electrical_tilt_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["electrical_tilt_3_isok"], "Xrequired");?></td>
 					</tr>
 				<tr align="center">
 					<td rowspan="4">Antenna Height</td>
 				</tr>
 					<tr>
-						<td><?=$f->input("antenna_height_1",$bts_sran_1_1_1["antenna_height_1"],"placeholder='Sektor 1' required","classinput");?></td>
-						<td><?=$f->select("antenna_height_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_1_isok"], "required");?></td>
+						<td><?=$f->input("antenna_height_1",$bts_sran_1_1_1["antenna_height_1"],"placeholder='Sektor 1' Xrequired","classinput");?></td>
+						<td><?=$f->select("antenna_height_1_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_1_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("antenna_height_2",$bts_sran_1_1_1["antenna_height_2"],"placeholder='Sektor 2' required","classinput");?></td>
-						<td><?=$f->select("antenna_height_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_2_isok"], "required");?></td>
+						<td><?=$f->input("antenna_height_2",$bts_sran_1_1_1["antenna_height_2"],"placeholder='Sektor 2' Xrequired","classinput");?></td>
+						<td><?=$f->select("antenna_height_2_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_2_isok"], "Xrequired");?></td>
 					</tr>
 					<tr>
-						<td><?=$f->input("antenna_height_3",$bts_sran_1_1_1["antenna_height_3"],"placeholder='Sektor 3' required","classinput");?></td>
-						<td><?=$f->select("antenna_height_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_3_isok"], "required");?></td>
+						<td><?=$f->input("antenna_height_3",$bts_sran_1_1_1["antenna_height_3"],"placeholder='Sektor 3' Xrequired","classinput");?></td>
+						<td><?=$f->select("antenna_height_3_isok",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_1_1_1["antenna_height_3_isok"], "Xrequired");?></td>
 					</tr>
 			</table>
 			<table width="100%">
 				<tr>
-					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_acceptance_certificate.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 				</tr>
 			</table>

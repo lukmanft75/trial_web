@@ -25,7 +25,7 @@
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_1_1_3.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -43,31 +43,31 @@
 			<tr align="center">
 				<td>Jumper Length (Meter)</td>
 				<td>
-					<?=$f->input("jumper_length_1",$bts_sran_1_1_2["jumper_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("jumper_length_2",$bts_sran_1_1_2["jumper_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("jumper_length_3",$bts_sran_1_1_2["jumper_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("jumper_length_1",$bts_sran_1_1_2["jumper_length_1"],"placeholder='Sektor 1' Xrequired","classinput");?><br>
+					<?=$f->input("jumper_length_2",$bts_sran_1_1_2["jumper_length_2"],"placeholder='Sektor 2' Xrequired","classinput");?><br>
+					<?=$f->input("jumper_length_3",$bts_sran_1_1_2["jumper_length_3"],"placeholder='Sektor 3' Xrequired","classinput");?>
 				</td>
 			</tr>
 			<tr align="center">
 				<td>Optical Length (Meter)</td>
 				<td>
-					<?=$f->input("optical_length_1",$bts_sran_1_1_2["optical_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("optical_length_2",$bts_sran_1_1_2["optical_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("optical_length_3",$bts_sran_1_1_2["optical_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("optical_length_1",$bts_sran_1_1_2["optical_length_1"],"placeholder='Sektor 1' Xrequired","classinput");?><br>
+					<?=$f->input("optical_length_2",$bts_sran_1_1_2["optical_length_2"],"placeholder='Sektor 2' Xrequired","classinput");?><br>
+					<?=$f->input("optical_length_3",$bts_sran_1_1_2["optical_length_3"],"placeholder='Sektor 3' Xrequired","classinput");?>
 				</td>
 			</tr>
 			<tr align="center">
 				<td>Power cable Length SM - RF (Meter)</td>
 				<td>
-					<?=$f->input("powercable_length_1",$bts_sran_1_1_2["powercable_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("powercable_length_2",$bts_sran_1_1_2["powercable_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("powercable_length_3",$bts_sran_1_1_2["powercable_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("powercable_length_1",$bts_sran_1_1_2["powercable_length_1"],"placeholder='Sektor 1' Xrequired","classinput");?><br>
+					<?=$f->input("powercable_length_2",$bts_sran_1_1_2["powercable_length_2"],"placeholder='Sektor 2' Xrequired","classinput");?><br>
+					<?=$f->input("powercable_length_3",$bts_sran_1_1_2["powercable_length_3"],"placeholder='Sektor 3' Xrequired","classinput");?>
 				</td>
 			</tr>
 		</table>
 		<table width="100%">
 			<tr>
-				<td><?=$f->input("back","Back","type='button' onclick='window.location=\"bts_sran_1_1_1.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+				<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 				<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 			</tr>
 		</table>

@@ -3,16 +3,13 @@
 	$atd_id = $_GET["atd_id"];
 	$acceptance_certificate = $db->fetch_all_data("indottech_acceptance_certificate",[],"atd_id='".$atd_id."'")[0];
 	$site_id = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
-		$indottech_sites = $db->fetch_all_data("indottech_sites",[],"id='".$site_id."'")[0];
+	$indottech_sites = $db->fetch_all_data("indottech_sites",[],"id='".$site_id."'")[0];
 	
 	if(isset($_POST["save"])){
-		// echo "<pre>";
-		// print_r($_POST);
-		// echo "</pre>";
-
 		$db->addtable("indottech_acceptance_certificate");
 		if($acceptance_certificate["id"] > 0) 	$db->where("id",$acceptance_certificate["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
+		$db->addfield("entry_at");							$db->addvalue($__now);
 		$db->addfield("po_number");							$db->addvalue($_POST["po_number"]);
 		$db->addfield("site_id");							$db->addvalue($_POST["site_id"]);
 		$db->addfield("site_code");							$db->addvalue($indottech_sites["site_code"]);
@@ -35,7 +32,7 @@
 		else $inserting = $db->insert();
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_1_1_1.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -73,23 +70,23 @@
 			<table align="center" border="0">
 				<tr>
 					<td>PO Number :</td>
-					<td><?=$f->input("po_number",$acceptance_certificate["po_number"],"placeholder='PO Number' required","classinput");?></td>
+					<td><?=$f->input("po_number",$acceptance_certificate["po_number"],"placeholder='PO Number' Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Site :</td>
-					<td><?=$f->select("site_id",$sites,$atr["site_id"],"required","classinput");?></td>
+					<td><?=$f->select("site_id",$sites,$atr["site_id"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Site Address :</td>
-					<td><?=$f->textarea("site_address",$atr["site_address"],"required","classinput");?></td>
+					<td><?=$f->textarea("site_address",$atr["site_address"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Longitude :</td>
-					<td><?=$f->input("site_longitude",$indottech_sites["longitude"],"required","classinput");?></td>
+					<td><?=$f->input("site_longitude",$indottech_sites["longitude"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Latitude :</td>
-					<td><?=$f->input("site_latitude",$indottech_sites["latitude"],"required","classinput");?></td>
+					<td><?=$f->input("site_latitude",$indottech_sites["latitude"],"Xrequired","classinput");?></td>
 				</tr>
 			</table>
 			<br>
@@ -149,13 +146,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("number_of_system_modul",$acceptance_certificate["number_of_system_modul"],"placeholder='System Module' required","classinput");?></td>
+					<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("number_of_system_modul",$acceptance_certificate["number_of_system_modul"],"placeholder='System Module' Xrequired","classinput");?></td>
 				</tr>
 				<tr>
-					<td>Number of RF [Units]</td><td><?=$f->input("number_of_rf",$acceptance_certificate["number_of_rf"],"placeholder='Number RF' required","classinput");?></td>
+					<td>Number of RF [Units]</td><td><?=$f->input("number_of_rf",$acceptance_certificate["number_of_rf"],"placeholder='Number RF' Xrequired","classinput");?></td>
 				</tr>
 				<tr>
-					<td>Number of <b>Antenna</b> [Units]</td><td><?=$f->input("number_of_antenna",$acceptance_certificate["number_of_antenna"],"placeholder='Number Antenna' required","classinput");?></td>
+					<td>Number of <b>Antenna</b> [Units]</td><td><?=$f->input("number_of_antenna",$acceptance_certificate["number_of_antenna"],"placeholder='Number Antenna' Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Installation Date : </td>
@@ -173,7 +170,7 @@
 			<br>
 			<table width="100%">
 				<tr>
-					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 				</tr>
 			</table>
