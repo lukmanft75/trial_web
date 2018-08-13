@@ -47,7 +47,11 @@
 				$worktypes .= $arrworkTypes[$worktype_id].", ";
 			}
 			$worktypes = substr($worktypes,0,-2);
-			$action = "<a target='_BLANK' href=\"atd_rectifier_download.php?id=".$atd_cover["id"]."\">Download</a>";
+			if($atd_cover["doctype"]=="rectifier"){
+				$action = "<a target='_BLANK' href=\"atd_rectifier_download.php?id=".$atd_cover["id"]."\">Download</a>";
+			} else {
+				$action = "<a target='_BLANK' href=\"atd_bts_download.php?id=".$atd_cover["id"]."\">Download</a>";
+			}
 		
 			echo $t->row([
 							($no+1),
