@@ -55,27 +55,27 @@
 				<tr>
 					<td>1.1</td>
 					<td>Delivery checked,<br>any shortcomings are recorded</td>
-					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_1"], "required");?></td>
+					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.2</td>
 					<td>Any damages are recorded</td>
-					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_2"], "required");?></td>
+					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.3</td>
 					<td>Equipment layout checked,<br>differences to the drawings recorded</td>
-					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_3"], "required");?></td>
+					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_3"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.4</td>
 					<td>Cabling routes checked,<br>cable trays & ladders installed</td>
-					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_4"], "required");?></td>
+					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_4"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>1.5</td>
 					<td>Antenna tower/pole grounding checked</td>
-					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_5"], "required");?></td>
+					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v1_5"], "Xrequired");?></td>
 				</tr>
 				<tr align="center">
 					<td><b>2</b></td>
@@ -85,32 +85,32 @@
 				<tr>
 					<td>2.1</td>
 					<td>Antenna mounted according<br>to Site Specific Documents</td>
-					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_1"], "required");?></td>
+					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.2</td>
 					<td>Mounting height checked according<br>to Final Site Configuration</td>
-					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_2"], "required");?></td>
+					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.3</td>
 					<td>Antenna direction checked according<br>to Final Site Configuration</td>
-					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_3"], "required");?></td>
+					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_3"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.4</td>
 					<td>Mechanical tilting angle checked<br>according to Final Site Configuration</td>
-					<td><?=$f->select("v2_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_4"], "required");?></td>
+					<td><?=$f->select("v2_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_4"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.5</td>
 					<td>Electrical tilting angle checked<br>according to Final Site Configuration</td>
-					<td><?=$f->select("v2_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_5"], "required");?></td>
+					<td><?=$f->select("v2_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_5"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2.6</td>
 					<td>Antenna mounting clamps checked,<br>all screws tightened</td>
-					<td><?=$f->select("v2_6",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_6"], "required");?></td>
+					<td><?=$f->select("v2_6",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_2["v2_6"], "Xrequired");?></td>
 				</tr>
 			</table>
 				<br>

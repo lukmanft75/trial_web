@@ -53,67 +53,67 @@
 				<tr>
 					<td>1</td>
 					<td>Gateway UPlane</td>
-					<td><?=$f->input("v1",$bts_sran_2_2_1["v1"],"required","classinput");?></td>
+					<td><?=$f->input("v1",$bts_sran_2_2_1["v1"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>Gateway CPlane</td>
-					<td><?=$f->input("v2",$bts_sran_2_2_1["v2"],"required","classinput");?></td>
+					<td><?=$f->input("v2",$bts_sran_2_2_1["v2"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>Gateway MPlane</td>
-					<td><?=$f->input("v3",$bts_sran_2_2_1["v3"],"required","classinput");?></td>
+					<td><?=$f->input("v3",$bts_sran_2_2_1["v3"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>4</td>
 					<td>Gateway SPlane</td>
-					<td><?=$f->input("v4",$bts_sran_2_2_1["v4"],"required","classinput");?></td>
+					<td><?=$f->input("v4",$bts_sran_2_2_1["v4"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>5</td>
 					<td>OMUSIG IP Address</td>
-					<td><?=$f->input("v5",$bts_sran_2_2_1["v5"],"required","classinput");?></td>
+					<td><?=$f->input("v5",$bts_sran_2_2_1["v5"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>6</td>
 					<td>Ethernet Interface (port IDU)</td>
-					<td><?=$f->input("v6",$bts_sran_2_2_1["v6"],"required","classinput");?></td>
+					<td><?=$f->input("v6",$bts_sran_2_2_1["v6"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>7</td>
 					<td>User plane IP</td>
-					<td><?=$f->input("v7",$bts_sran_2_2_1["v7"],"required","classinput");?></td>
+					<td><?=$f->input("v7",$bts_sran_2_2_1["v7"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>8</td>
 					<td>Control Plane IP</td>
-					<td><?=$f->input("v8",$bts_sran_2_2_1["v8"],"required","classinput");?></td>
+					<td><?=$f->input("v8",$bts_sran_2_2_1["v8"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>9</td>
 					<td>Management Plane IP</td>
-					<td><?=$f->input("v9",$bts_sran_2_2_1["v9"],"required","classinput");?></td>
+					<td><?=$f->input("v9",$bts_sran_2_2_1["v9"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>10</td>
 					<td>Synchronization Plane IP</td>
-					<td><?=$f->input("v10",$bts_sran_2_2_1["v10"],"required","classinput");?></td>
+					<td><?=$f->input("v10",$bts_sran_2_2_1["v10"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>11</td>
 					<td>Neighbour Node Discovery</td>
-					<td><?=$f->input("v11",$bts_sran_2_2_1["v11"],"required","classinput");?></td>
+					<td><?=$f->input("v11",$bts_sran_2_2_1["v11"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>12</td>
 					<td>NTP IP</td>
-					<td><?=$f->input("v12",$bts_sran_2_2_1["v12"],"required","classinput");?></td>
+					<td><?=$f->input("v12",$bts_sran_2_2_1["v12"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>13</td>
 					<td>Timing Over Packet IP</td>
-					<td><?=$f->input("v13",$bts_sran_2_2_1["v13"],"required","classinput");?></td>
+					<td><?=$f->input("v13",$bts_sran_2_2_1["v13"],"Xrequired","classinput");?></td>
 				</tr>
 			</table>
 			<br>

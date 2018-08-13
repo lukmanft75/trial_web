@@ -54,77 +54,77 @@
 				<tr>
 					<td>1</td>
 					<td>L1 FAILURE</td>
-					<td><?=$f->select("v1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v1"], "required");?></td>
+					<td><?=$f->select("v1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v1"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>L2 FAILURE</td>
-					<td><?=$f->select("v2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v2"], "required");?></td>
+					<td><?=$f->select("v2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v2"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>L3 FAILURE</td>
-					<td><?=$f->select("v3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v3"], "required");?></td>
+					<td><?=$f->select("v3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v3"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>4</td>
 					<td>DOOR OPEN</td>
-					<td><?=$f->select("v4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v4"], "required");?></td>
+					<td><?=$f->select("v4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v4"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>5</td>
 					<td>AC REMOVED<br>(not applicable for outdoor site)</td>
-					<td><?=$f->select("v5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v5"], "required");?></td>
+					<td><?=$f->select("v5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v5"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>6</td>
 					<td>FENCE BREAK<br>(not applicable for outdoor site)</td>
-					<td><?=$f->select("v6",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v6"], "required");?></td>
+					<td><?=$f->select("v6",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v6"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>7</td>
 					<td>GENSET RUNNING<br>(only applicable for site with Genset)</td>
-					<td><?=$f->select("v7",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v7"], "required");?></td>
+					<td><?=$f->select("v7",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v7"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>8</td>
 					<td>GENSET FAILURE<br>(only applicable for site with Genset)</td>
-					<td><?=$f->select("v8",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v8"], "required");?></td>
+					<td><?=$f->select("v8",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v8"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>9</td>
 					<td>GENSET LOW FUEL<br>(only applicable for site with Genset)</td>
-					<td><?=$f->select("v9",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v9"], "required");?></td>
+					<td><?=$f->select("v9",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v9"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>10</td>
 					<td>RECTIFIER MAIN FAILURE</td>
-					<td><?=$f->select("v10",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v10"], "required");?></td>
+					<td><?=$f->select("v10",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v10"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>11</td>
 					<td>MEDIUM SURGE PROTECTION<br>FAILURE</td>
-					<td><?=$f->select("v11",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v11"], "required");?></td>
+					<td><?=$f->select("v11",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v11"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>12</td>
 					<td>DC HIGH VOLTAGE</td>
-					<td><?=$f->select("v12",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v12"], "required");?></td>
+					<td><?=$f->select("v12",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v12"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>13</td>
 					<td>DC LOW VOLTAGE</td>
-					<td><?=$f->select("v13",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v13"], "required");?></td>
+					<td><?=$f->select("v13",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v13"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>14</td>
 					<td>GROUNDING CABLE CUT</td>
-					<td><?=$f->select("v14",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v14"], "required");?></td>
+					<td><?=$f->select("v14",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v14"], "Xrequired");?></td>
 				</tr>
 				<tr>
 					<td>15</td>
 					<td>INDOOR TEMPARATURE TOO HIGH<br>(only applicable for indoor site)</td>
-					<td><?=$f->select("v15",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v15"], "required");?></td>
+					<td><?=$f->select("v15",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_2_4["v15"], "Xrequired");?></td>
 				</tr>
 			</table>
 			<table width="100%">

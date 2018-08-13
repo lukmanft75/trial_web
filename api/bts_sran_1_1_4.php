@@ -42,12 +42,12 @@
 			<tr align="center">
 				<td>DC Measured Voltage (Rectifier Output)</td>
 				<td>48</td>
-				<td><?=$f->input("rectifier",$bts_sran_1_1_4["rectifier"],"placeholder='Rectifier Output' required","classinput");?></td>
+				<td><?=$f->input("rectifier",$bts_sran_1_1_4["rectifier"],"placeholder='Rectifier Output' Xrequired","classinput");?></td>
 			</tr>
 			<tr align="center">
 				<td>AC Measured Voltage (PLN Output)</td>
 				<td>220</td>
-				<td><?=$f->input("pln",$bts_sran_1_1_4["pln"],"placeholder='PLN Output' required","classinput");?></td>
+				<td><?=$f->input("pln",$bts_sran_1_1_4["pln"],"placeholder='PLN Output' Xrequired","classinput");?></td>
 			</tr>
 		</table>
 		<table width="100%">

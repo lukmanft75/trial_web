@@ -51,19 +51,19 @@
 					<table border="1">
 						<tr align="left">
 							<td>PO Number</td>
-							<td><?=$f->input("po_number",$acceptance_certificate["po_number"],"required","classinput");?></td>
+							<td><?=$f->input("po_number",$acceptance_certificate["po_number"],"Xrequired","classinput");?></td>
 							</tr>
 						<tr align="left">
 							<td>Site ID</td>
-							<td><?=$f->input("site_id",$acceptance_certificate["site_id"],"required","classinput");?></td>
+							<td><?=$f->input("site_id",$acceptance_certificate["site_id"],"Xrequired","classinput");?></td>
 							</tr>
 						<tr align="left">
 							<td>Site Name</td>
-							<td><?=$f->input("site_name",$acceptance_certificate["site_name"],"required","classinput");?></td>
+							<td><?=$f->input("site_name",$acceptance_certificate["site_name"],"Xrequired","classinput");?></td>
 							</tr>
 						<tr align="left">
 							<td>Work type</td>
-							<td><?=$f->textarea("worktype_ids",$workTypeIds,"required","classinput");?></td>
+							<td><?=$f->textarea("worktype_ids",$workTypeIds,"Xrequired","classinput");?></td>
 							</tr>
 						<tr align="left">
 							<td>Approval Date</td>
@@ -71,11 +71,11 @@
 							</tr>
 						<tr align="left">
 							<td>Regional Manager Alita</td>
-							<td><?=$f->input("regional_manager_name",$bts_sran_8["regional_manager_name"],"required","classinput");?></td>
+							<td><?=$f->input("regional_manager_name",$bts_sran_8["regional_manager_name"],"Xrequired","classinput");?></td>
 							</tr>
 						<tr align="left">
 							<td>XL Representative</td>
-							<td><?=$f->input("xl_representative_name",$bts_sran_8["xl_representative_name"],"required","classinput");?></td>
+							<td><?=$f->input("xl_representative_name",$bts_sran_8["xl_representative_name"],"Xrequired","classinput");?></td>
 							</tr>
 					</table>
 					</td>

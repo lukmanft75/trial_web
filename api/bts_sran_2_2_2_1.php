@@ -45,11 +45,11 @@
 					</td>
 				</tr>
 					<td>REMARKS<br>(Capacity and Converter type)</td>
-					<td><?=$f->textarea("remarks",$bts_sran_2_2_2_1["remarks"],"required","classinput");?></td>
+					<td><?=$f->textarea("remarks",$bts_sran_2_2_2_1["remarks"],"Xrequired","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Cross connect route information</td>
-					<td><?=$f->textarea("info",$bts_sran_2_2_2_1["info"],"required","classinput");?></td>
+					<td><?=$f->textarea("info",$bts_sran_2_2_2_1["info"],"Xrequired","classinput");?></td>
 				</tr>
 			</table>
 			<br>

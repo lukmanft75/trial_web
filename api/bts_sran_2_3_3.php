@@ -53,41 +53,41 @@
 				<tr align="left">
 					<td>Cell ID Number</td>
 					<td>
-						<?=$f->input("cell_id_no_1",$bts_sran_2_3_3["cell_id_no_1"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_2",$bts_sran_2_3_3["cell_id_no_2"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_3",$bts_sran_2_3_3["cell_id_no_3"],"required","classinput");?>
+						<?=$f->input("cell_id_no_1",$bts_sran_2_3_3["cell_id_no_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("cell_id_no_2",$bts_sran_2_3_3["cell_id_no_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("cell_id_no_3",$bts_sran_2_3_3["cell_id_no_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Network Attached</td>
 					<td>
-						<?=$f->input("network_attached_1",$bts_sran_2_3_3["network_attached_1"],"required","classinput");?><br>
-						<?=$f->input("network_attached_2",$bts_sran_2_3_3["network_attached_2"],"required","classinput");?><br>
-						<?=$f->input("network_attached_3",$bts_sran_2_3_3["network_attached_3"],"required","classinput");?>
+						<?=$f->input("network_attached_1",$bts_sran_2_3_3["network_attached_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("network_attached_2",$bts_sran_2_3_3["network_attached_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("network_attached_3",$bts_sran_2_3_3["network_attached_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Network Detach</td>
 					<td>
-						<?=$f->input("network_detached_1",$bts_sran_2_3_3["network_detached_1"],"required","classinput");?><br>
-						<?=$f->input("network_detached_2",$bts_sran_2_3_3["network_detached_2"],"required","classinput");?><br>
-						<?=$f->input("network_detached_3",$bts_sran_2_3_3["network_detached_3"],"required","classinput");?>
+						<?=$f->input("network_detached_1",$bts_sran_2_3_3["network_detached_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("network_detached_2",$bts_sran_2_3_3["network_detached_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("network_detached_3",$bts_sran_2_3_3["network_detached_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>DL Throughput [Mbps]</td>
 					<td>
-						<?=$f->input("dl_1",$bts_sran_2_3_3["dl_1"],"required","classinput");?><br>
-						<?=$f->input("dl_2",$bts_sran_2_3_3["dl_2"],"required","classinput");?><br>
-						<?=$f->input("dl_3",$bts_sran_2_3_3["dl_3"],"required","classinput");?>
+						<?=$f->input("dl_1",$bts_sran_2_3_3["dl_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("dl_2",$bts_sran_2_3_3["dl_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("dl_3",$bts_sran_2_3_3["dl_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>UL Throughput [Mbps]</td>
 					<td>
-						<?=$f->input("ul_1",$bts_sran_2_3_3["ul_1"],"required","classinput");?><br>
-						<?=$f->input("ul_2",$bts_sran_2_3_3["ul_2"],"required","classinput");?><br>
-						<?=$f->input("ul_3",$bts_sran_2_3_3["ul_3"],"required","classinput");?>
+						<?=$f->input("ul_1",$bts_sran_2_3_3["ul_1"],"Xrequired","classinput");?><br>
+						<?=$f->input("ul_2",$bts_sran_2_3_3["ul_2"],"Xrequired","classinput");?><br>
+						<?=$f->input("ul_3",$bts_sran_2_3_3["ul_3"],"Xrequired","classinput");?>
 					</td>
 				</tr>
 			</table>
