@@ -11,7 +11,7 @@
 <script>
 	function deletephoto(photos_id){
 		if(confirm("Anda yakin akan menghapus foto ini?")){
-			window.location="?token=<?=$token;?>&atd_id=<?=$atd_id;?>&delete_photo=" + photos_id;
+			window.location="?token=<?=$token;?>&atd_id=<?=$atd_id;?>&photo_items_id=<?=$_GET["photo_items_id"];?>&delete_photo=" + photos_id;
 		}
 	}
 </script>
