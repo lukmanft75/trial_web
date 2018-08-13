@@ -46,7 +46,7 @@
 		
 		if($inserting["affected_rows"] > 0){
 			javascript("alert('Data berhasil disimpan');");
-			javascript("window.location=\"bts_sran_2_3_1.php?token=".$token."&atd_id=".$atd_id."\";");
+			javascript("window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";");
 			exit();
 		} else {
 			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
@@ -127,7 +127,7 @@
 			</table>
 			<table width="100%">
 				<tr>
-					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"bts_sran_2_2_4.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
 				</tr>
 			</table>

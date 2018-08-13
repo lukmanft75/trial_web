@@ -23,11 +23,7 @@
 			if($atd_cover["acceptance_status"] == 3) $acceptance_status = "REJECTED BY XL AXIATA";
 			if($atd_cover["doctype"] == "rectifier") $doctype = "RECTIFIER";
 			if($atd_cover["doctype"] == "bts_sran") $doctype = "BTS SRAN";
-			if ($atd_cover["doctype"] == "rectifier"){
-				$onclick = "onclick=\"window.location='atp_installation_menu.php?token=".$token."&atd_id=".$atd_cover["id"]."';\"";
-			} else {
-				$onclick = "onclick=\"window.location='atp_acceptance_certificate.php?token=".$token."&atd_id=".$atd_cover["id"]."';\"";
-			}
+			$onclick = "onclick=\"window.location='atp_installation_menu.php?token=".$token."&atd_id=".$atd_cover["id"]."';\"";
 	?>
 		<tr <?=$onclick;?>>
 			<td align="center"><?=($no+1);?></td>
