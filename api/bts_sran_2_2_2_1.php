@@ -5,25 +5,25 @@
 	
 	if(isset($_POST["save"])){
 		echo "<pre>";
-		print_r(sel_to_pipe($_POST["v_id"]));
+		print_r($POST);
 		echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_2_2_2_1");
 		if($bts_sran_2_2_2_1["id"] > 0) 					$db->where("id",$bts_sran_2_2_2_1["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
-		$db->addfield("v_type");							$db->addvalue(sel_to_pipe($_POST["v_id"]));
+		$db->addfield("v_type");							$db->addvalue($_POST["v_type"]);
 		$db->addfield("remarks");							$db->addvalue($_POST["remarks"]);
 		$db->addfield("info");								$db->addvalue($_POST["info"]);
 		if($bts_sran_2_2_2_1["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
-		// if($inserting["affected_rows"] > 0){
-			// javascript("alert('Data berhasil disimpan');");
-			// javascript("window.location=\"bts_sran_2_2_3.php?token=".$token."&atd_id=".$atd_id."\";");
-			// exit();
-		// } else {
-			// $_errormessage = "<font color='red'>Data gagal disimpan!</font>";
-		// }
+		if($inserting["affected_rows"] > 0){
+			javascript("alert('Data berhasil disimpan');");
+			javascript("window.location=\"bts_sran_2_2_3.php?token=".$token."&atd_id=".$atd_id."\";");
+			exit();
+		} else {
+			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
+		}
 	}
 	
 	foreach(pipetoarray($bts_sran_2_2_2_1["v_type"]) as $val_type){
@@ -41,8 +41,7 @@
 				<tr>
 					<td>TYPE</td>
 					<td>
-						<?=$f->input("v_id[0]","1","style='height:13px;' type='checkbox'".$v_id_checked[1]);?> Electrial Eth.<br>
-						<?=$f->input("v_id[1]","2","style='height:13px;' type='checkbox'".$v_id_checked[2]);?> Optical Eth.
+						<?=$f->select("v_type",[""=>"","1" => "Electrial Eth.","2" => "Optical Eth."],$bts_sran_2_2_2_1["v_type"]);?>
 					</td>
 				</tr>
 					<td>REMARKS<br>(Capacity and Converter type)</td>

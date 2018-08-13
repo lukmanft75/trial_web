@@ -50,7 +50,6 @@
 					<td><b>NO</b></td>
 					<td><b>ENVA</b></td>
 					<td><b>OK/NOK</b></td>
-					<td><b>NA</b></td>
 				</tr>
 				<tr>
 					<td>1</td>
