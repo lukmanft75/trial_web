@@ -22,18 +22,18 @@
 	<tr><td>SITE</td><td>:</td><td><?=$db->fetch_single_data("indottech_atd_cover","site_name",["id" => $atd_id]);?></td></tr>
 </table>
 <table width="100%"><tr>
-	<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+	<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_photos.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
 </tr></table>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
 	<?php
-		$photos = $db->fetch_all_data("indottech_photo_items",[],"doctype='".$doctype."'","seqno");
+		$photos = $db->fetch_all_data("indottech_photo_items",[],"id='".$_GET["photo_items_id"]."' AND doctype='".$doctype."'","seqno");
 		foreach($photos as $photo){
 			$indottech_photos = $db->fetch_all_data("indottech_photos",[],"atd_id='".$atd_id."' AND photo_items_id='".$photo["id"]."'","seqno");
 	?>
 		<table width="100%" border="1">
 			<tr><td align="center"colspan="<?=count($indottech_photos);?>" nowrap>
 				<h5><b><?=$photo["name"];?></b></h5>
-				<input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='atp_installation_photos_detail.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>&photo_items_id=<?=$photo["id"];?>&takephoto=<?=$atd_id;?>|<?=$photo["id"];?>';">
+				<input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&photo_items_id=<?=$_GET["photo_items_id"];?>&takephoto=<?=$atd_id;?>|<?=$photo["id"];?>';">
 			</td></tr>
 			<tr>
 				<?php 

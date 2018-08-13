@@ -34,7 +34,7 @@
 		$oldfile = $db->fetch_single_data("indottech_battery_discharge_photos",$fieldname,["id" => $battery_discharge_photos_id]);
 		unlink("../geophoto/".$oldfile);
 	}
-	if($_GET["photoMode"] == "atp_installation_photos"){
+	if($_GET["photoMode"] == "atp_installation_photos_detail"){
 		$params = explode("|",$_GET["param"]);
 		$atd_id = $params[0];
 		$photo_items_id = $params[1];
@@ -103,7 +103,7 @@
 			else $db->insert();
 			echo "OK";
 		}
-		if($_GET["photoMode"] == "atp_installation_photos"){
+		if($_GET["photoMode"] == "atp_installation_photos_detail"){
 			$imgtext = $site_id." - ".$site_name;
 			$imgtext .= "<br>".$latitude.";".$longitude;
 			$imgtext .= "<br>".date("d/m/Y H:i:s");
