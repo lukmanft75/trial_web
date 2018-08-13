@@ -5,14 +5,13 @@
 	
 	if(isset($_POST["save"])){
 		echo "<pre>";
-		print_r($_POST);
+		print_r(sel_to_pipe($_POST["v_id"]));
 		echo "</pre>";
-		
 		
 		$db->addtable("indottech_bts_sran_2_2_2_1");
 		if($bts_sran_2_2_2_1["id"] > 0) 					$db->where("id",$bts_sran_2_2_2_1["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
-		$db->addfield("v_type");							$db->addvalue(sel_to_pipe($_POST["type_id"]));
+		$db->addfield("v_type");							$db->addvalue(sel_to_pipe($_POST["v_id"]));
 		$db->addfield("remarks");							$db->addvalue($_POST["remarks"]);
 		$db->addfield("info");								$db->addvalue($_POST["info"]);
 		if($bts_sran_2_2_2_1["id"] > 0) $inserting = $db->update();
@@ -42,8 +41,8 @@
 				<tr>
 					<td>TYPE</td>
 					<td>
-						<?=$f->input("type_id[0]","1","style='height:13px;' type='checkbox'".$type_id_checked[1]);?> Electrial Eth.<br>
-						<?=$f->input("type_id[1]","2","style='height:13px;' type='checkbox'".$type_id_checked[2]);?> Optical Eth.
+						<?=$f->input("v_id[0]","1","style='height:13px;' type='checkbox'".$v_id_checked[1]);?> Electrial Eth.<br>
+						<?=$f->input("v_id[1]","2","style='height:13px;' type='checkbox'".$v_id_checked[2]);?> Optical Eth.
 					</td>
 				</tr>
 					<td>REMARKS<br>(Capacity and Converter type)</td>
