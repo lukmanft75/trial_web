@@ -1,108 +1,174 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$atr = $db->fetch_all_data("indottech_acceptance_test_rectifier",[],"atd_id='".$atd_id."'")[0];
+	$indottech_acceptance_certificate = $db->fetch_all_data("indottech_acceptance_certificate",[],"atd_id='".$atd_id."'")[0];
+	$site_id = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
+		$indottech_sites = $db->fetch_all_data("indottech_sites",[],"id='".$site_id."'")[0];
+	
+	if(isset($_POST["save"])){
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
+
+		
+		$db->addtable("indottech_acceptance_certificate");
+		if($indottech_acceptance_certificate["id"] > 0) 	$db->where("id",$indottech_acceptance_certificate["id"]);
+		$db->addfield("atd_id");							$db->addvalue($atd_id);
+		$db->addfield("po_number");							$db->addvalue($_POST["po_number"]);
+		$db->addfield("site_id");							$db->addvalue($_POST["site_id"]);
+		$db->addfield("site_code");							$db->addvalue($indottech_sites["site_code"]);
+		$db->addfield("site_name");							$db->addvalue($indottech_sites["name"]);
+		$db->addfield("site_address");						$db->addvalue($_POST["site_address"]);
+		$db->addfield("site_longitude");					$db->addvalue($_POST["site_longitude"]);
+		$db->addfield("site_latitude");						$db->addvalue($_POST["site_latitude"]);
+		$db->addfield("worktype_ids");						$db->addvalue(sel_to_pipe($_POST["worktype_id"]));
+		$db->addfield("sitetype_ids");						$db->addvalue(sel_to_pipe($_POST["sitetype_ids"]));
+		$db->addfield("system_module_ids");					$db->addvalue(sel_to_pipe($_POST["system_module_ids"]));
+		$db->addfield("rf_module_ids");						$db->addvalue(sel_to_pipe($_POST["rf_module_ids"]));
+		$db->addfield("configuration_ids");					$db->addvalue(sel_to_pipe($_POST["configuration_ids"]));
+		$db->addfield("number_of_system_modul");			$db->addvalue($_POST["number_of_system_modul"]);
+		$db->addfield("number_of_rf");						$db->addvalue($_POST["number_of_rf"]);
+		$db->addfield("number_of_antenna");					$db->addvalue($_POST["number_of_antenna"]);
+		$db->addfield("installation_at");					$db->addvalue($_POST["installation_at"]);
+		$db->addfield("self_assessment_at");				$db->addvalue($_POST["self_assessment_at"]);
+		$db->addfield("onair_at");							$db->addvalue($_POST["onair_at"]);
+		if($indottech_acceptance_certificate["id"] > 0) $inserting = $db->update();
+		else $inserting = $db->insert();
+		if($inserting["affected_rows"] > 0){
+			javascript("alert('Data berhasil disimpan');");
+			javascript("window.location=\"bts_sran_1_1_1.php?token=".$token."&atd_id=".$atd_id."\";");
+			exit();
+		} else {
+			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
+		}
+	}
+		
+	if($atr["site_id"] == "") $atr["site_id"] = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
+	if($atr["site_address"] == "") $atr["site_address"] = $db->fetch_single_data("indottech_sites","address",["id" => $atr["site_id"]]);
+	$sites = $db->fetch_select_data("indottech_sites","id","concat(name,' [',site_code,']')",["project_id" => "13"],["name"],"",true);
+	foreach(pipetoarray($indottech_acceptance_certificate["worktype_ids"]) as $val){
+		$worktype_checked[$val] = "checked";
+	}
+	
 ?>
+
 <center><h4><b>SITE ACCEPTANCE CERTIFICATE</b></h4></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-	<table>
-		<tr><td>PO Number</td><td>:</td><td><?=$f->input("po_number",$atr["po_number"],"required","classinput");?></td></tr>
-		<tr><td>Site</td><td>:</td><td><?=$f->select("site_id",$sites,$atr["site_id"],"required","classinput");?></td></tr>
-		<tr><td valign="top">Site Address</td><td valign="top">:</td><td valign="top"><?=$f->textarea("site_address",$atr["site_address"],"required","classinput");?></td></tr>
-	</table>
-	<table>
-		<tr>
-			<td><u>Cordinate</u> </td>
-			<td>
-				Longitude :<br>
-				Latitude :
-			</td>
-			<td>
-				<?=$f->input("longtitude",$atr["longtitude"],"required","classinput");?><br>
-				<?=$f->input("Latitude",$atr["Latitude"],"required","classinput");?>
-			</td>
-		</tr>
-	</table>
-	<table border="1">
-		<tr>
-			<td>Work Type :</td>
-			<td>
-				<input type="checkbox"> New Site<br>
-				<input type="checkbox"> Swap BTS, Swap antenna<br>
-				<input type="checkbox"> Swap BTS, use antenna Existing<br>
-				<input type="checkbox"> Outorization
-			</td>
-			</td>
-		</tr>
-		<tr>
-			<td>Site Type :</td>
-			<td>
-				<input type="checkbox"> Green Field Indoor<br>
-				<input type="checkbox"> Green Field Outdoor<br>
-				<input type="checkbox"> Inbuilding Coverage<br>
-				<input type="checkbox"> Rooftop<br>
-				<input type="checkbox"> 3rd Party Building Tower
-			</td>
-			</td>
-		</tr>
-		<tr>
-			<td>BTS <b>System Module</b><br>Installation Type :</td>
-			<td>
-				<input type="checkbox"> Stack type in shelter<br>
-				<input type="checkbox"> Stack type shelter less<br>
-				<input type="checkbox"> Wall Mounted<br>
-				<input type="checkbox"> Pole Mounted<br>
-				<input type="checkbox"> Leg Tower Mounted
-			</td>
-			</td>
-		</tr>
-		<tr>
-			<td>BTS <b>RF Module</b> :</td>
-			<td>
-				<input type="checkbox"> Stack type<br>
-				<input type="checkbox"> Rack<br>
-				<input type="checkbox"> Wall Mounted<br>
-				<input type="checkbox"> Pole Mounted<br>
-				<input type="checkbox"> Leg Tower Mounted
-			</td>
-			</td>
-		</tr>
-		<tr>
-			<td>BTS Configuration :</td>
-			<td>
-				<input type="checkbox"> G900<br>
-				<input type="checkbox"> G1800<br>
-				<input type="checkbox"> U900<br>
-				<input type="checkbox"> U2100<br>
-				<input type="checkbox"> LTE1800
-			</td>
-			</td>
-		</tr>
-		<tr>
-			<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("longtitude",$atr["longtitude"],"required","classinput");?></td>
-		</tr>
-		<tr>
-			<td>Number of RF [Units]</td><td><?=$f->input("longtitude",$atr["longtitude"],"required","classinput");?></td>
-		</tr>
-		<tr>
-			<td>Installation Date : </td>
-			<td><?=$f->input("intall_at",$name_db["install_at"],"type='date'");?></td>
-		</tr>
-		<tr>
-			<td>Self-Assessment Date : </td>
-			<td><?=$f->input("intall_at",$name_db["install_at"],"type='date'");?></td>
-		</tr>
-		<tr>
-			<td>On Air Date : </td>
-			<td><?=$f->input("intall_at",$name_db["install_at"],"type='date'");?></td>
-		</tr>
-	</table>
-	<br>
-	<table width="100%"><tr>
-		<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
-		<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
-	</tr></table>
+<table width="360">
+	<tr>
+		<td>
+			<br>
+			<table align="center" border="0">
+				<tr>
+					<td>PO Number :</td>
+					<td><?=$f->input("po_number",$indottech_acceptance_certificate["po_number"],"placeholder='PO Number' required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Site :</td>
+					<td><?=$f->select("site_id",$sites,$atr["site_id"],"required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Site Address :</td>
+					<td><?=$f->textarea("site_address",$atr["site_address"],"required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Longitude :</td>
+					<td><?=$f->input("site_longitude",$indottech_sites["longitude"],"required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Latitude :</td>
+					<td><?=$f->input("site_latitude",$indottech_sites["latitude"],"required","classinput");?></td>
+				</tr>
+			</table>
+			<br>
+			<table border="1" align="center">
+				<tr>
+					<td>Work Type :</td>
+					<td>
+						<?=$f->input("worktype_id[0]","1","style='height:13px;' type='checkbox' ".$worktype_checked[1]);?> New Site<br>
+						<?=$f->input("worktype_id[1]","2","style='height:13px;' type='checkbox' ".$worktype_checked[2]);?> Swap BTS, Swap antenna<br>
+						<?=$f->input("worktype_id[2]","3","style='height:13px;' type='checkbox' ".$worktype_checked[3]);?> Swap BTS, use antenna Existing<br>
+						<?=$f->input("worktype_id[3]","4","style='height:13px;' type='checkbox' ".$worktype_checked[4]);?> Outorization
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>Site Type :</td>
+					<td>
+						<?=$f->input("sitetype_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Green Field Indoor<br>
+						<?=$f->input("sitetype_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Green Field Outdoor<br>
+						<?=$f->input("sitetype_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Inbuilding Coverage<br>
+						<?=$f->input("sitetype_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Rooftop<br>
+						<?=$f->input("sitetype_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?>3rd Party Building Tower
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>BTS <b>System Module</b><br>Installation Type :</td>
+					<td>
+						<?=$f->input("sys_mod_type_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Stack type in shelter<br>
+						<?=$f->input("sys_mod_type_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Stack type shelter less<br>
+						<?=$f->input("sys_mod_type_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Wall Mounted<br>
+						<?=$f->input("sys_mod_type_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Pole Mounted<br>
+						<?=$f->input("sys_mod_type_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> Leg Tower Mounted
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>BTS <b>RF Module</b> :</td>
+					<td>
+						<?=$f->input("rf_mod_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Stack type<br>
+						<?=$f->input("rf_mod_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Rack<br>
+						<?=$f->input("rf_mod_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Wall Mounted<br>
+						<?=$f->input("rf_mod_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Pole Mounted<br>
+						<?=$f->input("rf_mod_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> Leg Tower Mounted
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>BTS Configuration :</td>
+					<td>
+						<?=$f->input("bts_config_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> G900<br>
+						<?=$f->input("bts_config_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> G1800<br>
+						<?=$f->input("bts_config_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> U900<br>
+						<?=$f->input("bts_config_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> U2100<br>
+						<?=$f->input("bts_config_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> LTE1800
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>Number of <b>System <br>Module</b> [Units]</td><td><?=$f->input("number_of_system_modul",$indottech_acceptance_certificate["number_of_system_modul"],"placeholder='System Module' required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Number of RF [Units]</td><td><?=$f->input("number_of_rf",$indottech_acceptance_certificate["number_of_rf"],"placeholder='Number RF' required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Number of <b>Antenna</b> [Units]</td><td><?=$f->input("number_of_antenna",$indottech_acceptance_certificate["number_of_antenna"],"placeholder='Number Antenna' required","classinput");?></td>
+				</tr>
+				<tr>
+					<td>Installation Date : </td>
+					<td><?=$f->input("installation_at",$indottech_acceptance_certificate["installation_at"], "type='date'");?></td>
+				</tr>
+				<tr>
+					<td>Self-Assessment Date : </td>
+					<td><?=$f->input("self_assessment_at",$indottech_acceptance_certificate["self_assessment_at"], "type='date'");?></td>
+				</tr>
+				<tr>
+					<td>On Air Date : </td>
+					<td><?=$f->input("onair_at",$indottech_acceptance_certificate["onair_at"], "type='date'");?></td>
+				</tr>
+			</table>
+			<br>
+			<table width="100%">
+				<tr>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
 </form>	
 <script> $("#nbw_no").focus(); </script>
 <?php include_once "footer.php";?>

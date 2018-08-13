@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
 	$atr = $db->fetch_all_data("indottech_acceptance_test_rectifier",[],"atd_id='".$atd_id."'")[0];

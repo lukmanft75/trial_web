@@ -29,8 +29,22 @@
 	array_push($arr1,"{indottech_acceptance_test_rectifier.out_vdc}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.float}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.equalize}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.polarity_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.polarity_2}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.load_current}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.output_volt}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.lf_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.lf_2}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.ld_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.ld_2}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.hf_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.hf_2}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.hd_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.hd_2}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.lff_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.lff_2}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.bff_1}");
+	array_push($arr1,"{indottech_acceptance_test_rectifier.bff_2}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.rectifier_system}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.ip}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.subnet}");
@@ -59,13 +73,104 @@
 	array_push($arr2,$indottech_atr["rectifier7_sn"]);
 	array_push($arr2,$indottech_atr["ac_input_vac"]);
 	array_push($arr2,$indottech_atr["ac_input_phase"]);
-	array_push($arr2,$indottech_atr["ac_input_phase"]);
+	array_push($arr2,$indottech_atr["ac_input_frequency"]);
 	array_push($arr2,$indottech_atr["output_vdc1"]);
 	array_push($arr2,$indottech_atr["output_vdc2"]);
 	array_push($arr2,$indottech_atr["float_vdc"]);
 	array_push($arr2,$indottech_atr["equalize_vdc"]);
+		$polarity = $indottech_atr["polarity"];
+		if ($polarity == "1") {
+			$polarity_1 = "kotak_isi.jpg";
+		} else {
+			$polarity_1 = "kotak_kosong.jpg";
+		}
+		if ($polarity == "2") {
+			$polarity_2 = "kotak_isi.jpg";
+		} else {
+			$polarity_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$polarity_1);
+	array_push($arr2,$polarity_2);
 	array_push($arr2,$indottech_atr["load_current"]);
 	array_push($arr2,$indottech_atr["load_output_vdc"]);
+		$lf = $indottech_atr["alarm_low_float"];
+		if ($lf == "1") {
+			$lf_1 = "kotak_isi.jpg";
+		} else {
+			$lf_1 = "kotak_kosong.jpg";
+		}
+		if ($lf == "2") {
+			$lf_2 = "kotak_isi.jpg";
+		} else {
+			$lf_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$lf_1);
+	array_push($arr2,$lf_2);
+		$ld = $indottech_atr["alarm_low_load"];
+		if ($ld == "1") {
+			$ld_1 = "kotak_isi.jpg";
+		} else {
+			$ld_1 = "kotak_kosong.jpg";
+		}
+		if ($ld == "2") {
+			$ld_2 = "kotak_isi.jpg";
+		} else {
+			$ld_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$ld_1);
+	array_push($arr2,$ld_2);
+		$hf = $indottech_atr["alarm_high_float"];
+		if ($hf == "1") {
+			$hf_1 = "kotak_isi.jpg";
+		} else {
+			$hf_1 = "kotak_kosong.jpg";
+		}
+		if ($hf == "2") {
+			$hf_2 = "kotak_isi.jpg";
+		} else {
+			$hf_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$hf_1);
+	array_push($arr2,$hf_2);
+		$hd = $indottech_atr["alarm_high_load"];
+		if ($hd == "1") {
+			$hd_1 = "kotak_isi.jpg";
+		} else {
+			$hd_1 = "kotak_kosong.jpg";
+		}
+		if ($hd == "2") {
+			$hd_2 = "kotak_isi.jpg";
+		} else {
+			$hd_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$hd_1);
+	array_push($arr2,$hd_2);
+		$lff = $indottech_atr["alarm_load_fuse_fail"];
+		if ($lff == "1") {
+			$lff_1 = "kotak_isi.jpg";
+		} else {
+			$lff_1 = "kotak_kosong.jpg";
+		}
+		if ($lff == "2") {
+			$lff_2 = "kotak_isi.jpg";
+		} else {
+			$lff_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$lff_1);
+	array_push($arr2,$lff_2);
+		$bff = $indottech_atr["alarm_battery_fuse_fail"];
+		if ($bff == "1") {
+			$bff_1 = "kotak_isi.jpg";
+		} else {
+			$bff_1 = "kotak_kosong.jpg";
+		}
+		if ($bff == "2") {
+			$bff_2 = "kotak_isi.jpg";
+		} else {
+			$bff_2 = "kotak_kosong.jpg";
+		}
+	array_push($arr2,$bff_1);
+	array_push($arr2,$bff_2);
 	array_push($arr2,$indottech_atr["rectifier_system_vdc"]);
 	array_push($arr2,$indottech_atr["rectifier_ipaddr"]);
 	array_push($arr2,$indottech_atr["rectifier_subnet"]);

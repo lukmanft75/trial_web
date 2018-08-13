@@ -1,48 +1,88 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$atr = $db->fetch_all_data("indottech_acceptance_test_rectifier",[],"atd_id='".$atd_id."'")[0];
+	$indottech_bts_sran_8 = $db->fetch_all_data("indottech_bts_sran_8",[],"atd_id='".$atd_id."'")[0];
+	$atp_acceptace_certificate = $db->fetch_all_data("atp_acceptace_certificate",[],"atd_id='".$atd_id."'")[0];
+	
+	if(isset($_POST["save"])){
+		// echo "<pre>";
+		// print_r($_POST);
+		// echo "</pre>";
+		
+		$db->addtable("indottech_bts_sran_8");
+		if($indottech_bts_sran_8["id"] > 0) 			$db->where("id",$indottech_bts_sran_8["id"]);
+		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		$db->addfield("po_number");					$db->addvalue($atp_acceptace_certificate["po_number"]);
+		$db->addfield("site_id");					$db->addvalue($atp_acceptace_certificate["site_id"]);
+		$db->addfield("site_name");					$db->addvalue($atp_acceptace_certificate["site_name"]);
+		$db->addfield("worktype_ids");				$db->addvalue($atp_acceptace_certificate["worktype_ids"]);
+		$db->addfield("approval_at");				$db->addvalue($_POST["approval_at"]);
+		$db->addfield("regional_manager_name");		$db->addvalue($_POST["regional_manager_name"]);
+		$db->addfield("xl_representative_name");		$db->addvalue($_POST["xl_representative_name"]);
+		if($indottech_bts_sran_8["id"] > 0) $inserting = $db->update();
+		else $inserting = $db->insert();
+		
+		if($inserting["affected_rows"] > 0){
+			javascript("alert('Data berhasil disimpan');");
+			javascript("window.location=\"bts_sran_9.php?token=".$token."&atd_id=".$atd_id."\";");
+			exit();
+		} else {
+			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
+		}
+	}
 ?>
 <center><b>8. ATP APROVAL SHEET</b></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-<table widht="360" align="center">
+<table width="360">
+	<tr>
+		<td>
+			<br>
+			<table align="center" border="1">
 	<tr>
 		<td>
 		<table border="1">
 			<tr align="left">
 				<td>PO Number</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("po_number",$indottech_bts_sran_8["po_number"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Site ID</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("site_id",$indottech_bts_sran_8["site_id"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Site Name</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("site_name",$indottech_bts_sran_8["site_name"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Work type</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("worktype_ids",$indottech_bts_sran_8["worktype_ids"],"required","classinput");?></td>
+				</tr>
+			<tr align="left">
+				<td>Approval Date</td>
+				<td><?=$f->input("approval_at",$indottech_bts_sran_8["approval_at"], "type='date'");?></td>
 				</tr>
 			<tr align="left">
 				<td>Regional Manager Alita</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("regional_manager_name",$indottech_bts_sran_8["regional_manager_name"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>XL Representative</td>
-				<td><input type="text"><br></td>
+				<td><?=$f->input("xl_representative_name",$indottech_bts_sran_8["xl_representative_name"],"required","classinput");?></td>
 				</tr>
 		</table>
 		</td>
 	</tr>
+			</table>
+			<table width="100%">
+				<tr>
+					<td><?=$f->input("back","Back","type='button' onclick='window.location=\"bts_sran_7.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
+					<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 </table>
-		<br>
-	<table width="100%"><tr>
-		<td><?=$f->input("back","Back","type='button' onclick='window.location=\"atp_installation_menu.php?token=".$token."&atd_id=".$atd_id."\";'");?></td>
-		<td align="right"><?=$f->input("save","Save","type='submit'");?></td>
-	</tr></table>
 </form>	
 <script> $("#nbw_no").focus(); </script>
 <?php include_once "footer.php";?>
