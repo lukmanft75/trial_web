@@ -1,5 +1,7 @@
 <?php 
 	include_once "header.php";
+	$has_parent = $db->fetch_single_data("indottech_photo_items","parent_id",["id" => $_GET["photo_items_id"]]);
+	if($has_parent > 0) $_GET["photo_items_id"] = $has_parent;
 	$atd_id = $_GET["atd_id"];
 	if(isset($_GET["delete_photo"])){
 		$db->addtable("indottech_photos"); $db->where("id",$_GET["delete_photo"]); $db->where("atd_id",$atd_id); $db->delete_();
