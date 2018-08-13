@@ -41,7 +41,7 @@
 <center>2.3.3 LTE Test Call</center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-<table width="360">
+<table width="320"align="center">
 	<tr>
 		<td>
 			<br>

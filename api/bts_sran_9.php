@@ -29,7 +29,7 @@
 <center><b>9. DOCUMENT HISTORY</b></center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-<table width="360">
+<table width="320"align="center">
 	<tr>
 		<td>
 			<br>

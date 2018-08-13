@@ -37,7 +37,7 @@
 <center>2.1.2 Antenna Line Information</center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-<table width="360">
+<table width="320"align="center"align="center">
 	<tr>
 		<td>
 			<br>

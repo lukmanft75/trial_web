@@ -23,19 +23,19 @@
 		if($bts_sran_1_1_2["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
-		// if($inserting["affected_rows"] > 0){
-			// javascript("alert('Data berhasil disimpan');");
-			// javascript("window.location=\"bts_sran_1_1_3.php?token=".$token."&atd_id=".$atd_id."\";");
-			// exit();
-		// } else {
-			// $_errormessage = "<font color='red'>Data gagal disimpan!</font>";
-		// }
+		if($inserting["affected_rows"] > 0){
+			javascript("alert('Data berhasil disimpan');");
+			javascript("window.location=\"bts_sran_1_1_3.php?token=".$token."&atd_id=".$atd_id."\";");
+			exit();
+		} else {
+			$_errormessage = "<font color='red'>Data gagal disimpan!</font>";
+		}
 	}
 ?>
 <center>1.1.2 Antenna Line Configuration</center>
 <center><?=$_errormessage;?></center>
 <form method="POST" action="?token=<?=$token;?>&atd_id=<?=$atd_id;?>">
-<table width="360">
+<table width="320"align="center">
 	<tr>
 		<td>
 			<br>
