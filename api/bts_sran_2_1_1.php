@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_2_1_1 = $db->fetch_all_data("indottech_bts_sran_2_1_1",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_2_1_1 = $db->fetch_all_data("indottech_bts_sran_2_1_1",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -9,8 +9,8 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_2_1_1");
-		if($indottech_bts_sran_2_1_1["id"] > 0) 		$db->where("id",$indottech_bts_sran_2_1_1["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_2_1_1["id"] > 0) 				$db->where("id",$bts_sran_2_1_1["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("v1_1");						$db->addvalue($_POST["v1_1"]);
 		$db->addfield("v1_2");						$db->addvalue($_POST["v1_2"]);
 		$db->addfield("v1_3");						$db->addvalue($_POST["v1_3"]);
@@ -23,7 +23,7 @@
 		$db->addfield("v3_2");						$db->addvalue($_POST["v3_2"]);
 		$db->addfield("v3_3");						$db->addvalue($_POST["v3_3"]);
 		$db->addfield("v3_4");						$db->addvalue($_POST["v3_4"]);
-		if($indottech_bts_sran_2_1_1["id"] > 0) $inserting = $db->update();
+		if($bts_sran_2_1_1["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -57,27 +57,27 @@
 				<tr>
 					<td>1.1</td>
 					<td>Delivery checked,<br>any shortcomings are recorded</td>
-					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v1_1"], "required");?></td>
+					<td><?=$f->select("v1_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_1"], "required");?></td>
 				</tr>
 				<tr>
 					<td>1.2</td>
 					<td>Any damages are recorded</td>
-					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v1_2"], "required");?></td>
+					<td><?=$f->select("v1_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_2"], "required");?></td>
 				</tr>
 				<tr>
 					<td>1.3</td>
 					<td>Equipment layout checked,<br>as planned</td>
-					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v1_3"], "required");?></td>
+					<td><?=$f->select("v1_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_3"], "required");?></td>
 				</tr>
 				<tr>
 					<td>1.4</td>
 					<td>Cabling routes checked</td>
-					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v1_4"], "required");?></td>
+					<td><?=$f->select("v1_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_4"], "required");?></td>
 				</tr>
 				<tr>
 					<td>1.5</td>
 					<td>Installation of main grounding<br>busbar (connection to building earth) checked</td>
-					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v1_5"], "required");?></td>
+					<td><?=$f->select("v1_5",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v1_5"], "required");?></td>
 				</tr>
 				<tr align="center">
 					<td><b>2</b></td>
@@ -86,17 +86,17 @@
 				<tr>
 					<td>2.1</td>
 					<td>BTS System module installed<br>and fixed to base frame as plan</td>
-					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v2_1"], "required");?></td>
+					<td><?=$f->select("v2_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_1"], "required");?></td>
 				</tr>
 				<tr>
 					<td>2.2</td>
 					<td>BTS RF module installed and<br>fixed to bracket at tower leg</td>
-					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v2_2"], "required");?></td>
+					<td><?=$f->select("v2_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_2"], "required");?></td>
 				</tr>
 				<tr>
 					<td>2.3</td>
 					<td>BTS system module and RF<br>module are grounded properly</td>
-					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v2_3"], "required");?></td>
+					<td><?=$f->select("v2_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v2_3"], "required");?></td>
 				</tr>
 				<tr align="center">
 					<td><b>3</b></td>
@@ -105,22 +105,22 @@
 				<tr>
 					<td>3.1</td>
 					<td>Power cables are installed and tidy</td>
-					<td><?=$f->select("v3_1",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v3_1"], "required");?></td>
+					<td><?=$f->select("v3_1",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_1"], "required");?></td>
 				</tr>
 				<tr>
 					<td>3.2</td>
 					<td>Optic cables are installed and tidy</td>
-					<td><?=$f->select("v3_2",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v3_2"], "required");?></td>
+					<td><?=$f->select("v3_2",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_2"], "required");?></td>
 				</tr>
 				<tr>
 					<td>3.3</td>
 					<td>Alarm cables are installed and tidy</td>
-					<td><?=$f->select("v3_3",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v3_3"], "required");?></td>
+					<td><?=$f->select("v3_3",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_3"], "required");?></td>
 				</tr>
 				<tr>
 					<td>3.4</td>
 					<td>All cables are labelling preperly</td>
-					<td><?=$f->select("v3_4",[""=>"","1" => "OK","2" => "NOK"],$indottech_bts_sran_2_1_1["v3_4"], "required");?></td>
+					<td><?=$f->select("v3_4",[""=>"","1" => "OK","2" => "NOK"],$bts_sran_2_1_1["v3_4"], "required");?></td>
 				</tr>
 			</table>
 			<br>

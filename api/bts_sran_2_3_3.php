@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_2_3_3 = $db->fetch_all_data("indottech_bts_sran_2_3_3",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_2_3_3 = $db->fetch_all_data("indottech_bts_sran_2_3_3",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -9,24 +9,24 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_2_3_3");
-		if($indottech_bts_sran_2_3_3["id"] > 0) 		$db->where("id",$indottech_bts_sran_2_3_3["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_2_3_3["id"] > 0) 				$db->where("id",$bts_sran_2_3_3["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("cell_id_no_1");				$db->addvalue($_POST["cell_id_no_1"]);
 		$db->addfield("cell_id_no_2");				$db->addvalue($_POST["cell_id_no_2"]);
 		$db->addfield("cell_id_no_3");				$db->addvalue($_POST["cell_id_no_3"]);
-		$db->addfield("network_attached_1");			$db->addvalue($_POST["network_attached_1"]);
-		$db->addfield("network_attached_2");			$db->addvalue($_POST["network_attached_2"]);
-		$db->addfield("network_attached_3");			$db->addvalue($_POST["network_attached_3"]);
-		$db->addfield("network_detached_1");			$db->addvalue($_POST["network_detached_1"]);
-		$db->addfield("network_detached_2");			$db->addvalue($_POST["network_detached_2"]);
-		$db->addfield("network_detached_3");			$db->addvalue($_POST["network_detached_3"]);
+		$db->addfield("network_attached_1");		$db->addvalue($_POST["network_attached_1"]);
+		$db->addfield("network_attached_2");		$db->addvalue($_POST["network_attached_2"]);
+		$db->addfield("network_attached_3");		$db->addvalue($_POST["network_attached_3"]);
+		$db->addfield("network_detached_1");		$db->addvalue($_POST["network_detached_1"]);
+		$db->addfield("network_detached_2");		$db->addvalue($_POST["network_detached_2"]);
+		$db->addfield("network_detached_3");		$db->addvalue($_POST["network_detached_3"]);
 		$db->addfield("dl_1");						$db->addvalue($_POST["dl_1"]);
 		$db->addfield("dl_2");						$db->addvalue($_POST["dl_2"]);
 		$db->addfield("dl_3");						$db->addvalue($_POST["dl_3"]);
 		$db->addfield("ul_1");						$db->addvalue($_POST["ul_1"]);
 		$db->addfield("ul_2");						$db->addvalue($_POST["ul_2"]);
 		$db->addfield("ul_3");						$db->addvalue($_POST["ul_3"]);
-		if($indottech_bts_sran_2_3_3["id"] > 0) $inserting = $db->update();
+		if($bts_sran_2_3_3["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -53,41 +53,41 @@
 				<tr align="left">
 					<td>Cell ID Number</td>
 					<td>
-						<?=$f->input("cell_id_no_1",$indottech_bts_sran_2_3_3["cell_id_no_1"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_2",$indottech_bts_sran_2_3_3["cell_id_no_2"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_3",$indottech_bts_sran_2_3_3["cell_id_no_3"],"required","classinput");?>
+						<?=$f->input("cell_id_no_1",$bts_sran_2_3_3["cell_id_no_1"],"required","classinput");?><br>
+						<?=$f->input("cell_id_no_2",$bts_sran_2_3_3["cell_id_no_2"],"required","classinput");?><br>
+						<?=$f->input("cell_id_no_3",$bts_sran_2_3_3["cell_id_no_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Network Attached</td>
 					<td>
-						<?=$f->input("network_attached_1",$indottech_bts_sran_2_3_3["network_attached_1"],"required","classinput");?><br>
-						<?=$f->input("network_attached_2",$indottech_bts_sran_2_3_3["network_attached_2"],"required","classinput");?><br>
-						<?=$f->input("network_attached_3",$indottech_bts_sran_2_3_3["network_attached_3"],"required","classinput");?>
+						<?=$f->input("network_attached_1",$bts_sran_2_3_3["network_attached_1"],"required","classinput");?><br>
+						<?=$f->input("network_attached_2",$bts_sran_2_3_3["network_attached_2"],"required","classinput");?><br>
+						<?=$f->input("network_attached_3",$bts_sran_2_3_3["network_attached_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Network Detach</td>
 					<td>
-						<?=$f->input("network_detached_1",$indottech_bts_sran_2_3_3["network_detached_1"],"required","classinput");?><br>
-						<?=$f->input("network_detached_2",$indottech_bts_sran_2_3_3["network_detached_2"],"required","classinput");?><br>
-						<?=$f->input("network_detached_3",$indottech_bts_sran_2_3_3["network_detached_3"],"required","classinput");?>
+						<?=$f->input("network_detached_1",$bts_sran_2_3_3["network_detached_1"],"required","classinput");?><br>
+						<?=$f->input("network_detached_2",$bts_sran_2_3_3["network_detached_2"],"required","classinput");?><br>
+						<?=$f->input("network_detached_3",$bts_sran_2_3_3["network_detached_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>DL Throughput [Mbps]</td>
 					<td>
-						<?=$f->input("dl_1",$indottech_bts_sran_2_3_3["dl_1"],"required","classinput");?><br>
-						<?=$f->input("dl_2",$indottech_bts_sran_2_3_3["dl_2"],"required","classinput");?><br>
-						<?=$f->input("dl_3",$indottech_bts_sran_2_3_3["dl_3"],"required","classinput");?>
+						<?=$f->input("dl_1",$bts_sran_2_3_3["dl_1"],"required","classinput");?><br>
+						<?=$f->input("dl_2",$bts_sran_2_3_3["dl_2"],"required","classinput");?><br>
+						<?=$f->input("dl_3",$bts_sran_2_3_3["dl_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>UL Throughput [Mbps]</td>
 					<td>
-						<?=$f->input("ul_1",$indottech_bts_sran_2_3_3["ul_1"],"required","classinput");?><br>
-						<?=$f->input("ul_2",$indottech_bts_sran_2_3_3["ul_2"],"required","classinput");?><br>
-						<?=$f->input("ul_3",$indottech_bts_sran_2_3_3["ul_3"],"required","classinput");?>
+						<?=$f->input("ul_1",$bts_sran_2_3_3["ul_1"],"required","classinput");?><br>
+						<?=$f->input("ul_2",$bts_sran_2_3_3["ul_2"],"required","classinput");?><br>
+						<?=$f->input("ul_3",$bts_sran_2_3_3["ul_3"],"required","classinput");?>
 					</td>
 				</tr>
 			</table>

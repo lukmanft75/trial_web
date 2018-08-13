@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_2_3_2 = $db->fetch_all_data("indottech_bts_sran_2_3_2",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_2_3_2 = $db->fetch_all_data("indottech_bts_sran_2_3_2",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -9,11 +9,11 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_2_3_2");
-		if($indottech_bts_sran_2_3_2["id"] > 0) 		$db->where("id",$indottech_bts_sran_2_3_2["id"]);
+		if($bts_sran_2_3_2["id"] > 0) 					$db->where("id",$bts_sran_2_3_2["id"]);
 		$db->addfield("atd_id");						$db->addvalue($atd_id);
-		$db->addfield("cell_id_no_1");				$db->addvalue($_POST["cell_id_no_1"]);
-		$db->addfield("cell_id_no_2");				$db->addvalue($_POST["cell_id_no_2"]);
-		$db->addfield("cell_id_no_3");				$db->addvalue($_POST["cell_id_no_3"]);
+		$db->addfield("cell_id_no_1");					$db->addvalue($_POST["cell_id_no_1"]);
+		$db->addfield("cell_id_no_2");					$db->addvalue($_POST["cell_id_no_2"]);
+		$db->addfield("cell_id_no_3");					$db->addvalue($_POST["cell_id_no_3"]);
 		$db->addfield("originating_call_1");			$db->addvalue($_POST["originating_call_1"]);
 		$db->addfield("originating_call_2");			$db->addvalue($_POST["originating_call_2"]);
 		$db->addfield("originating_call_3");			$db->addvalue($_POST["originating_call_3"]);
@@ -23,7 +23,7 @@
 		$db->addfield("open_browser_1");				$db->addvalue($_POST["open_browser_1"]);
 		$db->addfield("open_browser_2");				$db->addvalue($_POST["open_browser_2"]);
 		$db->addfield("open_browser_3");				$db->addvalue($_POST["open_browser_3"]);
-		if($indottech_bts_sran_2_3_2["id"] > 0) $inserting = $db->update();
+		if($bts_sran_2_3_2["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -50,33 +50,33 @@
 				<tr align="left">
 					<td>Cell ID Number</td>
 					<td>
-						<?=$f->input("cell_id_no_1",$indottech_bts_sran_2_3_2["cell_id_no_1"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_2",$indottech_bts_sran_2_3_2["cell_id_no_2"],"required","classinput");?><br>
-						<?=$f->input("cell_id_no_3",$indottech_bts_sran_2_3_2["cell_id_no_3"],"required","classinput");?>
+						<?=$f->input("cell_id_no_1",$bts_sran_2_3_2["cell_id_no_1"],"required","classinput");?><br>
+						<?=$f->input("cell_id_no_2",$bts_sran_2_3_2["cell_id_no_2"],"required","classinput");?><br>
+						<?=$f->input("cell_id_no_3",$bts_sran_2_3_2["cell_id_no_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Orginating Call</td>
 					<td>
-						<?=$f->input("originating_call_1",$indottech_bts_sran_2_3_2["originating_call_1"],"required","classinput");?><br>
-						<?=$f->input("originating_call_2",$indottech_bts_sran_2_3_2["originating_call_2"],"required","classinput");?><br>
-						<?=$f->input("originating_call_3",$indottech_bts_sran_2_3_2["originating_call_3"],"required","classinput");?>
+						<?=$f->input("originating_call_1",$bts_sran_2_3_2["originating_call_1"],"required","classinput");?><br>
+						<?=$f->input("originating_call_2",$bts_sran_2_3_2["originating_call_2"],"required","classinput");?><br>
+						<?=$f->input("originating_call_3",$bts_sran_2_3_2["originating_call_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Terminating Call</td>
 					<td>
-						<?=$f->input("terminating_call_1",$indottech_bts_sran_2_3_2["terminating_call_1"],"required","classinput");?><br>
-						<?=$f->input("terminating_call_2",$indottech_bts_sran_2_3_2["terminating_call_2"],"required","classinput");?><br>
-						<?=$f->input("terminating_call_3",$indottech_bts_sran_2_3_2["terminating_call_3"],"required","classinput");?>
+						<?=$f->input("terminating_call_1",$bts_sran_2_3_2["terminating_call_1"],"required","classinput");?><br>
+						<?=$f->input("terminating_call_2",$bts_sran_2_3_2["terminating_call_2"],"required","classinput");?><br>
+						<?=$f->input("terminating_call_3",$bts_sran_2_3_2["terminating_call_3"],"required","classinput");?>
 					</td>
 				</tr>
 				<tr align="left">
 					<td>Open Browser (GPRS/EDGE)</td>
 					<td>
-						<?=$f->input("open_browser_1",$indottech_bts_sran_2_3_2["open_browser_1"],"required","classinput");?><br>
-						<?=$f->input("open_browser_2",$indottech_bts_sran_2_3_2["open_browser_2"],"required","classinput");?><br>
-						<?=$f->input("open_browser_3",$indottech_bts_sran_2_3_2["open_browser_3"],"required","classinput");?>
+						<?=$f->input("open_browser_1",$bts_sran_2_3_2["open_browser_1"],"required","classinput");?><br>
+						<?=$f->input("open_browser_2",$bts_sran_2_3_2["open_browser_2"],"required","classinput");?><br>
+						<?=$f->input("open_browser_3",$bts_sran_2_3_2["open_browser_3"],"required","classinput");?>
 					</td>
 				</tr>
 			</table>

@@ -9,8 +9,8 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_1_1_3");
-		if($indottech_bts_sran_1_1_3["id"] > 0) 		$db->where("id",$indottech_bts_sran_1_1_3["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_1_1_3["id"] > 0) 				$db->where("id",$bts_sran_1_1_3["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("fxdb1_1");					$db->addvalue($_POST["fxdb1_1"]);
 		$db->addfield("fxdb1_2");					$db->addvalue($_POST["fxdb1_2"]);
 		$db->addfield("fxdb1_3");					$db->addvalue($_POST["fxdb1_3"]);
@@ -74,67 +74,67 @@
 				<tr align="center">
 					<td>FXDB#1</td>
 					<td>
-						<?=$f->input("fxdb1_1",$indottech_bts_sran_1_1_3["fxdb1_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("fxdb1_2",$indottech_bts_sran_1_1_3["fxdb1_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("fxdb1_3",$indottech_bts_sran_1_1_3["fxdb1_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("fxdb1_4",$indottech_bts_sran_1_1_3["fxdb1_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("fxdb1_5",$indottech_bts_sran_1_1_3["fxdb1_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("fxdb1_6",$indottech_bts_sran_1_1_3["fxdb1_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("fxdb1_1",$bts_sran_1_1_3["fxdb1_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("fxdb1_2",$bts_sran_1_1_3["fxdb1_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("fxdb1_3",$bts_sran_1_1_3["fxdb1_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("fxdb1_4",$bts_sran_1_1_3["fxdb1_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("fxdb1_5",$bts_sran_1_1_3["fxdb1_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("fxdb1_6",$bts_sran_1_1_3["fxdb1_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 				<tr align="center">
 					<td>FXDB#2</td>
 					<td>
-						<?=$f->input("fxdb2_1",$indottech_bts_sran_1_1_3["fxdb2_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("fxdb2_2",$indottech_bts_sran_1_1_3["fxdb2_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("fxdb2_3",$indottech_bts_sran_1_1_3["fxdb2_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("fxdb2_4",$indottech_bts_sran_1_1_3["fxdb2_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("fxdb2_5",$indottech_bts_sran_1_1_3["fxdb2_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("fxdb2_6",$indottech_bts_sran_1_1_3["fxdb2_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("fxdb2_1",$bts_sran_1_1_3["fxdb2_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("fxdb2_2",$bts_sran_1_1_3["fxdb2_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("fxdb2_3",$bts_sran_1_1_3["fxdb2_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("fxdb2_4",$bts_sran_1_1_3["fxdb2_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("fxdb2_5",$bts_sran_1_1_3["fxdb2_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("fxdb2_6",$bts_sran_1_1_3["fxdb2_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 				<tr align="center">
 					<td>FXED#1</td>
 					<td>
-						<?=$f->input("fxed1_1",$indottech_bts_sran_1_1_3["fxed1_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("fxed1_2",$indottech_bts_sran_1_1_3["fxed1_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("fxed1_3",$indottech_bts_sran_1_1_3["fxed1_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("fxed1_4",$indottech_bts_sran_1_1_3["fxed1_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("fxed1_5",$indottech_bts_sran_1_1_3["fxed1_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("fxed1_6",$indottech_bts_sran_1_1_3["fxed1_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("fxed1_1",$bts_sran_1_1_3["fxed1_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("fxed1_2",$bts_sran_1_1_3["fxed1_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("fxed1_3",$bts_sran_1_1_3["fxed1_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("fxed1_4",$bts_sran_1_1_3["fxed1_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("fxed1_5",$bts_sran_1_1_3["fxed1_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("fxed1_6",$bts_sran_1_1_3["fxed1_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 				<tr align="center">
 					<td>FXED#2</td>
 					<td>
-						<?=$f->input("fxed2_1",$indottech_bts_sran_1_1_3["fxed2_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("fxed2_2",$indottech_bts_sran_1_1_3["fxed2_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("fxed2_3",$indottech_bts_sran_1_1_3["fxed2_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("fxed2_4",$indottech_bts_sran_1_1_3["fxed2_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("fxed2_5",$indottech_bts_sran_1_1_3["fxed2_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("fxed2_6",$indottech_bts_sran_1_1_3["fxed2_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("fxed2_1",$bts_sran_1_1_3["fxed2_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("fxed2_2",$bts_sran_1_1_3["fxed2_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("fxed2_3",$bts_sran_1_1_3["fxed2_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("fxed2_4",$bts_sran_1_1_3["fxed2_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("fxed2_5",$bts_sran_1_1_3["fxed2_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("fxed2_6",$bts_sran_1_1_3["fxed2_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 				<tr align="center">
 					<td>FRGU#1</td>
 					<td>
-						<?=$f->input("frgu1_1",$indottech_bts_sran_1_1_3["frgu1_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("frgu1_2",$indottech_bts_sran_1_1_3["frgu1_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("frgu1_3",$indottech_bts_sran_1_1_3["frgu1_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("frgu1_4",$indottech_bts_sran_1_1_3["frgu1_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("frgu1_5",$indottech_bts_sran_1_1_3["frgu1_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("frgu1_6",$indottech_bts_sran_1_1_3["frgu1_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("frgu1_1",$bts_sran_1_1_3["frgu1_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("frgu1_2",$bts_sran_1_1_3["frgu1_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("frgu1_3",$bts_sran_1_1_3["frgu1_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("frgu1_4",$bts_sran_1_1_3["frgu1_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("frgu1_5",$bts_sran_1_1_3["frgu1_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("frgu1_6",$bts_sran_1_1_3["frgu1_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 				<tr align="center">
 					<td>FRGU#2</td>
 					<td>
-						<?=$f->input("frgu2_1",$indottech_bts_sran_1_1_3["frgu2_1"],"placeholder='Port 1' required","classinput");?><br>
-						<?=$f->input("frgu2_2",$indottech_bts_sran_1_1_3["frgu2_2"],"placeholder='Port 2' required","classinput");?><br>
-						<?=$f->input("frgu2_3",$indottech_bts_sran_1_1_3["frgu2_3"],"placeholder='Port 3' required","classinput");?><br>
-						<?=$f->input("frgu2_4",$indottech_bts_sran_1_1_3["frgu2_4"],"placeholder='Port 4' required","classinput");?><br>
-						<?=$f->input("frgu2_5",$indottech_bts_sran_1_1_3["frgu2_5"],"placeholder='Port 5' required","classinput");?><br>
-						<?=$f->input("frgu2_6",$indottech_bts_sran_1_1_3["frgu2_6"],"placeholder='Port 6' required","classinput");?>
+						<?=$f->input("frgu2_1",$bts_sran_1_1_3["frgu2_1"],"placeholder='Port 1' required","classinput");?><br>
+						<?=$f->input("frgu2_2",$bts_sran_1_1_3["frgu2_2"],"placeholder='Port 2' required","classinput");?><br>
+						<?=$f->input("frgu2_3",$bts_sran_1_1_3["frgu2_3"],"placeholder='Port 3' required","classinput");?><br>
+						<?=$f->input("frgu2_4",$bts_sran_1_1_3["frgu2_4"],"placeholder='Port 4' required","classinput");?><br>
+						<?=$f->input("frgu2_5",$bts_sran_1_1_3["frgu2_5"],"placeholder='Port 5' required","classinput");?><br>
+						<?=$f->input("frgu2_6",$bts_sran_1_1_3["frgu2_6"],"placeholder='Port 6' required","classinput");?>
 					</td>
 				</tr>
 			</table>

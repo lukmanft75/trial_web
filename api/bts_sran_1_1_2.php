@@ -43,25 +43,25 @@
 			<tr align="center">
 				<td>Jumper Length (Meter)</td>
 				<td>
-					<?=$f->input("jumper_length_1",$indottech_bts_sran_1_1_2["jumper_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("jumper_length_2",$indottech_bts_sran_1_1_2["jumper_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("jumper_length_3",$indottech_bts_sran_1_1_2["jumper_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("jumper_length_1",$bts_sran_1_1_2["jumper_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
+					<?=$f->input("jumper_length_2",$bts_sran_1_1_2["jumper_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
+					<?=$f->input("jumper_length_3",$bts_sran_1_1_2["jumper_length_3"],"placeholder='Sektor 3' required","classinput");?>
 				</td>
 			</tr>
 			<tr align="center">
 				<td>Optical Length (Meter)</td>
 				<td>
-					<?=$f->input("optical_length_1",$indottech_bts_sran_1_1_2["optical_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("optical_length_2",$indottech_bts_sran_1_1_2["optical_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("optical_length_3",$indottech_bts_sran_1_1_2["optical_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("optical_length_1",$bts_sran_1_1_2["optical_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
+					<?=$f->input("optical_length_2",$bts_sran_1_1_2["optical_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
+					<?=$f->input("optical_length_3",$bts_sran_1_1_2["optical_length_3"],"placeholder='Sektor 3' required","classinput");?>
 				</td>
 			</tr>
 			<tr align="center">
 				<td>Power cable Length SM - RF (Meter)</td>
 				<td>
-					<?=$f->input("powercable_length_1",$indottech_bts_sran_1_1_2["powercable_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
-					<?=$f->input("powercable_length_2",$indottech_bts_sran_1_1_2["powercable_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
-					<?=$f->input("powercable_length_3",$indottech_bts_sran_1_1_2["powercable_length_3"],"placeholder='Sektor 3' required","classinput");?>
+					<?=$f->input("powercable_length_1",$bts_sran_1_1_2["powercable_length_1"],"placeholder='Sektor 1' required","classinput");?><br>
+					<?=$f->input("powercable_length_2",$bts_sran_1_1_2["powercable_length_2"],"placeholder='Sektor 2' required","classinput");?><br>
+					<?=$f->input("powercable_length_3",$bts_sran_1_1_2["powercable_length_3"],"placeholder='Sektor 3' required","classinput");?>
 				</td>
 			</tr>
 		</table>

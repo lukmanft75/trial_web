@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_9 = $db->fetch_all_data("indottech_bts_sran_9",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_9 = $db->fetch_all_data("indottech_bts_sran_9",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -9,12 +9,12 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_9");
-		if($indottech_bts_sran_9["id"] > 0) 			$db->where("id",$indottech_bts_sran_9["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_9["id"] > 0) 					$db->where("id",$bts_sran_9["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("seqno");						$db->addvalue($_POST["seqno"]);
 		$db->addfield("description");				$db->addvalue($_POST["description"]);
-		$db->addfield("history_at");					$db->addvalue($_POST["history_at"]);
-		if($indottech_bts_sran_9["id"] > 0) $inserting = $db->update();
+		$db->addfield("history_at");				$db->addvalue($_POST["history_at"]);
+		if($bts_sran_9["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){

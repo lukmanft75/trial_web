@@ -6,11 +6,10 @@
 		$indottech_sites = $db->fetch_all_data("indottech_sites",[],"id='".$site_id."'")[0];
 	
 	if(isset($_POST["save"])){
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($_POST);
+		// echo "</pre>";
 
-		
 		$db->addtable("indottech_acceptance_certificate");
 		if($indottech_acceptance_certificate["id"] > 0) 	$db->where("id",$indottech_acceptance_certificate["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
@@ -22,10 +21,10 @@
 		$db->addfield("site_longitude");					$db->addvalue($_POST["site_longitude"]);
 		$db->addfield("site_latitude");						$db->addvalue($_POST["site_latitude"]);
 		$db->addfield("worktype_ids");						$db->addvalue(sel_to_pipe($_POST["worktype_id"]));
-		$db->addfield("sitetype_ids");						$db->addvalue(sel_to_pipe($_POST["sitetype_ids"]));
-		$db->addfield("system_module_ids");					$db->addvalue(sel_to_pipe($_POST["system_module_ids"]));
-		$db->addfield("rf_module_ids");						$db->addvalue(sel_to_pipe($_POST["rf_module_ids"]));
-		$db->addfield("configuration_ids");					$db->addvalue(sel_to_pipe($_POST["configuration_ids"]));
+		$db->addfield("sitetype_ids");						$db->addvalue(sel_to_pipe($_POST["sitetype_id"]));
+		$db->addfield("system_module_ids");					$db->addvalue(sel_to_pipe($_POST["sys_mod_type_id"]));
+		$db->addfield("rf_module_ids");						$db->addvalue(sel_to_pipe($_POST["rf_mod_id"]));
+		$db->addfield("configuration_ids");					$db->addvalue(sel_to_pipe($_POST["bts_config_id"]));
 		$db->addfield("number_of_system_modul");			$db->addvalue($_POST["number_of_system_modul"]);
 		$db->addfield("number_of_rf");						$db->addvalue($_POST["number_of_rf"]);
 		$db->addfield("number_of_antenna");					$db->addvalue($_POST["number_of_antenna"]);
@@ -48,6 +47,18 @@
 	$sites = $db->fetch_select_data("indottech_sites","id","concat(name,' [',site_code,']')",["project_id" => "13"],["name"],"",true);
 	foreach(pipetoarray($indottech_acceptance_certificate["worktype_ids"]) as $val){
 		$worktype_checked[$val] = "checked";
+	}
+	foreach(pipetoarray($indottech_acceptance_certificate["sitetype_ids"]) as $val){
+		$sitetype_checked[$val] = "checked";
+	}
+	foreach(pipetoarray($indottech_acceptance_certificate["system_module_ids"]) as $val){
+		$sys_mod_type_checked[$val] = "checked";
+	}
+	foreach(pipetoarray($indottech_acceptance_certificate["rf_module_ids"]) as $val){
+		$rf_mod_checked[$val] = "checked";
+	}
+	foreach(pipetoarray($indottech_acceptance_certificate["configuration_ids"]) as $val){
+		$bts_config_checked[$val] = "checked";
 	}
 	
 ?>
@@ -96,44 +107,44 @@
 				<tr>
 					<td>Site Type :</td>
 					<td>
-						<?=$f->input("sitetype_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Green Field Indoor<br>
-						<?=$f->input("sitetype_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Green Field Outdoor<br>
-						<?=$f->input("sitetype_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Inbuilding Coverage<br>
-						<?=$f->input("sitetype_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Rooftop<br>
-						<?=$f->input("sitetype_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?>3rd Party Building Tower
+						<?=$f->input("sitetype_id[0]","1","style='height:13px;' type='checkbox'".$sitetype_checked[1]);?> Green Field Indoor<br>
+						<?=$f->input("sitetype_id[1]","2","style='height:13px;' type='checkbox'".$sitetype_checked[2]);?> Green Field Outdoor<br>
+						<?=$f->input("sitetype_id[2]","3","style='height:13px;' type='checkbox'".$sitetype_checked[3]);?> Inbuilding Coverage<br>
+						<?=$f->input("sitetype_id[3]","4","style='height:13px;' type='checkbox'".$sitetype_checked[4]);?> Rooftop<br>
+						<?=$f->input("sitetype_id[4]","5","style='height:13px;' type='checkbox'".$sitetype_checked[5]);?>3rd Party Building Tower
 					</td>
 					</td>
 				</tr>
 				<tr>
 					<td>BTS <b>System Module</b><br>Installation Type :</td>
 					<td>
-						<?=$f->input("sys_mod_type_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Stack type in shelter<br>
-						<?=$f->input("sys_mod_type_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Stack type shelter less<br>
-						<?=$f->input("sys_mod_type_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Wall Mounted<br>
-						<?=$f->input("sys_mod_type_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Pole Mounted<br>
-						<?=$f->input("sys_mod_type_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> Leg Tower Mounted
+						<?=$f->input("sys_mod_type_id[0]","1","style='height:13px;' type='checkbox'".$sys_mod_type_checked[1]);?> Stack type in shelter<br>
+						<?=$f->input("sys_mod_type_id[1]","2","style='height:13px;' type='checkbox'".$sys_mod_type_checked[2]);?> Stack type shelter less<br>
+						<?=$f->input("sys_mod_type_id[2]","3","style='height:13px;' type='checkbox'".$sys_mod_type_checked[3]);?> Wall Mounted<br>
+						<?=$f->input("sys_mod_type_id[3]","4","style='height:13px;' type='checkbox'".$sys_mod_type_checked[4]);?> Pole Mounted<br>
+						<?=$f->input("sys_mod_type_id[4]","5","style='height:13px;' type='checkbox'".$sys_mod_type_checked[5]);?> Leg Tower Mounted
 					</td>
 					</td>
 				</tr>
 				<tr>
 					<td>BTS <b>RF Module</b> :</td>
 					<td>
-						<?=$f->input("rf_mod_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> Stack type<br>
-						<?=$f->input("rf_mod_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> Rack<br>
-						<?=$f->input("rf_mod_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> Wall Mounted<br>
-						<?=$f->input("rf_mod_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> Pole Mounted<br>
-						<?=$f->input("rf_mod_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> Leg Tower Mounted
+						<?=$f->input("rf_mod_id[0]","1","style='height:13px;' type='checkbox'".$rf_mod_checked[1]);?> Stack type<br>
+						<?=$f->input("rf_mod_id[1]","2","style='height:13px;' type='checkbox'".$rf_mod_checked[2]);?> Rack<br>
+						<?=$f->input("rf_mod_id[2]","3","style='height:13px;' type='checkbox'".$rf_mod_checked[3]);?> Wall Mounted<br>
+						<?=$f->input("rf_mod_id[3]","4","style='height:13px;' type='checkbox'".$rf_mod_checked[4]);?> Pole Mounted<br>
+						<?=$f->input("rf_mod_id[4]","5","style='height:13px;' type='checkbox'".$rf_mod_checked[5]);?> Leg Tower Mounted
 					</td>
 					</td>
 				</tr>
 				<tr>
 					<td>BTS Configuration :</td>
 					<td>
-						<?=$f->input("bts_config_id[0]","1","style='height:13px;' type='checkbox'".$checked[1]);?> G900<br>
-						<?=$f->input("bts_config_id[1]","2","style='height:13px;' type='checkbox'".$checked[2]);?> G1800<br>
-						<?=$f->input("bts_config_id[2]","3","style='height:13px;' type='checkbox'".$checked[3]);?> U900<br>
-						<?=$f->input("bts_config_id[3]","4","style='height:13px;' type='checkbox'".$checked[4]);?> U2100<br>
-						<?=$f->input("bts_config_id[4]","5","style='height:13px;' type='checkbox'".$checked[5]);?> LTE1800
+						<?=$f->input("bts_config_id[0]","1","style='height:13px;' type='checkbox'".$bts_config_checked[1]);?> G900<br>
+						<?=$f->input("bts_config_id[1]","2","style='height:13px;' type='checkbox'".$bts_config_checked[2]);?> G1800<br>
+						<?=$f->input("bts_config_id[2]","3","style='height:13px;' type='checkbox'".$bts_config_checked[3]);?> U900<br>
+						<?=$f->input("bts_config_id[3]","4","style='height:13px;' type='checkbox'".$bts_config_checked[4]);?> U2100<br>
+						<?=$f->input("bts_config_id[4]","5","style='height:13px;' type='checkbox'".$bts_config_checked[5]);?> LTE1800
 					</td>
 					</td>
 				</tr>

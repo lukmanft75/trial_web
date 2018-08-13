@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_2_2_2_1 = $db->fetch_all_data("indottech_bts_sran_2_2_2_1",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_2_2_2_1 = $db->fetch_all_data("indottech_bts_sran_2_2_2_1",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -11,12 +11,12 @@
 		$type_ids = "|".$_POST["type_id"]."|";
 		
 		$db->addtable("indottech_bts_sran_2_2_2_1");
-		if($indottech_bts_sran_2_2_2_1["id"] > 0) 			$db->where("id",$indottech_bts_sran_2_2_2_1["id"]);
+		if($bts_sran_2_2_2_1["id"] > 0) 					$db->where("id",$bts_sran_2_2_2_1["id"]);
 		$db->addfield("atd_id");							$db->addvalue($atd_id);
 		$db->addfield("v_type");							$db->addvalue($type_ids);
 		$db->addfield("remarks");							$db->addvalue($_POST["remarks"]);
 		$db->addfield("info");								$db->addvalue($_POST["info"]);
-		if($indottech_bts_sran_2_2_2_1["id"] > 0) $inserting = $db->update();
+		if($bts_sran_2_2_2_1["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -44,11 +44,11 @@
 					</td>
 				</tr>
 					<td>REMARKS<br>(Capacity and Converter type)</td>
-					<td><?=$f->textarea("remarks",$indottech_bts_sran_2_2_2_1["remarks"],"required","classinput");?></td>
+					<td><?=$f->textarea("remarks",$bts_sran_2_2_2_1["remarks"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>Cross connect route information</td>
-					<td><?=$f->textarea("info",$indottech_bts_sran_2_2_2_1["info"],"required","classinput");?></td>
+					<td><?=$f->textarea("info",$bts_sran_2_2_2_1["info"],"required","classinput");?></td>
 				</tr>
 			</table>
 			<br>

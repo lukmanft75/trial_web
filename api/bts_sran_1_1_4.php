@@ -9,11 +9,11 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_1_1_4");
-		if($indottech_bts_sran_1_1_4["id"] > 0) 		$db->where("id",$indottech_bts_sran_1_1_4["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_1_1_4["id"] > 0) 				$db->where("id",$bts_sran_1_1_4["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("rectifier");					$db->addvalue($_POST["rectifier"]);
 		$db->addfield("pln");						$db->addvalue($_POST["pln"]);
-		if($indottech_bts_sran_1_1_4["id"] > 0) $inserting = $db->update();
+		if($bts_sran_1_1_4["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -42,12 +42,12 @@
 			<tr align="center">
 				<td>DC Measured Voltage (Rectifier Output)</td>
 				<td>48</td>
-				<td><?=$f->input("rectifier",$indottech_bts_sran_1_1_4["rectifier"],"placeholder='Rectifier Output' required","classinput");?></td>
+				<td><?=$f->input("rectifier",$bts_sran_1_1_4["rectifier"],"placeholder='Rectifier Output' required","classinput");?></td>
 			</tr>
 			<tr align="center">
 				<td>AC Measured Voltage (PLN Output)</td>
 				<td>220</td>
-				<td><?=$f->input("pln",$indottech_bts_sran_1_1_4["pln"],"placeholder='PLN Output' required","classinput");?></td>
+				<td><?=$f->input("pln",$bts_sran_1_1_4["pln"],"placeholder='PLN Output' required","classinput");?></td>
 			</tr>
 		</table>
 		<table width="100%">

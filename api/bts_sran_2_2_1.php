@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_2_2_1 = $db->fetch_all_data("indottech_bts_sran_2_2_1",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_2_2_1 = $db->fetch_all_data("indottech_bts_sran_2_2_1",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
 		// echo "<pre>";
@@ -9,7 +9,7 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_2_2_1");
-		if($indottech_bts_sran_2_2_1["id"] > 0) 		$db->where("id",$indottech_bts_sran_2_2_1["id"]);
+		if($bts_sran_2_2_1["id"] > 0) 					$db->where("id",$bts_sran_2_2_1["id"]);
 		$db->addfield("atd_id");						$db->addvalue($atd_id);
 		$db->addfield("v1");							$db->addvalue($_POST["v1"]);
 		$db->addfield("v2");							$db->addvalue($_POST["v2"]);
@@ -24,7 +24,7 @@
 		$db->addfield("v11");							$db->addvalue($_POST["v11"]);
 		$db->addfield("v12");							$db->addvalue($_POST["v12"]);
 		$db->addfield("v13");							$db->addvalue($_POST["v13"]);
-		if($indottech_bts_sran_2_2_1["id"] > 0) $inserting = $db->update();
+		if($bts_sran_2_2_1["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -53,67 +53,67 @@
 				<tr>
 					<td>1</td>
 					<td>Gateway UPlane</td>
-					<td><?=$f->input("v1",$indottech_bts_sran_2_2_1["v1"],"required","classinput");?></td>
+					<td><?=$f->input("v1",$bts_sran_2_2_1["v1"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>Gateway CPlane</td>
-					<td><?=$f->input("v2",$indottech_bts_sran_2_2_1["v2"],"required","classinput");?></td>
+					<td><?=$f->input("v2",$bts_sran_2_2_1["v2"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>Gateway MPlane</td>
-					<td><?=$f->input("v3",$indottech_bts_sran_2_2_1["v3"],"required","classinput");?></td>
+					<td><?=$f->input("v3",$bts_sran_2_2_1["v3"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>4</td>
 					<td>Gateway SPlane</td>
-					<td><?=$f->input("v4",$indottech_bts_sran_2_2_1["v4"],"required","classinput");?></td>
+					<td><?=$f->input("v4",$bts_sran_2_2_1["v4"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>5</td>
 					<td>OMUSIG IP Address</td>
-					<td><?=$f->input("v5",$indottech_bts_sran_2_2_1["v5"],"required","classinput");?></td>
+					<td><?=$f->input("v5",$bts_sran_2_2_1["v5"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>6</td>
 					<td>Ethernet Interface (port IDU)</td>
-					<td><?=$f->input("v6",$indottech_bts_sran_2_2_1["v6"],"required","classinput");?></td>
+					<td><?=$f->input("v6",$bts_sran_2_2_1["v6"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>7</td>
 					<td>User plane IP</td>
-					<td><?=$f->input("v7",$indottech_bts_sran_2_2_1["v7"],"required","classinput");?></td>
+					<td><?=$f->input("v7",$bts_sran_2_2_1["v7"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>8</td>
 					<td>Control Plane IP</td>
-					<td><?=$f->input("v8",$indottech_bts_sran_2_2_1["v8"],"required","classinput");?></td>
+					<td><?=$f->input("v8",$bts_sran_2_2_1["v8"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>9</td>
 					<td>Management Plane IP</td>
-					<td><?=$f->input("v9",$indottech_bts_sran_2_2_1["v9"],"required","classinput");?></td>
+					<td><?=$f->input("v9",$bts_sran_2_2_1["v9"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>10</td>
 					<td>Synchronization Plane IP</td>
-					<td><?=$f->input("v10",$indottech_bts_sran_2_2_1["v10"],"required","classinput");?></td>
+					<td><?=$f->input("v10",$bts_sran_2_2_1["v10"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>11</td>
 					<td>Neighbour Node Discovery</td>
-					<td><?=$f->input("v11",$indottech_bts_sran_2_2_1["v11"],"required","classinput");?></td>
+					<td><?=$f->input("v11",$bts_sran_2_2_1["v11"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>12</td>
 					<td>NTP IP</td>
-					<td><?=$f->input("v12",$indottech_bts_sran_2_2_1["v12"],"required","classinput");?></td>
+					<td><?=$f->input("v12",$bts_sran_2_2_1["v12"],"required","classinput");?></td>
 				</tr>
 				<tr>
 					<td>13</td>
 					<td>Timing Over Packet IP</td>
-					<td><?=$f->input("v13",$indottech_bts_sran_2_2_1["v13"],"required","classinput");?></td>
+					<td><?=$f->input("v13",$bts_sran_2_2_1["v13"],"required","classinput");?></td>
 				</tr>
 			</table>
 			<br>

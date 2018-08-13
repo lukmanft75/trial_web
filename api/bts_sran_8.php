@@ -1,7 +1,7 @@
 <?php 
 	include_once "header.php";
 	$atd_id = $_GET["atd_id"];
-	$indottech_bts_sran_8 = $db->fetch_all_data("indottech_bts_sran_8",[],"atd_id='".$atd_id."'")[0];
+	$bts_sran_8 = $db->fetch_all_data("indottech_bts_sran_8",[],"atd_id='".$atd_id."'")[0];
 	$atp_acceptace_certificate = $db->fetch_all_data("atp_acceptace_certificate",[],"atd_id='".$atd_id."'")[0];
 	
 	if(isset($_POST["save"])){
@@ -10,8 +10,8 @@
 		// echo "</pre>";
 		
 		$db->addtable("indottech_bts_sran_8");
-		if($indottech_bts_sran_8["id"] > 0) 			$db->where("id",$indottech_bts_sran_8["id"]);
-		$db->addfield("atd_id");						$db->addvalue($atd_id);
+		if($bts_sran_8["id"] > 0) 					$db->where("id",$bts_sran_8["id"]);
+		$db->addfield("atd_id");					$db->addvalue($atd_id);
 		$db->addfield("po_number");					$db->addvalue($atp_acceptace_certificate["po_number"]);
 		$db->addfield("site_id");					$db->addvalue($atp_acceptace_certificate["site_id"]);
 		$db->addfield("site_name");					$db->addvalue($atp_acceptace_certificate["site_name"]);
@@ -19,7 +19,7 @@
 		$db->addfield("approval_at");				$db->addvalue($_POST["approval_at"]);
 		$db->addfield("regional_manager_name");		$db->addvalue($_POST["regional_manager_name"]);
 		$db->addfield("xl_representative_name");		$db->addvalue($_POST["xl_representative_name"]);
-		if($indottech_bts_sran_8["id"] > 0) $inserting = $db->update();
+		if($bts_sran_8["id"] > 0) $inserting = $db->update();
 		else $inserting = $db->insert();
 		
 		if($inserting["affected_rows"] > 0){
@@ -44,31 +44,31 @@
 		<table border="1">
 			<tr align="left">
 				<td>PO Number</td>
-				<td><?=$f->input("po_number",$indottech_bts_sran_8["po_number"],"required","classinput");?></td>
+				<td><?=$f->input("po_number",$bts_sran_8["po_number"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Site ID</td>
-				<td><?=$f->input("site_id",$indottech_bts_sran_8["site_id"],"required","classinput");?></td>
+				<td><?=$f->input("site_id",$bts_sran_8["site_id"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Site Name</td>
-				<td><?=$f->input("site_name",$indottech_bts_sran_8["site_name"],"required","classinput");?></td>
+				<td><?=$f->input("site_name",$bts_sran_8["site_name"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Work type</td>
-				<td><?=$f->input("worktype_ids",$indottech_bts_sran_8["worktype_ids"],"required","classinput");?></td>
+				<td><?=$f->input("worktype_ids",$bts_sran_8["worktype_ids"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>Approval Date</td>
-				<td><?=$f->input("approval_at",$indottech_bts_sran_8["approval_at"], "type='date'");?></td>
+				<td><?=$f->input("approval_at",$bts_sran_8["approval_at"], "type='date'");?></td>
 				</tr>
 			<tr align="left">
 				<td>Regional Manager Alita</td>
-				<td><?=$f->input("regional_manager_name",$indottech_bts_sran_8["regional_manager_name"],"required","classinput");?></td>
+				<td><?=$f->input("regional_manager_name",$bts_sran_8["regional_manager_name"],"required","classinput");?></td>
 				</tr>
 			<tr align="left">
 				<td>XL Representative</td>
-				<td><?=$f->input("xl_representative_name",$indottech_bts_sran_8["xl_representative_name"],"required","classinput");?></td>
+				<td><?=$f->input("xl_representative_name",$bts_sran_8["xl_representative_name"],"required","classinput");?></td>
 				</tr>
 		</table>
 		</td>
