@@ -111,7 +111,7 @@
 						<?=$f->input("sitetype_id[1]","2","style='height:13px;' type='checkbox'".$sitetype_checked[2]);?> Green Field Outdoor<br>
 						<?=$f->input("sitetype_id[2]","3","style='height:13px;' type='checkbox'".$sitetype_checked[3]);?> Inbuilding Coverage<br>
 						<?=$f->input("sitetype_id[3]","4","style='height:13px;' type='checkbox'".$sitetype_checked[4]);?> Rooftop<br>
-						<?=$f->input("sitetype_id[4]","5","style='height:13px;' type='checkbox'".$sitetype_checked[5]);?>3rd Party Building Tower
+						<?=$f->input("sitetype_id[4]","5","style='height:13px;' type='checkbox'".$sitetype_checked[5]);?> 3rd Party Building Tower
 					</td>
 					</td>
 				</tr>
