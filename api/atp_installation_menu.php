@@ -4,6 +4,7 @@
 	$project_name = $db->fetch_single_data("indottech_atd_cover","project_name",["id" => $atd_id]);
 	$site_name = $db->fetch_single_data("indottech_atd_cover","site_name",["id" => $atd_id]);
 	$is_rectifier = $db->fetch_single_data("indottech_atd_cover","id",["id" => $atd_id,"worktype_ids" => "%|3|%:LIKE"]);
+	if(!$is_rectifier) $is_rectifier = $db->fetch_single_data("indottech_atd_cover","id",["id" => $atd_id,"doctype" => "rectifier"]);
 	$is_btssran = $db->fetch_single_data("indottech_atd_cover","id",["id" => $atd_id,"doctype" => "bts_sran"]);
 ?>
 <center><h4><b>ACCEPTANCE TEST DOCUMENT</b></h4></center>
