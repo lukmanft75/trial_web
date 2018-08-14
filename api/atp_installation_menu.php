@@ -36,7 +36,6 @@
 <button class="big_button" onclick="window.location='atp_installation_ba.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Berita Acara Uji Terima</button>
 <button class="big_button" onclick="window.location='atp_installation_rps.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Acceptance Test Rectifier</button>
 <button class="big_button" onclick="window.location='atp_installation_breaker.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Breaker</button>
-<button class="big_button" onclick="window.location='atp_installation_rps.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Rectifier Power System</button>
 <button class="big_button" onclick="window.location='atp_installation_batteries.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Batteries</button>
 <?php } ?>
 <button class="big_button" onclick="window.location='atp_installation_photos.php?token=<?=$token;?>&atd_id=<?=$atd_id;?>';">Photos</button>
