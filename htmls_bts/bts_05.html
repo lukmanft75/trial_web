@@ -4,13 +4,14 @@
 </head>
 <body style="margin-left:-20px; ">
 	<table width="650" style="font-size:14.5;font-family:calibri;" align="center" border="0" rules="">
-		<table width="650" style="font-size:14.5;font-family:calibri;" align="center">
+		<table width="650" style="font-size:14.5;font-family:calibri;" align="center" border="0">
 			<tr>
-				<td></td>
-				<td><img src="images/1.jpg" align="left"></td><td width="280" style="font-size:20"><u><b>BTS  SITE FOLDER</td><td><img src="images/2.png" align="right"></td>
+				<td width="30%"><img src="http://{host}/indottech/htmls_bts/images/1.jpg" align="left"></td><td width="280" style="font-size:15" align="center"><u><b>BTS  SITE FOLDER</td><td width="30%"><img src="http://{host}/indottech/htmls_bts/images/2.png" align="right"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><hr width="100%" size="4px" color="black"></td>
 			</tr>
 		</table>
-		<hr width="650" size="5">
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
 			<tr><td width="10"><b>1.</td><td colspan="3" style="padding-left:10"><b>SITE SPECIFIC INSTALLATION DATA</td></tr>
 			<tr><td><b>1.<br><br></td><td><b>1<br><br></td><td colspan="2"><b>Antenna and Antenna Line General Information<br><br></td></tr>
@@ -20,41 +21,41 @@
 			<tr style="background-color:#D8D8D8; font-weight: bold"><td style="height:50"></td><td colspan="3">PLAN (DRM) - VALUE</td><td colspan="3" width="60">ACTUAL – [OK / NOK]</td></tr>
 			<tr><td rowspan="2"></td><td rowspan="2">Sector 1</td><td rowspan="2">Sector 2</td><td rowspan="2">Sector 3</td><td colspan="3">Sector</td></tr>
 			<tr><td>1</td><td>2</td><td>3</td></tr>
-			<tr><td>Antenna Type</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
-			<tr><td>Serial No</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
-			<tr><td>Direction</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
-			<tr><td>Mechanical Tilt</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
-			<tr><td>Electrical Tilt</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
-			<tr><td>Antenna Height</td><td></td><td></td><td></td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td><td style="color:blue"><b>OK</td></tr>
+			<tr><td>Antenna Type</td><td>{bts_05.antenna_s1}</td><td>{bts_05.antenna_s2}</td><td>{bts_05.antenna_s3}</td><td>{bts_05.antenna_n1}</td><td>{bts_05.antenna_n2}</td><td>{bts_05.antenna_n3}</td></tr>
+			<tr><td>Serial No</td><td>{bts_05.serial_s1}</td><td>{bts_05.serial_s2}</td><td>{bts_05.serial_s3}</td><td>{bts_05.serial_n1}</td><td>{bts_05.serial_n2}</td><td>{bts_05.serial_n3}</td></tr>
+			<tr><td>Direction</td><td>{bts_05.direction_s1}</td><td>{bts_05.direction_s2}</td><td>{bts_05.direction_s3}</td><td>{bts_05.direction_n1}</td><td>{bts_05.direction_n2}</td><td>{bts_05.direction_n3}</td></tr>
+			<tr><td>Mechanical Tilt</td><td>{bts_05.mechanical_s1}</td><td>{bts_05.mechanical_s2}</td><td>{bts_05.mechanical_s3}</td><td>{bts_05.mechanical_n1}</td><td>{bts_05.mechanical_n2}</td><td>{bts_05.mechanical_n3}</td></tr>
+			<tr><td>Electrical Tilt</td><td>{bts_05.electrical_s1}</td><td>{bts_05.electrical_s2}</td><td>{bts_05.electrical_s3}</td><td>{bts_05.electrical_n1}</td><td>{bts_05.electrical_n1}</td><td>{bts_05.electrical_n3}</td></tr>
+			<tr><td>Antenna Height</td><td>{bts_05.height_s1}</td><td>{bts_05.height_s2}</td><td>{bts_05.height_s3}</td><td>{bts_05.height_n1}</td><td>{bts_05.height_n2}</td><td>{bts_05.height_n3}</td></tr>
 		</table><br><br>
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
 			<tr><td width="10">1.</td><td width="10">1.</td><td width="10">2</td><td colspan="2">Antenna Line Configuration</td></tr>
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr style="height:30; font-weight: bold"><td></td><td>SECTOR 1</td><td>SECTOR 2</td><td>SECTOR 3</td></tr>
-			<tr><td>Jumper Length (Meter)</td><td></td><td></td><td></td></tr>
-			<tr><td>Optical Length (meter)</td><td></td><td></td><td></td></tr>
-			<tr><td>Power Cable Length SM – RF (meter)</td><td></td><td></td><td></td></tr>
+			<tr><td>Jumper Length (Meter)</td><td>{bts_05.jumper_s1}</td><td>{bts_05.jumper_s2}</td><td>{bts_05.jumper_s3}</td></tr>
+			<tr><td>Optical Length (meter)</td><td>{bts_05.optical_s1}</td><td>{bts_05.optical_s2}</td><td>{bts_05.optical_s3}</td></tr>
+			<tr><td>Power Cable Length SM – RF (meter)</td><td>{bts_05.power_s1}</td><td>{bts_05.power_s2}</td><td>{bts_05.power_s3}</td></tr>
 		</table><br><br>
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
 			<tr><td width="10">1.</td><td width="10">1.</td><td width="10">3</td><td colspan="2">Antenna lines VSWR value (BTS measurement)</td></tr>
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr style="background-color:#D8D8D8; height:30; font-weight: bold"><td>RF MODULE</td><td>Port 2</td><td>Port 3</td><td>Port 4</td><td>Port 5</td><td>Port 6</td><td>Port 7</td></tr>
-			<tr><td>FXDB#1</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
-			<tr><td>FXDB#2</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
-			<tr><td>FXED#1</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
-			<tr><td>FXED#2</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
-			<tr><td>FRGU#1</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
-			<tr><td>FRGU#2</td><td></td><td></td><td></td><td><b></td><td><b></td><td><b></td></tr>
+			<tr><td>FXDB#1</td><td>{bts_05.fxdb_1_p1}</td><td>{bts_05.fxdb_1_p2}</td><td>{bts_05.fxdb_1_p3}</td><td>{bts_05.fxdb_1_p4}</td><td>{bts_05.fxdb_1_p5}</td><td>{bts_05.fxdb_1_p6}</td></tr>
+			<tr><td>FXDB#2</td><td>{bts_05.fxdb_2_p1}</td><td>{bts_05.fxdb_2_p2}</td><td>{bts_05.fxdb_2_p3}</td><td>{bts_05.fxdb_2_p4}</td><td>{bts_05.fxdb_2_p5}</td><td>{bts_05.fxdb_2_p6}</td></tr>
+			<tr><td>FXED#1</td><td>{bts_05.fxed_1_p1}</td><td>{bts_05.fxed_1_p2}</td><td>{bts_05.fxed_1_p3}</td><td>{bts_05.fxed_1_p4}</td><td>{bts_05.fxed_1_p5}</td><td>{bts_05.fxed_1_p6}</td></tr>
+			<tr><td>FXED#2</td><td>{bts_05.fxed_2_p1}</td><td>{bts_05.fxed_2_p2}</td><td>{bts_05.fxed_2_p3}</td><td>{bts_05.fxed_2_p4}</td><td>{bts_05.fxed_2_p5}</td><td>{bts_05.fxed_2_p6}</td></tr>
+			<tr><td>FRGU#1</td><td>{bts_05.frgu_1_p1}</td><td>{bts_05.frgu_1_p2}</td><td>{bts_05.frgu_1_p3}</td><td>{bts_05.frgu_1_p4}</td><td>{bts_05.frgu_1_p5}</td><td>{bts_05.frgu_1_p6}</td></tr>
+			<tr><td>FRGU#2</td><td>{bts_05.frgu_2_p1}</td><td>{bts_05.frgu_2_p2}</td><td>{bts_05.frgu_2_p3}</td><td>{bts_05.frgu_2_p4}</td><td>{bts_05.frgu_2_p5}</td><td>{bts_05.frgu_2_p6}</td></tr>
 		</table><br><br>
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
 			<tr><td width="10">1.</td><td width="10">1.</td><td width="10">4</td><td colspan="2">Supply Voltages information</td></tr>
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr><td>Measurement</td><td>Expected (V)</td><td>Actual (V)</td></tr>
-			<tr><td>DC Measured Voltage (Rectifier Output)</td><td>48</td><td></td></tr>
-			<tr><td>AC Measured Voltage (PLN Output)</td><td>220</td><td></td></tr>
+			<tr><td>DC Measured Voltage (Rectifier Output)</td><td>48</td><td>{bts_05.dc}</td></tr>
+			<tr><td>AC Measured Voltage (PLN Output)</td><td>220</td><td>{bts_05.ac}</td></tr>
 		</table><br><br>
 		
 		<table width="650"align="center" border="1" rules="all" style="font-size:10;font-family:calibri">

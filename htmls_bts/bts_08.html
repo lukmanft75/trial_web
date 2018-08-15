@@ -4,22 +4,23 @@
 </head>
 <body style="margin-left:-20px; ">
 	<table width="650" style="font-size:14.5;font-family:calibri;" align="center" border="0" rules="">
-		<table width="650" style="font-size:14.5;font-family:calibri;" align="center">
+		<table width="650" style="font-size:14.5;font-family:calibri;" align="center" border="0">
 			<tr>
-				<td></td>
-				<td><img src="images/1.jpg" align="left"></td><td width="280" style="font-size:20"><u><b>BTS  SITE FOLDER</td><td><img src="images/2.png" align="right"></td>
+				<td width="30%"><img src="http://{host}/indottech/htmls_bts/images/1.jpg" align="left"></td><td width="280" style="font-size:15" align="center"><u><b>BTS  SITE FOLDER</td><td width="30%"><img src="http://{host}/indottech/htmls_bts/images/2.png" align="right"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><hr width="100%" size="4px" color="black"></td>
 			</tr>
 		</table>
-		<hr width="650" size="5">
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
 			<tr><td width="10">2.</td><td width="10">2.</td><td width="10">2.</td><td width="10">1</td><td colspan="2">Transmission Link Information</td></tr>
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr style="font-weight: bold;background-color:#D8D8D8"><td width="290">TYPE</td><td>REMARKS (Capacity and Converter Type)</td></tr>
-			<tr><td align="left" style=" padding-left:10"><input type="checkbox">Electrical Eth.</td><td></td></tr>
-			<tr><td align="left" style=" padding-left:10"><input type="checkbox">Optical Eth.</td><td></td></tr>
+			<tr><td align="left" style=" padding-left:10"><img src="http://{host}/indottech/htmls_bts/images/{bts_08.type_1}"> Electrical Eth.</td><td rowspan="2">{bts_08.remark}</td></tr>
+			<tr><td align="left" style=" padding-left:10"><img src="http://{host}/indottech/htmls_bts/images/{bts_08.type_2}"> Optical Eth.</td></tr>
 			<tr style="font-weight: bold;background-color:#D8D8D8; text-align:left;"><td width="290" colspan="2" style=" padding-left:10">Cross connect route information</td></tr>
-			<tr><td colspan="2" height="50" style="padding-left:10; text-align:left">..................................................................................</td></tr>
+			<tr><td colspan="2" height="50" style="padding-left:10; text-align:left">{bts_08.info}</td></tr>
 		</table><br>
 		
 		<table width="580" style="font-size:14.5;font-family:calibri;" align="center">
@@ -27,8 +28,8 @@
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr style="font-weight: bold;background-color:#D8D8D8"><td width="400">TEST</td><td>OK</td><td>NOK</td></tr>
-			<tr><td style="text-align:left; padding-left:10">BTS Restart</td><td style="font-weight: bold;color:blue">OK</td><td></td></tr>
-			<tr><td style="text-align:left; padding-left:10">Launch & connection BTS from WEB browser</td><td style="font-weight: bold;color:blue">OK</td><td></td></tr>
+			<tr><td style="text-align:left; padding-left:10">BTS Restart</td><td>{bts_08.t2_1_ok}</td><td>{bts_08.t2_1_nok}</td></tr>
+			<tr><td style="text-align:left; padding-left:10">Launch & connection BTS from WEB browser</td><td>{bts_08.t2_2_ok}</td><td>{bts_08.t2_2_nok}</td></tr>
 		</table><br>
 		
 		
@@ -37,21 +38,21 @@
 		</table><br>
 		<table width="580" style="font-size:14.5;font-family:calibri; text-align:center" align="center" border="1" rules="all">
 			<tr style="font-weight: bold;background-color:#D8D8D8"><td width="30">No</td><td width="400">ENVA</td><td>OK</td><td>NOK</td><td>NA</td></tr>
-			<tr><td>1</td><td style="text-align:left; padding-left:10">L1 FAILURE</td><td></td><td></td><td></td></tr>
-			<tr><td>2</td><td style="text-align:left; padding-left:10">L2 FAILURE</td><td></td><td></td><td></td></tr>
-			<tr><td>3</td><td style="text-align:left; padding-left:10">L3 FAILURE</td><td></td><td></td><td></td></tr>
-			<tr><td>4</td><td style="text-align:left; padding-left:10">DOOR OPEN</td><td></td><td></td><td></td></tr>
-			<tr><td>5</td><td style="text-align:left; padding-left:10">AC REMOVED (not applicable for outdoor site)</td><td></td><td></td><td></td></tr>
-			<tr><td>6</td><td style="text-align:left; padding-left:10">FENCE BREAK (not applicable for outdoor site)</td><td></td><td></td><td></td></tr>
-			<tr><td>7</td><td style="text-align:left; padding-left:10">GENSET RUNNING (only applicable for site with Genset)</td><td></td><td></td><td></td></tr>
-			<tr><td>8</td><td style="text-align:left; padding-left:10">GENSET FAILURE (only applicable for site with Genset)</td><td></td><td></td><td></td></tr>
-			<tr><td>9</td><td style="text-align:left; padding-left:10">GENSET LOW FUEL (only applicable for site with Genset)</td><td></td><td></td><td></td></tr>
-			<tr><td>10</td><td style="text-align:left; padding-left:10">RECTIFIER MAIN FAILURE</td><td></td><td></td><td></td></tr>
-			<tr><td>11</td><td style="text-align:left; padding-left:10">MEDIUM SURGE PROTECTION FAILURE</td><td></td><td></td><td></td></tr>
-			<tr><td>12</td><td style="text-align:left; padding-left:10">DC HIGH VOLTAGE</td><td></td><td></td><td></td></tr>
-			<tr><td>13</td><td style="text-align:left; padding-left:10">DC LOW VOLTAGE</td><td></td><td></td><td></td></tr>
-			<tr><td>14</td><td style="text-align:left; padding-left:10">GROUNDING CABLE CUT</td><td></td><td></td><td></td></tr>
-			<tr><td>15</td><td style="text-align:left; padding-left:10">INDOOR TEMPARATURE TOO HIGH (only applicable for indoor site)</td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td style="text-align:left; padding-left:10">L1 FAILURE</td><td>{bts_08.L1_ok}</td><td>{bts_08.L1_nok}</td><td></td></tr>
+			<tr><td>2</td><td style="text-align:left; padding-left:10">L2 FAILURE</td><td>{bts_08.L2_ok}</td><td>{bts_08.L2_nok}</td><td></td></tr>
+			<tr><td>3</td><td style="text-align:left; padding-left:10">L3 FAILURE</td><td>{bts_08.L3_ok}</td><td>{bts_08.L3_nok}</td><td></td></tr>
+			<tr><td>4</td><td style="text-align:left; padding-left:10">DOOR OPEN</td><td>{bts_08.door_ok}</td><td>{bts_08.door_nok}</td><td></td></tr>
+			<tr><td>5</td><td style="text-align:left; padding-left:10">AC REMOVED (not applicable for outdoor site)</td><td>{bts_08.ac_ok}</td><td>{bts_08.ac_nok}</td><td></td></tr>
+			<tr><td>6</td><td style="text-align:left; padding-left:10">FENCE BREAK (not applicable for outdoor site)</td><td>{bts_08.fence_ok}</td><td>{bts_08.fence_nok}</td><td></td></tr>
+			<tr><td>7</td><td style="text-align:left; padding-left:10">GENSET RUNNING (only applicable for site with Genset)</td><td>{bts_08.running_ok}</td><td>{bts_08.running_nok}</td><td></td></tr>
+			<tr><td>8</td><td style="text-align:left; padding-left:10">GENSET FAILURE (only applicable for site with Genset)</td><td>{bts_08.failure_ok}</td><td>{bts_08.failure_nok}</td><td></td></tr>
+			<tr><td>9</td><td style="text-align:left; padding-left:10">GENSET LOW FUEL (only applicable for site with Genset)</td><td>{bts_08.low_ok}</td><td>{bts_08.low_nok}</td><td></td></tr>
+			<tr><td>10</td><td style="text-align:left; padding-left:10">RECTIFIER MAIN FAILURE</td><td>{bts_08.rectifier_ok}</td><td>{bts_08.rectifier_nok}</td><td></td></tr>
+			<tr><td>11</td><td style="text-align:left; padding-left:10">MEDIUM SURGE PROTECTION FAILURE</td><td>{bts_08.medium_ok}</td><td>{bts_08.medium_nok}</td><td></td></tr>
+			<tr><td>12</td><td style="text-align:left; padding-left:10">DC HIGH VOLTAGE</td><td>{bts_08.high_ok}</td><td>{bts_08.high_nok}</td><td></td></tr>
+			<tr><td>13</td><td style="text-align:left; padding-left:10">DC LOW VOLTAGE</td><td>{bts_08.low_ok}</td><td>{bts_08.low_nok}</td><td></td></tr>
+			<tr><td>14</td><td style="text-align:left; padding-left:10">GROUNDING CABLE CUT</td><td>{bts_08.grounding_ok}</td><td>{bts_08.grounding_nok}</td><td></td></tr>
+			<tr><td>15</td><td style="text-align:left; padding-left:10">INDOOR TEMPARATURE TOO HIGH (only applicable for indoor site)</td><td>{bts_08.indoor_ok}</td><td>{bts_08.indoor_nok}</td><td></td></tr>
 		</table><br>
 		<table width="650"align="center" border="1" rules="all" style="font-size:10;font-family:calibri">
 			<tr><td style="padding-left:10">Project</td><td style="padding-left:10" width="100">XL</td><td rowspan="2" style="padding-left:10;text-align:center">BTS Acceptance Document</td><td style="padding-left:10">Revision Date</td><td> </td></tr>
