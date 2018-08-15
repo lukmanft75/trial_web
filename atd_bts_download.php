@@ -8,9 +8,9 @@
 	// include_once "atd_bts_05.php";
 	// include_once "atd_bts_06.php";
 	// include_once "atd_bts_07.php";
-	// include_once "atd_bts_08.php"; 
+	include_once "atd_bts_08.php"; 
 	// include_once "atd_bts_09.php";
-	include_once "atd_bts_10.php";
+	// include_once "atd_bts_10.php";
 	// include_once "atd_bts_11.php";
 	// include_once "atd_bts_12.php";
 	// include_once "atd_bts_13.php";
