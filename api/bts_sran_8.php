@@ -11,11 +11,7 @@
 		}
 		$workTypeIds = substr($workTypeIds,0,-2);		
 	
-	if(isset($_POST["save"])){
-		// echo "<pre>";
-		// print_r($_POST);
-		// echo "</pre>";
-			
+	if(isset($_POST["save"])){			
 		$db->addtable("indottech_bts_sran_8");
 		if($bts_sran_8["id"] > 0) 					$db->where("id",$bts_sran_8["id"]);
 		$db->addfield("atd_id");					$db->addvalue($atd_id);
