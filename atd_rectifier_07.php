@@ -177,5 +177,5 @@
 	array_push($arr2,$indottech_atr["connected_ip"]);
 	array_push($arr2,$indottech_atr["connected_port"]);
 	
-	echo str_replace($arr1,$arr2,read_file("htmls/rectifier_7.html"));
+	// echo str_replace($arr1,$arr2,read_file("htmls/rectifier_7.html"));
 ?>
