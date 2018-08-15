@@ -1,5 +1,4 @@
 <?php
-	include_once "common.php";
 	$hari = ["1" => "Senin","2" => "Selasa","3" => "Rabu", "4" => "kamis", "5" => "Jum'at", "6" => "Sabtu", "7" => "Minggu"];
 	$bulan = ["1" => "Januari","2" => "Februari","3" => "Maret", "4" => "April", "5" => "Mei", "6" => "Juni", "7" => "Juli", "8" => "Agustus", "9" => "September", "10" => "Oktober", "11" => "November", "12" => "Desember"];
 	$arr1 = array();

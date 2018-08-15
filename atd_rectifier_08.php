@@ -1,5 +1,4 @@
 <?php
-	include_once "common.php";
 	function str_replace_first($search, $replace, $subject) {
 		return implode($replace, explode($search, $subject, 2));
 	}

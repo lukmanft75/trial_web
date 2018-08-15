@@ -1,5 +1,4 @@
 <?php
-	include_once "common.php";
 	$arr1 = array();
 	array_push($arr1,"{host}");
 	array_push($arr1,"{indottech_photos.photo_site}");
