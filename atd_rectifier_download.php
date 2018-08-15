@@ -17,7 +17,7 @@
 	include_once "atd_rectifier_05.php";
 	include_once "atd_rectifier_06.php";
 	include_once "atd_rectifier_07.php";
-	// include_once "atd_rectifier_08.php"; 
+	include_once "atd_rectifier_08.php"; 
 	include_once "atd_rectifier_09.php";
 	include_once "atd_rectifier_10.php";
 	include_once "atd_rectifier_11.php";

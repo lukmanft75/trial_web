@@ -2,8 +2,6 @@
 	function str_replace_first($search, $replace, $subject) {
 		return implode($replace, explode($search, $subject, 2));
 	}
-	$hari = ["1" => "Senin","2" => "Selasa","3" => "Rabu", "4" => "kamis", "5" => "Jum'at", "6" => "Sabtu", "7" => "Minggu"];
-	$bulan = ["1" => "Januari","2" => "Februari","3" => "Maret", "4" => "April", "5" => "Mei", "6" => "Juni", "7" => "Juli", "8" => "Agustus", "9" => "September", "10" => "Oktober", "11" => "November", "12" => "Desember"];
 	$arr1 = array();
 	array_push($arr1,"{host}");
 	array_push($arr1,"{indottech_acceptance_test_rectifier.date}");
@@ -177,5 +175,5 @@
 	array_push($arr2,$indottech_atr["connected_ip"]);
 	array_push($arr2,$indottech_atr["connected_port"]);
 	
-	// echo str_replace($arr1,$arr2,read_file("htmls/rectifier_7.html"));
+	echo str_replace($arr1,$arr2,read_file("htmls/rectifier_7.html"));
 ?>
