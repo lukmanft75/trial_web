@@ -1,7 +1,13 @@
 <?php
 	header("Content-type: application/vnd.ms-word");
 	header("Content-Disposition: attachment;Filename=atp_bts_sran.doc");
-	
+?>
+<html>
+	<head>
+		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=Windows-1252\">
+	</head>
+	<body style="margin-left:-20px; ">
+<?php
 	include_once "atd_bts_01.php";
 	include_once "atd_bts_02.php";
 	include_once "atd_bts_03.php";
@@ -43,5 +49,6 @@
 	include_once "atd_bts_39.php";
 	include_once "atd_bts_40.php";
 	include_once "atd_bts_41.php";
-	
 ?>
+</body>
+</html>
