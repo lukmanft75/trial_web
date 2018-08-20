@@ -1,0 +1,2 @@
+INSERT INTO indottech_photo_items (id,parent_id,itemtype,beforeafter,is_childest,project_id,doctype,seqno,name) VALUES (986,0,11,0,0,13,'bts_sran',1,'3.1 BTS System Module');
+UPDATE indottech_photo_items SET parent_id = '986' WHERE id >= 920 AND id <= 954 AND parent_id = 0;
