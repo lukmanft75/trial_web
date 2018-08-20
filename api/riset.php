@@ -15,29 +15,28 @@ include_once "../common.php";
 
 //------------------------------------1
 //$batteries[battery_ke][menit_ke]=$val;
-$batteries["1"]["30"] = "12";
-$batteries["1"]["60"] = "11.80";
-$batteries["1"]["90"] = "11.70";
-$batteries["1"]["120"] = "11.60";
-$batteries["2"]["30"] = "12.1";
-$batteries["2"]["60"] = "11.81";
-$batteries["2"]["90"] = "11.71";
-$batteries["2"]["120"] = "11.61";
+// $batteries["1"]["30"] = "12";
+// $batteries["1"]["60"] = "11.80";
+// $batteries["1"]["90"] = "11.70";
+// $batteries["1"]["120"] = "11.60";
+// $batteries["2"]["30"] = "12.1";
+// $batteries["2"]["60"] = "11.81";
+// $batteries["2"]["90"] = "11.71";
+// $batteries["2"]["120"] = "11.61";
 
-echo "<pre>";
-	print_r ($batteries);
-echo "</pre>";
+// echo "<pre>";
+	// print_r ($batteries);
+// echo "</pre>";
 
-foreach($batteries as $battery_ke => $minutes){
-	foreach($minutes as $minute_ke => $val){
-		// echo "<br>Battre ke : $battery_ke menit ke $minute_ke nilainya $val";
-	}
-}
+// foreach($batteries as $battery_ke => $minutes){
+	// foreach($minutes as $minute_ke => $val){
+		// // echo "<br>Battre ke : $battery_ke menit ke $minute_ke nilainya $val";
+	// }
+// }
 //end------------------------------------1
 
 //------------------------------------2
-
-//$banks[bank_ke][battery_ke][menit_ke]=$val;
+// $banks[bank_ke][battery_ke][menit_ke]=$val;
 // $banks["1"]["1"]["30"] = "15";
 // $banks["1"]["1"]["60"] = "14";
 // $banks["1"]["1"]["90"] = "13";
@@ -55,23 +54,16 @@ foreach($batteries as $battery_ke => $minutes){
 // $banks["2"]["2"]["90"] = "23.2";
 // $banks["2"]["2"]["120"] = "22.2";
 
-// // print_r ($banks);
-// // $nilai=$db->fetch_all_data("indottech_battery_discharge",["bank_no", "batt_no", "minute_at", "val"],"atd_id = '1'");
-// // echo $db->get_last_query();
 // echo "<pre>";
 // print_r ($banks);
 // echo "</pre>";
 
 
-
+	// $val = $db->fetch_single_data("indottech_battery_discharge","val",["atd_id" => "1","bank_no" => $bank_ke,"batt_no" => $battery_ke,"minute_at" => $minute]);
 	// foreach($banks as $bank_ke => $batteries){
 		// foreach($batteries as $battery_ke => $minutes){
 			// foreach($minutes as $minute => $val){
-				// // echo "pada bank $bank_ke battery ke $battery_ke saat menit $minute bernilai $val";
-				// // echo " ==>";
-				// // echo $banks[$bank_ke][$battery_ke][$minute];
-				// echo "pada bank $bank_ke battery ke $battery_ke saat menit $minute bernilai :";
-				// echo $db->fetch_single_data("indottech_battery_discharge","val",["atd_id" => "1","bank_no" => $bank_ke,"batt_no" => $battery_ke,"minute_at" => $minute]);
+				// echo "pada bank $bank_ke battery ke $battery_ke saat menit $minute bernilai : $val";
 				// echo "<br>";
 			// }
 		// }
@@ -91,6 +83,25 @@ foreach($batteries as $battery_ke => $minutes){
 // $a .= 2
 // echo $a => 132
 //end----------------------3
+
+//----------------------4
+// $histories = $db->fetch__data("indottech_bts_sran_9","history_at",["atd_id" => "4"]);
+// // echo "<pre>";
+// // print_r ($test);
+// // echo "</pre>";
+// foreach($histories as $history){
+	// echo "ini " .$history;
+// }
+//end----------------------4
+
+
+//----------------------5 array menampilkan history berdasarkan atd_id
+// foreach($histories as $seqno => $history){
+	// echo "<pre><br><br>";
+	// print_r ($db->fetch_single_data("indottech_bts_sran_9","history_at",["atd_id" => "4"]));
+	// echo "</pre>";
+// }
+//end----------------------5
 ?>
 
 

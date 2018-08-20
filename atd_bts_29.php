@@ -3,7 +3,6 @@
 	$arr1 = array();
 	array_push($arr1,"{host}");
 
-	
 	$arr2 = array();
 	array_push($arr2,"localhost");
 
