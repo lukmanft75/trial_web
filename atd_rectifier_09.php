@@ -1,7 +1,7 @@
 <?php
-	function str_replace_first($search, $replace, $subject) {
-		return implode($replace, explode($search, $subject, 2));
-	}
+	// function str_replace_first($search, $replace, $subject) {
+		// return implode($replace, explode($search, $subject, 2));
+	// }
 	
 	$arr1 = array();
 	array_push($arr1,"{host}");
