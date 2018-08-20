@@ -1,5 +1,27 @@
 <?php include_once "header.php";?>
 <h4><b>ATP Installation</b></h4>
+<form method="GET">
+	<input type="hidden" name="token" value="<?=$_GET["token"];?>">
+	<table>
+		<tr><td><b><u>Filter:</u></b></td></tr>
+		<?php
+			$sites = $db->fetch_select_data("indottech_sites","id","concat(name,' [',site_code,']')",["project_id" => 13],["name"],"",true);
+		?>
+		<?=$t->row(["Work Type",$f->select("sel_doctype",["" => "","rectifier" => "RECTIFIER","bts_sran" => "BTS SRAN"],$_GET["sel_doctype"])]);?>
+		<?=$t->row(["Project Name",$f->input("txt_project_name",$_GET["txt_project_name"])]);?>
+		<?=$t->row(["Site",$f->select("sel_site",$sites,$_GET["sel_site"])]);?>
+		<?=$t->row(["Created At",$f->input("txt_created_at",$_GET["txt_created_at"],"type='date'")]);?>
+		<tr><td colspan="2"><input type="submit" name="search" value="Search">&nbsp;<input type="button" value="Reset" onclick="window.location='?token=<?=$_GET["token"];?>';"></td></tr>
+	</table>
+</form>
+<?php
+	$whereclause = "";
+	if($_GET["sel_doctype"] != "") $whereclause .= "doctype='".$_GET["sel_doctype"]."' AND ";
+	if($_GET["txt_project_name"] != "") $whereclause .= "project_name LIKE '%".$_GET["txt_project_name"]."%' AND ";
+	if($_GET["sel_site"] != "") $whereclause .= "site_id='".$_GET["sel_site"]."' AND ";
+	if($_GET["txt_created_at"] != "") $whereclause .= "created_at LIKE '".$_GET["txt_created_at"]."%' AND ";
+	$whereclause = substr($whereclause,0,-4);
+?>
 <button onclick="window.location='atp_installation_cover_add.php?token=<?=$token;?>&doctype=rectifier';">New Rectifier Doc</button>
 &nbsp;
 <button onclick="window.location='atp_installation_cover_add.php?token=<?=$token;?>&doctype=bts_sran';">New BTS SRAN Doc</button>
@@ -13,6 +35,7 @@
 		<th>Site Name</th>
 		<th nowrap>Acceptance At</th>
 		<th>Acceptance Status</th>
+		<th>Created At</th>
 	</tr>
 	<?php 
 		$atd_covers = $db->fetch_all_data("indottech_atd_cover",[],$whereclause);
@@ -33,6 +56,7 @@
 			<td><?=$atd_cover["site_name"];?></td>
 			<td><?=format_tanggal($atd_cover["acceptance_at"]);?></td>
 			<td><?=$acceptance_status;?></td>
+			<td><?=format_tanggal($atd_cover["created_at"]);?></td>
 		</tr>
 	<?php } ?>
 </table>
