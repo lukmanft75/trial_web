@@ -22,7 +22,7 @@
 	$bts_40 = $db->fetch_all_data("indottech_bts_sran_8",[],"atd_id='".$_GET["id"]."'")[0];
 	
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$acceptance_certificate["po_number"]);
 	array_push($arr2,$acceptance_certificate["site_id"]);
 	array_push($arr2,$acceptance_certificate["site_name"]);

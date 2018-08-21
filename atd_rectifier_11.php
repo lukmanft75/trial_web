@@ -53,7 +53,7 @@
 	
 	
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$indottech_photos_907);
 	array_push($arr2,$indottech_photos_908);
 	array_push($arr2,$indottech_photos_909);

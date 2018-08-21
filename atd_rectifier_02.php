@@ -19,7 +19,7 @@
 	$ba_ujiterima = $db->fetch_all_data("indottech_ba_ujiterima",[],"atd_id='".$_GET["id"]."'")[0];
 
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$ba_ujiterima["vendor"]);
 	$ba_created_at = explode("-",substr($ba_ujiterima["ba_at"],0,10));
 	array_push($arr2,$hari[date("N",mktime(0,0,0,$ba_created_at[1],$ba_created_at[2],$ba_created_at[0]))]);

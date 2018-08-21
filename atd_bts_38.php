@@ -8,7 +8,7 @@
 
 
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "985"]));
 	array_push($arr2,$db->fetch_single_data("indottech_bts_sran_8","regional_manager_name","atd_id =" .$_GET["id"] ));
 	array_push($arr2,$db->fetch_single_data("indottech_bts_sran_8","xl_representative_name","atd_id =" .$_GET["id"] ));

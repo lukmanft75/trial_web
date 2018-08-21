@@ -50,7 +50,7 @@
 	$bts_sran_2_3_1 = $db->fetch_all_data("indottech_bts_sran_2_3_1",[],"atd_id='".$_GET["id"]."'")[0];
 	
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$bts_sran_2_2_5["arfcn_1"]);
 	array_push($arr2,$bts_sran_2_2_5["arfcn_2"]);
 	array_push($arr2,$bts_sran_2_2_5["arfcn_3"]);

@@ -218,7 +218,7 @@
 		}
 	
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$_1_1_ok);
 	array_push($arr2,$_1_1_nok);
 	array_push($arr2,$_1_2_ok);

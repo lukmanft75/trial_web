@@ -35,7 +35,7 @@
 	$bts_sran_2_3_3 = $db->fetch_all_data("indottech_bts_sran_2_3_3",[],"atd_id='".$_GET["id"]."'")[0];
 	
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$bts_sran_2_3_2["cell_id_no_1"]);
 	array_push($arr2,$bts_sran_2_3_2["cell_id_no_2"]);
 	array_push($arr2,$bts_sran_2_3_2["cell_id_no_3"]);

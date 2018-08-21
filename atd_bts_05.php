@@ -93,7 +93,7 @@
 	$status_ok_nok = ["0" => "-", "1" => "OK", "2" => "NOK"];
 
 	$arr2 = array();
-	array_push($arr2,"localhost");
+	array_push($arr2,"103.253.112.201");
 	array_push($arr2,$bts_sran_1_1_1["antena_type_1"]);
 	array_push($arr2,$bts_sran_1_1_1["antena_type_2"]);
 	array_push($arr2,$bts_sran_1_1_1["antena_type_3"]);
