@@ -6,7 +6,7 @@
 	array_push($arr1,"{bts_23.3342}");
 
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "943"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "944"]));
 

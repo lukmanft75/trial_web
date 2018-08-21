@@ -9,7 +9,7 @@
 	array_push($arr1,"{bts_31.site_name}");
 
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "958"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "959"]));
 	array_push($arr2,$db->fetch_single_data("indottech_photos","filename",["atd_id" => $_GET["id"],"photo_items_id" => "960"]));

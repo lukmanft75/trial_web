@@ -92,7 +92,7 @@
 	}
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,format_tanggal($indottech_atr["test_at"]));
 	array_push($arr2,$indottech_atr["customer"]);
 	array_push($arr2,$indottech_atr["site_name"]);

@@ -36,7 +36,7 @@
 	$bts_sran_2_2_2 = $db->fetch_all_data("indottech_bts_sran_2_2_2",[],"atd_id='".$_GET["id"]."'")[0];
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,$bts_sran_2_2_1["v1"]);
 	array_push($arr2,$bts_sran_2_2_1["v2"]);
 	array_push($arr2,$bts_sran_2_2_1["v3"]);

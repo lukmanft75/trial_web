@@ -40,7 +40,7 @@
 
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	
 	echo str_replace($arr1,$arr2,$fullcontent);
 ?>

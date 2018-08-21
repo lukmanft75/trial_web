@@ -14,7 +14,7 @@
 	
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	$worktype = $db->fetch_single_data("indottech_atd_cover","doctype",["id" => $_GET["id"]]);
 	if ($worktype == "bts_sran") {
 		$worktype_2 = "kotak_isi.jpg";

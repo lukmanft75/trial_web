@@ -14,7 +14,7 @@
 	// $val_1 = "tr";
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	for($no=0; $no<7; $no++){
 		$val = $db->fetch_single_data("indottech_bts_sran_9","history_at",["atd_id" => $_GET["id"], "seqno" => $no]);
 		array_push($arr2, format_tanggal($val));

@@ -228,7 +228,7 @@
 	
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,$vtype_1);
 	array_push($arr2,$vtype_2);
 	array_push($arr2,$bts_sran_2_2_2_1["remarks"]);

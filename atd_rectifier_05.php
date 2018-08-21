@@ -12,7 +12,7 @@
 	array_push($arr1,"{indottech_breakers.load_name}");
 	
 	$arr2 = array();
-	array_push($arr2,"103.253.112.201");
+	array_push($arr2,"103.253.113.201");
 	array_push($arr2,$db->fetch_single_data("indottech_breakers","capacity",["atd_id" => $_GET["id"],"seqno" => "0"]));
 	array_push($arr2,$db->fetch_single_data("indottech_breakers","qty",["atd_id" => $_GET["id"],"seqno" => "0"]));
 	array_push($arr2,ucwords($db->fetch_single_data("indottech_breakers","name",["atd_id" => $_GET["id"],"seqno" => "0"])));
