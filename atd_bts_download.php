@@ -36,7 +36,7 @@
 	include_once "atd_bts_26.php";
 	include_once "atd_bts_27.php";
 	include_once "atd_bts_28.php"; 
-	// include_once "atd_bts_29.php";
+	// // include_once "atd_bts_29.php"; //perpanjanan halaman 28
 	include_once "atd_bts_30.php";
 	include_once "atd_bts_31.php";
 	include_once "atd_bts_32.php";

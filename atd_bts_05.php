@@ -90,7 +90,7 @@
 	$bts_sran_1_1_2 = $db->fetch_all_data("indottech_bts_sran_1_1_2",[],"atd_id='".$_GET["id"]."'")[0];
 	$bts_sran_1_1_3 = $db->fetch_all_data("indottech_bts_sran_1_1_3",[],"atd_id='".$_GET["id"]."'")[0];
 	$bts_sran_1_1_4 = $db->fetch_all_data("indottech_bts_sran_1_1_4",[],"atd_id='".$_GET["id"]."'")[0];
-	$status_ok_nok = ["1" => "OK", "2" => "NOK"];
+	$status_ok_nok = ["0" => "-", "1" => "OK", "2" => "NOK"];
 
 	$arr2 = array();
 	array_push($arr2,"localhost");
