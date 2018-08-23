@@ -20,6 +20,7 @@
 	if($_GET["txt_project_name"] != "") $whereclause .= "project_name LIKE '%".$_GET["txt_project_name"]."%' AND ";
 	if($_GET["sel_site"] != "") $whereclause .= "site_id='".$_GET["sel_site"]."' AND ";
 	if($_GET["txt_created_at"] != "") $whereclause .= "created_at LIKE '".$_GET["txt_created_at"]."%' AND ";
+	if($_SESSION["username"] != "") $whereclause .= "created_by='".$_SESSION["username"]."' AND ";
 	$whereclause = substr($whereclause,0,-4);
 ?>
 <button onclick="window.location='atp_installation_cover_add.php?token=<?=$token;?>&doctype=rectifier';">New Rectifier Doc</button>
@@ -38,6 +39,7 @@
 		<th>Created At</th>
 	</tr>
 	<?php 
+	// fetch_all_data($table,$fields = array(),$where = "",$order="",$limit=""){
 		$atd_covers = $db->fetch_all_data("indottech_atd_cover",[],$whereclause);
 		foreach($atd_covers as $no => $atd_cover){ 
 			if($atd_cover["acceptance_status"] == 0) $acceptance_status = "";
