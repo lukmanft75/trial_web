@@ -1,6 +1,6 @@
 <?php
-	header("Content-type: application/vnd.ms-word");
-	header("Content-Disposition: attachment;Filename=atp_bts_sran.doc");
+	// header("Content-type: application/vnd.ms-word");
+	// header("Content-Disposition: attachment;Filename=atp_bts_sran.doc");
 ?>
 <html>
 	<head>

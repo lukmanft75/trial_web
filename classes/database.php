@@ -26,7 +26,9 @@
     $database->insert();
     $database->update();
     $database->delete_();
-
+	
+	$db->fetch_select_data($table,$id,$field,$wheres = array(),$orders = array(),$limit = "",$startwithnone = false);
+	$db->fetch_single_data($table,$field,$wheres,$orders = array());
     **************************************************************************/
     
     class Database {
@@ -51,7 +53,7 @@
 		public $searchjob_limit		= 15;
 		
 		public function __construct(){	
-			$this->lines = file($_SERVER["DOCUMENT_ROOT"]."/db_config_chr_dashboards.txt");
+			$this->lines = file($_SERVER["DOCUMENT_ROOT"]."/trial_web_master.txt");
 			$this->arrconfig = explode("|",$this->lines[0]);
 			$this->host   = $this->arrconfig[0];
 			$this->user   = $this->arrconfig[1];

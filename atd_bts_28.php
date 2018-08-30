@@ -9,7 +9,7 @@
 	$bts_28_363 = "";
 	$photos_363 = $db->fetch_all_data("indottech_photos",["filename"],"atd_id = '".$_GET["id"]."' AND photo_items_id = '954' ORDER BY seqno");
 	foreach($photos_363 as $photo_363){
-		$bts_28_363 .= "<img style='position:relative' width='530' src='http://localhost/indottech/geophoto/".$photo_363["filename"]."'>&nbsp;&nbsp;";
+		$bts_28_363 .= "<img style='position:relative' width='530' src='http://{host}/indottech/geophoto/".$photo_363["filename"]."'>&nbsp;&nbsp;";
 	}
 	
 	

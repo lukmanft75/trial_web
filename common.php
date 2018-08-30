@@ -57,6 +57,7 @@
 	function is_file_allowed($filename,$user_id,$group_id,$db){
 		if($filename == "index.php") return true;
 		if($filename == "change_password.php") return true;
+		if($filename == "tis_user_add.php") return true; //menu tambahan tis agar bisa diproses
 		$is_allowed = true;
 		$file_pattern = "";
 		if(strpos($filename,"_") > 0){
