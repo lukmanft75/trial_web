@@ -42,6 +42,7 @@
 			<tr><td align="center"colspan="<?=count($indottech_photos);?>" nowrap>
 				<h5><b><?=$photo["name"];?></b></h5>
 				<input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&photo_items_id=<?=$_GET["photo_items_id"];?>&takephoto=<?=$atd_id;?>|<?=$photo["id"];?>';">
+				<input style="font-size:10px;" type="button" value="From Galery" onclick="window.location='?token=<?=$token;?>&atd_id=<?=$atd_id;?>&photo_items_id=<?=$_GET["photo_items_id"];?>&imagepick=<?=$atd_id;?>|<?=$photo["id"];?>';">
 			</td></tr>
 			<tr>
 				<?php 

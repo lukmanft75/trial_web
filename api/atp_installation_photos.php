@@ -30,13 +30,19 @@
 		foreach($photos as $photo){
 			$indottech_photos = $db->fetch_all_data("indottech_photos",[],"atd_id='".$atd_id."' AND photo_items_id='".$photo["id"]."'","seqno");
 			$is_parent = $db->fetch_single_data("indottech_photo_items","id",["parent_id" => $photo["id"]]);
-			if($is_parent) $url_takephoto = "atp_installation_photos_detail.php?token=".$token."&atd_id=".$atd_id."&photo_items_id=".$photo["id"];
-			else $url_takephoto = "atp_installation_photos_detail.php?token=".$token."&atd_id=".$atd_id."&photo_items_id=".$photo["id"]."&takephoto=".$atd_id."|".$photo["id"];
+			if($is_parent){
+				$url_takephoto = "atp_installation_photos_detail.php?token=".$token."&atd_id=".$atd_id."&photo_items_id=".$photo["id"];
+				$url_imagepick = "";
+			} else {
+				$url_takephoto = "atp_installation_photos_detail.php?token=".$token."&atd_id=".$atd_id."&photo_items_id=".$photo["id"]."&takephoto=".$atd_id."|".$photo["id"];
+				$url_imagepick = "atp_installation_photos_detail.php?token=".$token."&atd_id=".$atd_id."&photo_items_id=".$photo["id"]."&imagepick=".$atd_id."|".$photo["id"];
+			}
 	?>
 		<table width="100%" border="1">
 			<tr><td align="center"colspan="<?=count($indottech_photos);?>" nowrap>
 				<h5><b><?=$photo["name"];?></b></h5>
 				<input style="font-size:10px;" type="button" value="Take Photo" onclick="window.location='<?=$url_takephoto;?>';">
+				<?php if($url_imagepick != ""){ ?> <input style="font-size:10px;" type="button" value="From Galery" onclick="window.location='<?=$url_imagepick;?>';"> <?php } ?>
 			</td></tr>
 			<tr>
 				<?php 

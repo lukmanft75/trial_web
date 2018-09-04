@@ -41,10 +41,15 @@
 		$tagging_at = date("YmdHis");
 		$basefilename = "tag_atp_installation_".$__user_id."_".$atd_id."_".$photo_items_id."_".$tagging_at.".jpg";
 		$filename = "../geophoto/".$basefilename;
-		$coordinates = explode("|",$_GET["coordinate"]);
-		$latitude = $coordinates[0];
-		$longitude = $coordinates[1];
 		$site_id = $db->fetch_single_data("indottech_atd_cover","site_id",["id" => $atd_id]);
+		if($_GET["coordinate"] != ""){
+			$coordinates = explode("|",$_GET["coordinate"]);
+			$latitude = $coordinates[0];
+			$longitude = $coordinates[1];			
+		} else {
+			$latitude = $db->fetch_single_data("indottech_sites","latitude",["id" => $site_id]);
+			$longitude = $db->fetch_single_data("indottech_sites","longitude",["id" => $site_id]);
+		}
 		$site_name = $db->fetch_single_data("indottech_atd_cover","site_name",["id" => $atd_id]);
 		$photo_title = $db->fetch_single_data("indottech_photo_items","name",["id" => $photo_items_id]);
 		$seqno = $db->fetch_single_data("indottech_photos","seqno",["atd_id" => $atd_id,"photo_items_id" => $photo_items_id],["seqno DESC"]);
